@@ -6,6 +6,8 @@
 
 **Business name:** Camino Tenerife
 **Tagline:** "Walk the Island. Find Your Way."
+**Hero line (raw — pending final approval):** "I walked the Camino de Santiago twice. Then I found Tenerife. Let me guide you through this unique island and landscapes."
+**Short hero line (raw):** "I walked it twice. Now I live it. Walk with me."
 **Owner:** Andreas Höfelmeyer — experienced hiker, Camino Francés veteran (twice completed), local guide on Tenerife
 
 **What this business is:**
@@ -21,18 +23,19 @@ Guided walking experiences on Tenerife's Caminos — routes inspired by the Cami
 
 ## 2. COLORS
 
-The palette is drawn from the Tenerife landscape and the Camino Santiago tradition — earthy, warm, alive.
+The palette is drawn from the Tenerife landscape and the Camino Santiago tradition — ocean, forest, volcanic earth.
 
 | Role | Hex | Usage |
 |---|---|---|
 | Background | `#FAF7F2` | Warm off-white — like sunlit stone |
 | Primary text | `#1A1208` | Deep warm black — not cold |
 | Secondary text | `#6B5B45` | Warm brown — captions, labels |
-| Brand terracotta | `#C4622D` | Primary accent — CTAs, buttons, highlights |
-| Brand gold | `#D4A035` | Secondary accent — icons, badges, decorative |
+| Forest deep | `#2C4A3E` | Dark anchor — nav bg, headers, footer |
+| Teal primary | `#2E7D8C` | Primary brand color — links, secondary buttons, accents |
+| Sky water | `#5DB8C0` | Light accent — sky, hover states |
+| Brand terracotta | `#C4622D` | Primary CTA accent — buttons, highlights |
+| Sage green | `#7A9E7E` | Nature accent — trail markers, tags, supporting text |
 | Stone grey | `#8C7E6E` | Borders, dividers, muted UI |
-| Forest green | `#3D5A3E` | Nature accent — trail markers, tags |
-| Sky blue | `#7BA7BC` | Horizon accent — subtle backgrounds |
 | Warm card | `rgba(250,247,242,0.85)` | Card fills |
 | Card border | `rgba(196,98,45,0.15)` | Card borders |
 
@@ -52,22 +55,22 @@ linear-gradient(160deg, #FAF7F2 0%, #F5EFE4 50%, #EDE4D6 100%)
 
 ## 3. TYPOGRAPHY
 
-Warm, readable, with a human touch. Inspired by trail signage and travel journals.
+Warm, literary, with a pilgrim's soul. Cormorant Garamond throughout — elegant serif with deep heritage roots, perfectly suited to the journal-like aesthetic of the Camino.
 
 | Role | Font | Weight | Notes |
 |---|---|---|---|
-| H1 — Page title | Playfair Display | 700 | Serif — warmth, heritage, depth |
-| H2 — Section title | Playfair Display | 600 | With terracotta line underneath |
-| H3 — Subsection | Lato | 700 | Clean, grounded |
-| H4 — Label/tag | Lato | 700 | Uppercase, letter-spacing: 2px |
-| Body / paragraph | Lato | 400 | Line-height: 1.8 — easy to read on trail/mobile |
-| Emphasis | Lato | 700 | Inline bold — never italic |
-| Caption / meta | Lato | 400 | 13px, color: `#6B5B45` |
-| Pull quote / accent | Playfair Display | 400 italic | For Camino quotes or testimonials |
+| H1 — Page title | Cormorant Garamond | 700 | Large, stately — sets the tone |
+| H2 — Section title | Cormorant Garamond | 600 | With terracotta line underneath |
+| H3 — Subsection | Cormorant Garamond | 600 | Clean, grounded |
+| H4 — Label/tag | Cormorant Garamond | 700 | Uppercase, letter-spacing: 2px |
+| Body / paragraph | Cormorant Garamond | 400 | Line-height: 1.8 — easy to read on trail/mobile |
+| Emphasis | Cormorant Garamond | 700 | Inline bold — never italic |
+| Caption / meta | Cormorant Garamond | 400 | 13px, color: `#6B5B45` |
+| Pull quote / accent | Cormorant Garamond | 400 italic | For Camino quotes or testimonials |
 
 Google Fonts import:
 ```
-https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Lato:wght@400;700&display=swap
+https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap
 ```
 
 **Language rule:** Write in English by default. German or Dutch only if explicitly requested.
@@ -104,11 +107,12 @@ https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;
   --bg-deep: #EDE4D6;
   --text: #1A1208;
   --text-muted: #6B5B45;
+  --forest-deep: #2C4A3E;
+  --teal: #2E7D8C;
+  --sky: #5DB8C0;
   --terracotta: #C4622D;
-  --gold: #D4A035;
+  --sage: #7A9E7E;
   --stone: #8C7E6E;
-  --forest: #3D5A3E;
-  --sky: #7BA7BC;
   --gradient: linear-gradient(135deg, #C4622D 0%, #D4A035 100%);
   --card-bg: rgba(250, 247, 242, 0.85);
   --card-border: rgba(196, 98, 45, 0.15);
@@ -133,7 +137,7 @@ https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;
 .btn-primary {
   background: linear-gradient(135deg, #C4622D 0%, #D4A035 100%);
   color: #ffffff;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.5px;
@@ -153,7 +157,7 @@ https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;
   background: transparent;
   color: var(--terracotta);
   border: 1.5px solid var(--terracotta);
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
   font-size: 15px;
   border-radius: 6px;
@@ -178,7 +182,7 @@ https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;
   align-items: center;
   gap: 8px;
   color: var(--forest);
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 2px;
@@ -201,7 +205,7 @@ https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;
   background: linear-gradient(135deg, rgba(196,98,45,0.1), rgba(212,160,53,0.1));
   border: 1px solid rgba(196, 98, 45, 0.25);
   color: var(--terracotta);
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -241,19 +245,25 @@ A fellow walker. Someone who has walked the Camino Francés twice and moved to T
 
 ## 6. TARGET AUDIENCE
 
-### Primary: "The Pilgrim at Heart"
-- **Who:** People who have walked the Camino de Santiago, or deeply want to. Age 30–65. Solo travelers, couples, small friend groups.
-- **Why Tenerife:** They want the Camino spirit but cannot do the full Francés right now. Or they have done it and want more.
-- **Core truth:** The Camino is not a place — it is a pace, a presence, a way of being. They are looking for that feeling again.
+### Primary: "The Nature Lover"
+- **Who:** People who hike regularly and crave immersion over sightseeing. Age 30–65. Solo travelers, couples, small friend groups. Often carry Camino experience or a deep desire for it.
+- **Why Tenerife:** They want a guide who knows the island at its roots — the hidden trails, volcanic geology, ancient laurel forests. Spiritual in their relationship with nature without needing it labeled.
+- **Core truth:** They are tired of going alone or booking generic tours. They want to walk with someone who genuinely loves this place.
 - **Primary pain:** Mass tourism. Crowded trails. Guided groups where the guide is 20 meters ahead with a flag. They want human connection, not herding.
+- **What draws them in:** Volcanic landscapes (lava fields, Teide summit), ancient nature (laurel forests, endemic flora), ocean and summit views, the pilgrim spirit of slow travel and inner stillness, authentic guidance from someone who chose this island.
 - **What converts them:** Andreas's personal Camino history. Small group or solo. Real photos from real walks. A tone that feels like a message from a friend, not a brochure.
 
-### Secondary: "The Nature Walker"
+### Secondary: "The Pilgrim at Heart"
+- **Who:** People who have walked the Camino de Santiago, or deeply want to. They want the Camino spirit but cannot do the full Francés right now. Or they have done it and want more.
+- **Core truth:** The Camino is not a place — it is a pace, a presence, a way of being. They are looking for that feeling again on this island.
+- **What converts them:** Andreas's personal Camino history. The pilgrim spirit woven into every route. A tone that recognises what they already know.
+
+### Tertiary: "The Nature Walker"
 - **Who:** Visitors to Tenerife who love hiking, nature, and getting away from the resorts. Not necessarily Camino-aware.
 - **What converts them:** The landscape. The exclusivity of a personal guide. The photo/video package as a tangible memory.
 
 ### Default assumption
-Write for "The Pilgrim at Heart" — they know what the Camino feels like and are looking for that again on this island.
+Write for "The Nature Lover" — they crave the island, not a tour. Secondary layer: if they know the Camino, acknowledge it. If not, the landscape and guide presence speak for themselves.
 
 ---
 

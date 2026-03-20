@@ -1,18 +1,673 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome | Camino Tenerife</title>
-  <meta name="description" content="Guided walking experiences on Tenerife's most beautiful Camino routes.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camino Tenerife | Guided Walking on the Island of Fire</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary:     '#C4622D',
+                        secondary:   '#D4A035',
+                        forest:      '#2C4A3E',
+                        teal:        '#2E7D8C',
+                        sky:         '#5DB8C0',
+                        sage:        '#7A9E7E',
+                        stone:       '#8C7E6E',
+                        warmblack:   '#1A1208',
+                        warmgray:    '#6B5B45',
+                        cream:       '#FAF7F2',
+                        warmcard:    '#F5EFE4',
+                        offwhite:    '#EDE4D6',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans:  ['"Cormorant Garamond"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ── Brand CSS variables ─────────────────────────────── */
+        :root {
+            --bg:           #FAF7F2;
+            --bg-warm:      #F5EFE4;
+            --bg-deep:      #EDE4D6;
+            --text:         #1A1208;
+            --text-muted:   #6B5B45;
+            --forest-deep:  #2C4A3E;
+            --teal:         #2E7D8C;
+            --sky:          #5DB8C0;
+            --terracotta:   #C4622D;
+            --sage:         #7A9E7E;
+            --stone:        #8C7E6E;
+            --gradient:     linear-gradient(135deg, #C4622D 0%, #D4A035 100%);
+            --card-bg:      rgba(250, 247, 242, 0.85);
+            --card-border:  rgba(196, 98, 45, 0.15);
+            --radius:       12px;
+            --radius-sm:    6px;
+        }
+
+        /* ── Base ────────────────────────────────────────────── */
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #1A1208;
+            background: #FAF7F2;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: #C4622D; color: #fff; }
+
+        /* ── Hero overlay ────────────────────────────────────── */
+        .image-overlay-gradient {
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 18, 8, 0.60) 0%,
+                rgba(44, 74, 62, 0.25) 50%,
+                rgba(26, 18, 8, 0.72) 100%
+            );
+        }
+
+        /* ── Gradient utilities ──────────────────────────────── */
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            border: none;
+            padding: 14px 32px;
+            cursor: pointer;
+            display: inline-block;
+            text-transform: uppercase;
+            transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+        .btn-primary:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(196, 98, 45, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.75);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            padding: 13px 31px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.10);
+            border-color: #fff;
+        }
+
+        /* ── Trail marker label ──────────────────────────────── */
+        .trail-marker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--terracotta);
+        }
+        .trail-marker::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 2px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* ── Card ────────────────────────────────────────────── */
+        .trail-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 24px rgba(26, 18, 8, 0.06);
+        }
+
+        /* ── Decorative border box (featured section) ─────────── */
+        .deco-border {
+            position: absolute;
+            inset: -16px;
+            border: 1px solid rgba(212, 160, 53, 0.35);
+            transform: translate(16px, 16px);
+            z-index: -1;
+            transition: transform 0.5s;
+        }
+        .group:hover .deco-border {
+            transform: translate(8px, 8px);
+        }
+
+        /* ── Brand divider line ──────────────────────────────── */
+        .brand-line {
+            height: 2px;
+            background: linear-gradient(90deg, #C4622D 0%, #D4A035 60%, rgba(212,160,53,0) 100%);
+            border: none;
+            margin: 24px 0;
+        }
+
+        .text-balance { text-wrap: balance; }
+    </style>
 </head>
-<body>
-  <main class="welcome-screen">
-    <h1>Welcome To Camino Tenerife</h1>
-  </main>
+<body class="flex flex-col min-h-screen w-full">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HEADER / NAV
+    ═══════════════════════════════════════════════════════════ -->
+    <header class="absolute top-0 left-0 w-full z-50 px-6 py-0 lg:px-12 flex justify-between items-center border-b border-white/20">
+        <a href="#" class="flex items-center">
+            <img
+                src="pics/Camino%20Tenerife%20-%20Logo%20Transparant.png"
+                alt="Camino Tenerife — Guided Walks"
+                class="h-32 w-auto"
+            >
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">The Experience</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Journeys</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">About Me</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">The Gear</a>
+        </nav>
+
+        <div class="hidden md:block">
+            <a href="#" class="btn-primary rounded-none text-sm">Put me on the waitlist</a>
+        </div>
+
+        <button class="md:hidden text-white">
+            <i class="ph ph-list text-3xl"></i>
+        </button>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="relative w-full h-screen min-h-[600px] flex items-center justify-center">
+
+        <!-- Background image -->
+        <div class="absolute inset-0 w-full h-full">
+            <img
+                src="https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop"
+                alt="Mount Teide at Sunrise"
+                class="w-full h-full object-cover object-center"
+            >
+            <div class="absolute inset-0 image-overlay-gradient"></div>
+        </div>
+
+        <!-- Hero content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+            <span class="trail-marker text-[#D4A035] mb-6 block justify-center" style="color:#D4A035;">Premium Guided Hiking</span>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-semibold mb-8 leading-tight text-balance">
+                Find Your Camino on the Island of Fire
+            </h1>
+            <p class="text-white/90 text-xl md:text-2xl font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                Experience the Camino de Santiago of Tenerife. Immerse yourself in volcanic landscapes, ancient laurel forests, and coastal paths with an expert local guide.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#featured" class="btn-primary">Discover the Route</a>
+                <a href="#tours" class="btn-outline">View All Treks</a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+            <span class="text-white/60 text-xs tracking-widest uppercase mb-2">Scroll</span>
+            <i class="ph ph-arrow-down text-white/60"></i>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         FEATURED ROUTE
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="featured" class="w-full py-24 lg:py-32" style="background:#FAF7F2;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+                <!-- Image column -->
+                <div class="lg:col-span-7 relative group">
+                    <div class="deco-border"></div>
+                    <img
+                        src="pics/Teide 01.jpeg"
+                        alt="The Grand Teide Crossing"
+                        class="w-full h-auto object-cover aspect-[4/3] shadow-xl"
+                    >
+                    <div class="absolute bottom-6 left-6 p-4 pr-12 shadow-lg" style="background:rgba(250,247,242,0.92);">
+                        <span class="block font-serif font-bold text-2xl" style="color:#C4622D;">01</span>
+                        <span class="block text-xs tracking-widest uppercase mt-1" style="color:#8C7E6E;">Featured Route</span>
+                    </div>
+                </div>
+
+                <!-- Text column -->
+                <div class="lg:col-span-5">
+                    <span class="trail-marker mb-4 block">Signature Experience</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl mb-6 leading-tight" style="color:#1A1208;">
+                        The Grand Teide Crossing
+                    </h2>
+                    <p class="mb-8 leading-relaxed font-light text-lg" style="color:#6B5B45;">
+                        Ascend through pine forests above the clouds to the alien landscapes of Mount Teide National Park. This exclusive multi-day trek offers unparalleled views, profound silence, and a deep connection to the island's volcanic heart.
+                    </p>
+
+                    <ul class="space-y-6 mb-10">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(196,98,45,0.10); color:#C4622D;">
+                                <i class="ph ph-clock text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold" style="color:#1A1208;">4 Days / 3 Nights</h4>
+                                <p class="text-sm mt-1" style="color:#8C7E6E;">Fully supported with boutique accommodation.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(196,98,45,0.10); color:#C4622D;">
+                                <i class="ph ph-mountains text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold" style="color:#1A1208;">Challenging Difficulty</h4>
+                                <p class="text-sm mt-1" style="color:#8C7E6E;">Requires a good level of fitness. Max altitude 3,718m.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(196,98,45,0.10); color:#C4622D;">
+                                <i class="ph ph-users text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold" style="color:#1A1208;">Intimate Groups</h4>
+                                <p class="text-sm mt-1" style="color:#8C7E6E;">Maximum of 6 hikers for a personalized experience.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="inline-flex items-center gap-3 font-semibold tracking-wide uppercase text-sm group pb-2 border-b-2 transition-colors"
+                       style="color:#C4622D; border-color:rgba(196,98,45,0.35);"
+                       onmouseover="this.style.borderColor='#C4622D'"
+                       onmouseout="this.style.borderColor='rgba(196,98,45,0.35)'">
+                        View Full Itinerary
+                        <i class="ph ph-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         WHY WALK WITH ME
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="w-full py-24 lg:py-32 border-t" style="background:#F5EFE4; border-color:rgba(196,98,45,0.15);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+
+            <span class="trail-marker mb-4 block justify-center" style="display:flex; justify-content:center;">The Philosophy</span>
+            <h2 class="font-serif text-4xl lg:text-5xl mb-16" style="color:#1A1208;">Why Walk With Me</h2>
+
+            <!-- Row 1 — 3 pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 mb-16">
+
+                <!-- Pillar 1 — Local Knowledge -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500"
+                             style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad-1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs>
+                                <linearGradient id="icon-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#C4622D"/>
+                                    <stop offset="100%" stop-color="#D4A035"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M8 3l4 8 5-5 5 15H2L8 3z"/>
+                            <path d="M7 10l2 4 4-2"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">Deep Local Knowledge</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        Born and raised in the shadow of Teide, I share the secret trails, ancient myths, and hidden flora that transform a simple hike into a profound journey.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 — Pilgrim Spirit -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500"
+                             style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad-2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs>
+                                <linearGradient id="icon-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#C4622D"/>
+                                    <stop offset="100%" stop-color="#D4A035"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M12 22s-8-4.5-8-11A8 8 0 0112 3a8 8 0 018 8c0 6.5-8 11-8 11z"/>
+                            <path d="M12 3v19"/>
+                            <path d="M12 4.5A7.5 7.5 0 005.5 11"/>
+                            <path d="M12 4.5A7.5 7.5 0 0118.5 11"/>
+                            <path d="M12 7A4.5 4.5 0 008.5 11"/>
+                            <path d="M12 7A4.5 4.5 0 0115.5 11"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">The Pilgrim's Spirit</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        Bringing the contemplative and transformative ethos of the traditional Camino to the dramatic and isolated landscapes of the Canary Islands.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 — Tailored Pacing -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500"
+                             style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad-3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs>
+                                <linearGradient id="icon-grad-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#C4622D"/>
+                                    <stop offset="100%" stop-color="#D4A035"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M4 22c2-8 6-12 8-20"/>
+                            <path d="M20 22c-2-8-6-12-8-20"/>
+                            <path d="M12 14v.01"/><path d="M12 18v.01"/>
+                            <path d="M12 10v.01"/><path d="M12 6v.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">Tailored Pacing</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        Every trek is adapted to your rhythm. We hike not just to reach the destination, but to fully experience every step along the trail.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Row 2 — 2 pillars, centered -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 max-w-3xl mx-auto">
+
+                <!-- Pillar 4 — Experienced Hiker -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500"
+                             style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad-4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs>
+                                <linearGradient id="icon-grad-4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#C4622D"/>
+                                    <stop offset="100%" stop-color="#D4A035"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- hiking boot / footstep icon -->
+                            <path d="M3 17l3-9 3 4 3-6 3 5 3-3v9H3z"/>
+                            <path d="M3 17h18"/>
+                            <circle cx="16" cy="5" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">Walked It Twice</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        I have completed the Camino de Santiago Francés twice. I am not a guide who read about the Camino. I know what the path asks of you — and what it gives back.
+                    </p>
+                </div>
+
+                <!-- Pillar 5 — Languages -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500"
+                             style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad-5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs>
+                                <linearGradient id="icon-grad-5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#C4622D"/>
+                                    <stop offset="100%" stop-color="#D4A035"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- speech / language icon -->
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                            <path d="M8 10h.01M12 10h.01M16 10h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">English. German. Dutch.</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        I guide fluently in all three languages. Whether you come from London, Amsterdam, or Munich, we will talk as we walk — no barriers, just good conversation on the trail.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ALL ROUTES / FIND YOUR ADVENTURE
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="tours" class="w-full py-24 lg:py-32 border-t" style="background:#FAF7F2; border-color:rgba(196,98,45,0.12);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="trail-marker mb-4 block">Curated Trails</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl" style="color:#1A1208;">Find Your Adventure</h2>
+                </div>
+                <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-colors" style="color:#6B5B45;"
+                   onmouseover="this.style.color='#C4622D'" onmouseout="this.style.color='#6B5B45'">
+                    View All Paths <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Card 1 — Coastal -->
+                <div class="group cursor-pointer flex flex-col h-full transition-all duration-500 hover:shadow-2xl"
+                     style="background:#F5EFE4; border:1px solid rgba(196,98,45,0.15); border-radius:12px; overflow:hidden;">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img
+                            src="https://images.unsplash.com/photo-1505820013142-f86a3439c5b2?q=80&w=2071&auto=format&fit=crop"
+                            alt="Coastal cliffs of Tenerife"
+                            class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        >
+                        <div class="absolute top-4 left-4 px-3 py-1 text-xs font-bold tracking-widest uppercase"
+                             style="background:rgba(212,160,53,0.90); color:#1A1208;">
+                            Coastal
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="font-serif text-2xl mb-3 transition-colors group-hover:text-primary" style="color:#1A1208;">The Anaga Ridge &amp; Shores</h3>
+                        <p class="font-light text-sm mb-6 flex-grow" style="color:#6B5B45;">
+                            Traverse ancient laurel forests descending into dramatic, untouched black sand beaches. A journey through mist and ocean spray.
+                        </p>
+                        <div class="flex items-center justify-between pt-6 border-t" style="border-color:rgba(196,98,45,0.15);">
+                            <div class="flex items-center gap-4 text-sm" style="color:#8C7E6E;">
+                                <span class="flex items-center gap-1"><i class="ph ph-clock"></i> 2 Days</span>
+                                <span class="flex items-center gap-1"><i class="ph ph-chart-line-up"></i> Moderate</span>
+                            </div>
+                            <span class="font-bold" style="color:#C4622D;">From €240</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 — Volcanic -->
+                <div class="group cursor-pointer flex flex-col h-full transition-all duration-500 hover:shadow-2xl"
+                     style="background:#F5EFE4; border:1px solid rgba(196,98,45,0.15); border-radius:12px; overflow:hidden;">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img
+                            src="https://images.unsplash.com/photo-1604537466158-719b1972feb8?q=80&w=2069&auto=format&fit=crop"
+                            alt="Volcanic landscape"
+                            class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        >
+                        <div class="absolute top-4 left-4 px-3 py-1 text-xs font-bold tracking-widest uppercase"
+                             style="background:rgba(196,98,45,0.90); color:#fff;">
+                            Volcanic
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="font-serif text-2xl mb-3 transition-colors group-hover:text-primary" style="color:#1A1208;">Chinyero Lava Fields</h3>
+                        <p class="font-light text-sm mb-6 flex-grow" style="color:#6B5B45;">
+                            Walk upon the youngest land on the island. A striking contrast of black lava, green pines, and the imposing backdrop of Pico Viejo.
+                        </p>
+                        <div class="flex items-center justify-between pt-6 border-t" style="border-color:rgba(196,98,45,0.15);">
+                            <div class="flex items-center gap-4 text-sm" style="color:#8C7E6E;">
+                                <span class="flex items-center gap-1"><i class="ph ph-clock"></i> 1 Day</span>
+                                <span class="flex items-center gap-1"><i class="ph ph-chart-line-up"></i> Easy</span>
+                            </div>
+                            <span class="font-bold" style="color:#C4622D;">From €95</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 — Historical -->
+                <div class="group cursor-pointer flex flex-col h-full transition-all duration-500 hover:shadow-2xl"
+                     style="background:#F5EFE4; border:1px solid rgba(196,98,45,0.15); border-radius:12px; overflow:hidden;">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img
+                            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop"
+                            alt="Sunlight through forest"
+                            class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        >
+                        <div class="absolute top-4 left-4 px-3 py-1 text-xs font-bold tracking-widest uppercase"
+                             style="background:rgba(122,158,126,0.90); color:#fff;">
+                            Historical
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="font-serif text-2xl mb-3 transition-colors group-hover:text-primary" style="color:#1A1208;">The Guanche Paths</h3>
+                        <p class="font-light text-sm mb-6 flex-grow" style="color:#6B5B45;">
+                            Follow the ancient routes of Tenerife's aboriginal people through the Teno Massif, ending in hidden valleys accessible only by foot.
+                        </p>
+                        <div class="flex items-center justify-between pt-6 border-t" style="border-color:rgba(196,98,45,0.15);">
+                            <div class="flex items-center gap-4 text-sm" style="color:#8C7E6E;">
+                                <span class="flex items-center gap-1"><i class="ph ph-clock"></i> 3 Days</span>
+                                <span class="flex items-center gap-1"><i class="ph ph-chart-line-up"></i> Hard</span>
+                            </div>
+                            <span class="font-bold" style="color:#C4622D;">From €450</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════════════════ -->
+    <footer class="pt-24 pb-12 w-full mt-auto" style="background:#2C4A3E; color:#fff;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+                <!-- Brand blurb -->
+                <div class="lg:col-span-1">
+                    <div class="mb-6">
+                        <img
+                            src="pics/Camino%20Tenerife%20-%20Logo%20Transparant.png"
+                            alt="Camino Tenerife — Guided Walks"
+                            class="h-28 w-auto"
+                        >
+                    </div>
+                    <p class="font-light text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.60);">
+                        Guided walking experiences connecting you to the soul, history, and landscapes of the Canary Islands.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors"
+                           style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);"
+                           onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';"
+                           onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';">
+                            <i class="ph ph-instagram-logo text-xl"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors"
+                           style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);"
+                           onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';"
+                           onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';">
+                            <i class="ph ph-facebook-logo text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Explore links -->
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Explore</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">All Treks</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Custom Journeys</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Preparation Guide</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company links -->
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">About The Guide</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Sustainability</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Journal</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">The Trail Dispatches</h4>
+                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">
+                        Subscribe for seasonal trail updates and exclusive early access to limited treks.
+                    </p>
+                    <form class="flex flex-col gap-3">
+                        <input
+                            type="email"
+                            placeholder="Email address"
+                            class="bg-transparent px-4 py-3 text-sm text-white focus:outline-none w-full transition-colors"
+                            style="border:1px solid rgba(255,255,255,0.20); font-family:'Cormorant Garamond',serif;"
+                            onfocus="this.style.borderColor='#D4A035'" onblur="this.style.borderColor='rgba(255,255,255,0.20)'"
+                        >
+                        <button type="submit" class="btn-primary w-full text-sm">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
+                 style="border-color:rgba(255,255,255,0.12);">
+                <p class="text-xs" style="color:rgba(255,255,255,0.40);">
+                    &copy; 2024 Camino Tenerife. All rights reserved.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);"
+                       onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Privacy Policy</a>
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);"
+                       onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
