@@ -1,0 +1,4 @@
+# Language-based automatic redirects
+# Netlify reads the browser's Accept-Language header and redirects accordingly
+/   /de/   302   Language=de
+/   /nl/   302   Language=nl

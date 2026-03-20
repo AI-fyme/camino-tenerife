@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camino Tenerife | Begeleide Wandelingen op het Eiland van Vuur</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary:     '#C4622D',
+                        secondary:   '#D4A035',
+                        forest:      '#2C4A3E',
+                        teal:        '#2E7D8C',
+                        sky:         '#5DB8C0',
+                        sage:        '#7A9E7E',
+                        stone:       '#8C7E6E',
+                        warmblack:   '#1A1208',
+                        warmgray:    '#6B5B45',
+                        cream:       '#FAF7F2',
+                        warmcard:    '#F5EFE4',
+                        offwhite:    '#EDE4D6',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans:  ['"Cormorant Garamond"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg:           #FAF7F2;
+            --bg-warm:      #F5EFE4;
+            --bg-deep:      #EDE4D6;
+            --text:         #1A1208;
+            --text-muted:   #6B5B45;
+            --forest-deep:  #2C4A3E;
+            --teal:         #2E7D8C;
+            --sky:          #5DB8C0;
+            --terracotta:   #C4622D;
+            --sage:         #7A9E7E;
+            --stone:        #8C7E6E;
+            --gradient:     linear-gradient(135deg, #C4622D 0%, #D4A035 100%);
+            --card-bg:      rgba(250, 247, 242, 0.85);
+            --card-border:  rgba(196, 98, 45, 0.15);
+            --radius:       12px;
+            --radius-sm:    6px;
+        }
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #1A1208;
+            background: #FAF7F2;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::selection { background: #C4622D; color: #fff; }
+        .image-overlay-gradient {
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 18, 8, 0.60) 0%,
+                rgba(44, 74, 62, 0.25) 50%,
+                rgba(26, 18, 8, 0.72) 100%
+            );
+        }
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            border: none;
+            padding: 14px 32px;
+            cursor: pointer;
+            display: inline-block;
+            text-transform: uppercase;
+            transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+        .btn-primary:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(196, 98, 45, 0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.75);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            padding: 13px 31px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.10); border-color: #fff; }
+        .trail-marker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--terracotta);
+        }
+        .trail-marker::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 2px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        .deco-border {
+            position: absolute;
+            inset: -16px;
+            border: 1px solid rgba(212, 160, 53, 0.35);
+            transform: translate(16px, 16px);
+            z-index: -1;
+            transition: transform 0.5s;
+        }
+        .group:hover .deco-border { transform: translate(8px, 8px); }
+        .text-balance { text-wrap: balance; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen w-full">
+
+    <!-- HEADER -->
+    <header class="absolute top-0 left-0 w-full z-50 px-6 py-0 lg:px-12 flex justify-between items-center border-b border-white/20">
+        <a href="/nl/" class="flex items-center">
+            <img src="../pics/Camino%20Tenerife%20-%20Logo%20Transparant.png" alt="Camino Tenerife — Begeleide Wandelingen" class="h-32 w-auto">
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">De Ervaring</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Tochten</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Over Mij</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">De Uitrusting</a>
+        </nav>
+
+        <!-- Language switcher -->
+        <div class="hidden md:flex items-center gap-1" style="border-left:1px solid rgba(255,255,255,0.20); padding-left:20px; margin-left:8px;">
+            <a href="/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">EN</a>
+            <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
+            <a href="/de/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">DE</a>
+            <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
+            <span class="text-white text-xs font-bold tracking-widest">NL</span>
+        </div>
+
+        <div class="hidden md:block">
+            <a href="#" class="btn-primary rounded-none text-sm">Zet Me Op De Wachtlijst</a>
+        </div>
+
+        <button class="md:hidden text-white">
+            <i class="ph ph-list text-3xl"></i>
+        </button>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative w-full h-screen min-h-[600px] flex items-center justify-center">
+        <div class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop" alt="Teide bij zonsopgang" class="w-full h-full object-cover object-center">
+            <div class="absolute inset-0 image-overlay-gradient"></div>
+        </div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+            <span class="trail-marker mb-6 block justify-center" style="display:flex; justify-content:center; color:#D4A035;">Premium Begeleide Wandelingen</span>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-semibold mb-8 leading-tight text-balance">
+                Vind Jouw Camino op het Eiland van Vuur
+            </h1>
+            <p class="text-white/90 text-xl md:text-2xl font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                Beleef de Camino de Santiago van Tenerife. Dompel jezelf onder in vulkanische landschappen, oeroude laurierbossen en kustpaden met een ervaren lokale gids.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#featured" class="btn-primary">Ontdek de Route</a>
+                <a href="#tours" class="btn-outline">Alle Tochten Bekijken</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+            <span class="text-white/60 text-xs tracking-widest uppercase mb-2">Scrollen</span>
+            <i class="ph ph-arrow-down text-white/60"></i>
+        </div>
+    </section>
+
+    <!-- FEATURED ROUTE -->
+    <section id="featured" class="w-full py-24 lg:py-32" style="background:#FAF7F2;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+                <div class="lg:col-span-7 relative group">
+                    <div class="deco-border"></div>
+                    <img src="../pics/Teide 01.jpeg" alt="De Grote Teide-Oversteek" class="w-full h-auto object-cover aspect-[4/3] shadow-xl">
+                    <div class="absolute bottom-6 left-6 p-4 pr-12 shadow-lg" style="background:rgba(250,247,242,0.92);">
+                        <span class="block font-serif font-bold text-2xl" style="color:#C4622D;">01</span>
+                        <span class="block text-xs tracking-widest uppercase mt-1" style="color:#8C7E6E;">Uitgelichte Route</span>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <span class="trail-marker mb-4 block">Kenmerkende Ervaring</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl mb-6 leading-tight" style="color:#1A1208;">
+                        De Grote Teide-Oversteek
+                    </h2>
+                    <p class="mb-8 leading-relaxed font-light text-lg" style="color:#6B5B45;">
+                        Klim door dennenbossen boven de wolken naar de vreemdsoortige landschappen van het Nationaal Park Teide. Deze exclusieve meerdaagse tocht biedt ongeëvenaarde uitzichten, diepe stilte en een diepe verbinding met het vulkanische hart van het eiland.
+                    </p>
+
+                    <ul class="space-y-6 mb-10">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(196,98,45,0.10); color:#C4622D;">
+                                <i class="ph ph-clock text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold" style="color:#1A1208;">4 Dagen / 3 Nachten</h4>
+                                <p class="text-sm mt-1" style="color:#8C7E6E;">Volledig ondersteund met boutique accommodatie.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(196,98,45,0.10); color:#C4622D;">
+                                <i class="ph ph-mountains text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold" style="color:#1A1208;">Uitdagende Moeilijkheidsgraad</h4>
+                                <p class="text-sm mt-1" style="color:#8C7E6E;">Vereist een goede conditie. Maximale hoogte 3.718 m.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(196,98,45,0.10); color:#C4622D;">
+                                <i class="ph ph-users text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold" style="color:#1A1208;">Kleine Groepen</h4>
+                                <p class="text-sm mt-1" style="color:#8C7E6E;">Maximaal 6 wandelaars voor een persoonlijke ervaring.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="inline-flex items-center gap-3 font-semibold tracking-wide uppercase text-sm group pb-2 border-b-2 transition-colors"
+                       style="color:#C4622D; border-color:rgba(196,98,45,0.35);"
+                       onmouseover="this.style.borderColor='#C4622D'" onmouseout="this.style.borderColor='rgba(196,98,45,0.35)'">
+                        Volledig Programma Bekijken
+                        <i class="ph ph-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY WALK WITH ME -->
+    <section class="w-full py-24 lg:py-32 border-t" style="background:#F5EFE4; border-color:rgba(196,98,45,0.15);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+
+            <span class="trail-marker mb-4 block" style="display:flex; justify-content:center;">De Filosofie</span>
+            <h2 class="font-serif text-4xl lg:text-5xl mb-16" style="color:#1A1208;">Waarom Met Mij Wandelen</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 mb-16">
+
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500" style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#ig1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs><linearGradient id="ig1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C4622D"/><stop offset="100%" stop-color="#D4A035"/></linearGradient></defs>
+                            <path d="M8 3l4 8 5-5 5 15H2L8 3z"/><path d="M7 10l2 4 4-2"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">Diepgaande Lokale Kennis</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        Opgegroeid in de schaduw van de Teide, deel ik de geheime paden, oude mythen en verborgen flora die een eenvoudige wandeling transformeren tot een diepe reis.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500" style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#ig2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs><linearGradient id="ig2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C4622D"/><stop offset="100%" stop-color="#D4A035"/></linearGradient></defs>
+                            <path d="M12 22s-8-4.5-8-11A8 8 0 0112 3a8 8 0 018 8c0 6.5-8 11-8 11z"/>
+                            <path d="M12 3v19"/><path d="M12 4.5A7.5 7.5 0 005.5 11"/><path d="M12 4.5A7.5 7.5 0 0118.5 11"/>
+                            <path d="M12 7A4.5 4.5 0 008.5 11"/><path d="M12 7A4.5 4.5 0 0115.5 11"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">De Pelgrimsgeest</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        De contemplatieve en transformatieve geest van de traditionele Camino naar de dramatische en geïsoleerde landschappen van de Canarische Eilanden.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500" style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#ig3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs><linearGradient id="ig3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C4622D"/><stop offset="100%" stop-color="#D4A035"/></linearGradient></defs>
+                            <path d="M4 22c2-8 6-12 8-20"/><path d="M20 22c-2-8-6-12-8-20"/>
+                            <path d="M12 14v.01"/><path d="M12 18v.01"/><path d="M12 10v.01"/><path d="M12 6v.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">Aangepast Tempo</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        Elke tocht wordt aangepast aan jouw ritme. We wandelen niet alleen om de bestemming te bereiken, maar om elke stap onderweg volledig te ervaren.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 max-w-3xl mx-auto">
+
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500" style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#ig4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs><linearGradient id="ig4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C4622D"/><stop offset="100%" stop-color="#D4A035"/></linearGradient></defs>
+                            <path d="M3 17l3-9 3 4 3-6 3 5 3-3v9H3z"/><path d="M3 17h18"/><circle cx="16" cy="5" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">Tweemaal Gelopen</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        Ik heb de Camino Francés tweemaal voltooid. Ik ben geen gids die over de Camino heeft gelezen. Ik weet wat het pad van je vraagt – en wat het teruggeeft.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center group">
+                    <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full scale-150 group-hover:scale-[1.75] transition-transform duration-500" style="background:rgba(196,98,45,0.07);"></div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="url(#ig5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-14 h-14 relative z-10">
+                            <defs><linearGradient id="ig5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C4622D"/><stop offset="100%" stop-color="#D4A035"/></linearGradient></defs>
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                            <path d="M8 10h.01M12 10h.01M16 10h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4" style="color:#1A1208;">Engels. Duits. Nederlands.</h3>
+                    <p class="font-light leading-relaxed" style="color:#6B5B45;">
+                        Ik gids vloeiend in alle drie de talen. Of je nu uit Londen, Amsterdam of München komt – we praten terwijl we lopen, geen barrières, alleen goed gesprek op het pad.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section id="tours" class="w-full py-24 lg:py-32 border-t" style="background:#FAF7F2; border-color:rgba(196,98,45,0.12);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="trail-marker mb-4 block">Geselecteerde Paden</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl" style="color:#1A1208;">Vind Jouw Avontuur</h2>
+                </div>
+                <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-colors" style="color:#6B5B45;"
+                   onmouseover="this.style.color='#C4622D'" onmouseout="this.style.color='#6B5B45'">
+                    Alle Paden Bekijken <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="group cursor-pointer flex flex-col h-full transition-all duration-500 hover:shadow-2xl"
+                     style="background:#F5EFE4; border:1px solid rgba(196,98,45,0.15); border-radius:12px; overflow:hidden;">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="https://images.unsplash.com/photo-1505820013142-f86a3439c5b2?q=80&w=2071&auto=format&fit=crop" alt="Kustrotsen van Tenerife" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 px-3 py-1 text-xs font-bold tracking-widest uppercase" style="background:rgba(212,160,53,0.90); color:#1A1208;">Kust</div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="font-serif text-2xl mb-3 transition-colors group-hover:text-primary" style="color:#1A1208;">De Anaga-Rug &amp; Kusten</h3>
+                        <p class="font-light text-sm mb-6 flex-grow" style="color:#6B5B45;">
+                            Doorkruis oeroude laurierbossen die afdalen naar dramatische, ongerepte stranden van zwart zand. Een reis door mist en zeewind.
+                        </p>
+                        <div class="flex items-center justify-between pt-6 border-t" style="border-color:rgba(196,98,45,0.15);">
+                            <div class="flex items-center gap-4 text-sm" style="color:#8C7E6E;">
+                                <span class="flex items-center gap-1"><i class="ph ph-clock"></i> 2 Dagen</span>
+                                <span class="flex items-center gap-1"><i class="ph ph-chart-line-up"></i> Gemiddeld</span>
+                            </div>
+                            <span class="font-bold" style="color:#C4622D;">Vanaf €240</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer flex flex-col h-full transition-all duration-500 hover:shadow-2xl"
+                     style="background:#F5EFE4; border:1px solid rgba(196,98,45,0.15); border-radius:12px; overflow:hidden;">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="https://images.unsplash.com/photo-1604537466158-719b1972feb8?q=80&w=2069&auto=format&fit=crop" alt="Vulkanisch landschap" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 px-3 py-1 text-xs font-bold tracking-widest uppercase" style="background:rgba(196,98,45,0.90); color:#fff;">Vulkanisch</div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="font-serif text-2xl mb-3 transition-colors group-hover:text-primary" style="color:#1A1208;">Chinyero Lavavelden</h3>
+                        <p class="font-light text-sm mb-6 flex-grow" style="color:#6B5B45;">
+                            Wandel over het jongste land van het eiland. Een opvallend contrast van zwarte lava, groene dennen en de imposante achtergrond van Pico Viejo.
+                        </p>
+                        <div class="flex items-center justify-between pt-6 border-t" style="border-color:rgba(196,98,45,0.15);">
+                            <div class="flex items-center gap-4 text-sm" style="color:#8C7E6E;">
+                                <span class="flex items-center gap-1"><i class="ph ph-clock"></i> 1 Dag</span>
+                                <span class="flex items-center gap-1"><i class="ph ph-chart-line-up"></i> Gemakkelijk</span>
+                            </div>
+                            <span class="font-bold" style="color:#C4622D;">Vanaf €95</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer flex flex-col h-full transition-all duration-500 hover:shadow-2xl"
+                     style="background:#F5EFE4; border:1px solid rgba(196,98,45,0.15); border-radius:12px; overflow:hidden;">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop" alt="Licht door het bos" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 px-3 py-1 text-xs font-bold tracking-widest uppercase" style="background:rgba(122,158,126,0.90); color:#fff;">Historisch</div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="font-serif text-2xl mb-3 transition-colors group-hover:text-primary" style="color:#1A1208;">De Guanche-Paden</h3>
+                        <p class="font-light text-sm mb-6 flex-grow" style="color:#6B5B45;">
+                            Volg de oude routes van de inheemse bevolking van Tenerife door het Teno-Massief tot verborgen dalen die alleen te voet bereikbaar zijn.
+                        </p>
+                        <div class="flex items-center justify-between pt-6 border-t" style="border-color:rgba(196,98,45,0.15);">
+                            <div class="flex items-center gap-4 text-sm" style="color:#8C7E6E;">
+                                <span class="flex items-center gap-1"><i class="ph ph-clock"></i> 3 Dagen</span>
+                                <span class="flex items-center gap-1"><i class="ph ph-chart-line-up"></i> Zwaar</span>
+                            </div>
+                            <span class="font-bold" style="color:#C4622D;">Vanaf €450</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-24 pb-12 w-full mt-auto" style="background:#2C4A3E; color:#fff;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+                <div class="lg:col-span-1">
+                    <div class="mb-6">
+                        <img src="../pics/Camino%20Tenerife%20-%20Logo%20Transparant.png" alt="Camino Tenerife" class="h-28 w-auto">
+                    </div>
+                    <p class="font-light text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.60);">
+                        Begeleide wandelervaringen die je verbinden met de ziel, geschiedenis en landschappen van de Canarische Eilanden.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-instagram-logo text-xl"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-facebook-logo text-xl"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Verkennen</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Alle Tochten</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Maatwerk Tochten</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Voorbereidingsgids</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Bedrijf</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Over De Gids</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Duurzaamheid</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Journal</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">De Pad-Nieuwsbrief</h4>
+                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">
+                        Abonneer je op seizoensgebonden pad-updates en exclusieve vroege toegang tot beperkte tochten.
+                    </p>
+                    <form class="flex flex-col gap-3">
+                        <input type="email" placeholder="E-mailadres" class="bg-transparent px-4 py-3 text-sm text-white focus:outline-none w-full transition-colors" style="border:1px solid rgba(255,255,255,0.20); font-family:'Cormorant Garamond',serif;" onfocus="this.style.borderColor='#D4A035'" onblur="this.style.borderColor='rgba(255,255,255,0.20)'">
+                        <button type="submit" class="btn-primary w-full text-sm">Abonneren</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-color:rgba(255,255,255,0.12);">
+                <p class="text-xs" style="color:rgba(255,255,255,0.40);">&copy; 2024 Camino Tenerife. Alle rechten voorbehouden.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Privacybeleid</a>
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Servicevoorwaarden</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
