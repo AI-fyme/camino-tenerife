@@ -1,4 +1,0 @@
-# Language-based automatic redirects
-# Netlify reads the browser's Accept-Language header and redirects accordingly
-/de/* /de/index.html  200
-/nl/* /nl/index.html  200
