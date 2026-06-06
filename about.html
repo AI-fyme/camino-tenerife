@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Andreas | Camino Tenerife</title>
+    <meta name="description" content="Andreas Höfelmeyer — the guide behind Camino Tenerife. From Hannover to the Camino Francés, from Spain to the Island of Fire.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary:     '#C4622D',
+                        secondary:   '#D4A035',
+                        forest:      '#2C4A3E',
+                        teal:        '#2E7D8C',
+                        sky:         '#5DB8C0',
+                        sage:        '#7A9E7E',
+                        stone:       '#8C7E6E',
+                        warmblack:   '#1A1208',
+                        warmgray:    '#6B5B45',
+                        cream:       '#FAF7F2',
+                        warmcard:    '#F5EFE4',
+                        offwhite:    '#EDE4D6',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans:  ['"Cormorant Garamond"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg:           #FAF7F2;
+            --bg-warm:      #F5EFE4;
+            --bg-deep:      #EDE4D6;
+            --text:         #1A1208;
+            --text-muted:   #6B5B45;
+            --forest-deep:  #2C4A3E;
+            --terracotta:   #C4622D;
+            --gold:         #D4A035;
+            --stone:        #8C7E6E;
+            --gradient:     linear-gradient(135deg, #C4622D 0%, #D4A035 100%);
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #1A1208;
+            background: #FAF7F2;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: #C4622D; color: #fff; }
+
+        .image-overlay-gradient {
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 18, 8, 0.55) 0%,
+                rgba(44, 74, 62, 0.20) 45%,
+                rgba(26, 18, 8, 0.75) 100%
+            );
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            border: none;
+            padding: 14px 32px;
+            cursor: pointer;
+            display: inline-block;
+            text-transform: uppercase;
+            transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+        .btn-primary:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(196, 98, 45, 0.35);
+        }
+
+        .btn-outline-terra {
+            background: transparent;
+            color: var(--terracotta);
+            border: 1.5px solid var(--terracotta);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            padding: 13px 31px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        .btn-outline-terra:hover {
+            background: rgba(196, 98, 45, 0.06);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.75);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            padding: 13px 31px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        .btn-outline-white:hover {
+            background: rgba(255,255,255,0.10);
+            border-color: #fff;
+        }
+
+        .trail-marker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--terracotta);
+        }
+        .trail-marker::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 2px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .brand-line {
+            height: 2px;
+            background: linear-gradient(90deg, #C4622D 0%, #D4A035 60%, rgba(212,160,53,0) 100%);
+            border: none;
+            margin: 0;
+        }
+
+        /* Photo placeholder styling */
+        .photo-placeholder {
+            background:
+                linear-gradient(135deg, transparent calc(50% - 1px), rgba(185,178,168,0.25) 50%, transparent calc(50% + 1px)),
+                linear-gradient(45deg,  transparent calc(50% - 1px), rgba(185,178,168,0.25) 50%, transparent calc(50% + 1px));
+            background-color: #EDE4D6;
+            border: 1.5px dashed rgba(140,126,110,0.40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-placeholder span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            color: #8C7E6E;
+            text-align: center;
+            padding: 8px 16px;
+            background: rgba(250,247,242,0.80);
+            border: 1px solid rgba(140,126,110,0.25);
+        }
+
+        /* Language chips */
+        .lang-chip {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            letter-spacing: 0.08em;
+            border: 1.5px solid rgba(196,98,45,0.30);
+            padding: 8px 22px;
+            color: #1A1208;
+            background: #fff;
+        }
+
+        /* Trail map */
+        #trail-map-wrap {
+            position: relative;
+            width: 100%;
+            overflow: visible;
+        }
+        #trail-map-wrap svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+        .trail-pin {
+            position: absolute;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 140px;
+        }
+        .trail-pin-circle {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #EDE4D6;
+            border: 2.5px solid #C4622D;
+            box-shadow: 0 0 0 3px #FAF7F2, 0 0 0 5px rgba(196,98,45,0.35);
+            margin: 0 auto 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .trail-pin-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 17px;
+            color: #1A1208;
+            white-space: nowrap;
+            line-height: 1.1;
+        }
+        .trail-pin-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 12.5px;
+            color: #6B5B45;
+            line-height: 1.3;
+            margin-top: 2px;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-balance { text-wrap: balance; }
+
+        @media (max-width: 768px) {
+            .trail-pin { width: 80px; }
+            .trail-pin-circle { width: 38px; height: 38px; }
+            .trail-pin-year { font-size: 12px; }
+            .trail-pin-desc { font-size: 10px; }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen w-full">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HEADER / NAV
+    ═══════════════════════════════════════════════════════════ -->
+    <header class="absolute top-0 left-0 w-full z-50 px-6 py-0 lg:px-12 flex justify-between items-center border-b border-white/20">
+        <a href="index.html" class="flex items-center">
+            <img
+                src="pics/Camino%20Tenerife%20-%20Logo%20Transparant.png"
+                alt="Camino Tenerife — Guided Walks"
+                class="h-32 w-auto"
+            >
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="index.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">The Experience</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Journeys</a>
+            <a href="about.html" class="text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:2px solid #D4A035; padding-bottom:3px;">About Me</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">The Gear</a>
+        </nav>
+
+        <!-- Language switcher -->
+        <div class="hidden md:flex items-center gap-1" style="border-left:1px solid rgba(255,255,255,0.20); padding-left:20px; margin-left:8px;">
+            <span class="text-white text-xs font-bold tracking-widest">EN</span>
+            <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
+            <a href="/de/about.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">DE</a>
+            <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
+            <a href="/nl/about.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">NL</a>
+        </div>
+
+        <div class="hidden md:block">
+            <a href="#" class="btn-primary rounded-none text-sm">Put me on the waitlist</a>
+        </div>
+
+        <button class="md:hidden text-white">
+            <i class="ph ph-list text-3xl"></i>
+        </button>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HERO — full-bleed, gradient overlay, headline bottom-left
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="relative w-full flex items-end" style="height:82vh; min-height:520px;">
+
+        <div class="absolute inset-0">
+            <img
+                src="https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop"
+                alt="Andreas on a Tenerife ridge at sunrise"
+                class="w-full h-full object-cover object-center"
+                loading="eager"
+            >
+            <div class="absolute inset-0 image-overlay-gradient"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pb-16 lg:pb-24">
+            <span class="trail-marker mb-4 block" style="color:#D4A035;">The guide</span>
+            <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-semibold leading-tight text-balance max-w-3xl">
+                I'm Andreas. I walk — and I'd love you to walk with me.
+            </h1>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         INTRO
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="py-20 lg:py-28 reveal" style="background:#FAF7F2;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="max-w-2xl">
+                <p class="text-xl lg:text-2xl font-light leading-relaxed" style="color:#6B5B45;">
+                    I grew up in Hannover with a restless pair of boots. I walked the Camino Francés in 2023 — alone, across all of Spain — and something inside me settled. In November 2024 I moved to Tenerife. I walk every Sunday. And now I want to share these paths with people who feel the same pull.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand line divider -->
+    <div class="px-6 lg:px-12"><hr class="brand-line"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SPLIT ROW 1 — Portrait | How I got here
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="py-20 lg:py-28 reveal" style="background:#FAF7F2;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-20 items-center">
+
+                <!-- Portrait — left, 5 columns -->
+                <div class="lg:col-span-5">
+                    <div class="photo-placeholder aspect-[4/3]">
+                        <span>Portrait — Andreas, candid on trail</span>
+                    </div>
+                </div>
+
+                <!-- Text — right, 6 columns -->
+                <div class="lg:col-span-6">
+                    <span class="trail-marker mb-5 block">How I got here</span>
+                    <h2 class="font-serif text-3xl lg:text-4xl mb-6 leading-tight" style="color:#1A1208;">
+                        From Hannover to the Island of Fire
+                    </h2>
+                    <p class="font-light text-lg leading-relaxed mb-5" style="color:#6B5B45;">
+                        I was born in 1977 in Hannover, Germany. I speak German and Dutch as mother tongues, and English as a third language that became a daily one. For most of my life, walking was just something I did on weekends.
+                    </p>
+                    <p class="font-light text-lg leading-relaxed" style="color:#6B5B45;">
+                        In 2023 I walked the Camino Francés for the first time — alone. Eight hundred kilometres from Saint-Jean-Pied-de-Port to Santiago de Compostela. When I finished, I understood why people do it twice. In November 2024 I moved to Tenerife. The island caught me in a way I hadn't expected. The paths here are extraordinary. I want to show them to you.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TRAIL MAP — The path so far
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="py-20 lg:py-28 border-t border-b reveal" style="background:#F5EFE4; border-color:rgba(196,98,45,0.12);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div class="text-center mb-14">
+                <span class="trail-marker" style="display:inline-flex; justify-content:center; margin-bottom:0.5rem;">The path so far</span>
+            </div>
+
+            <!-- Trail map renders here -->
+            <div id="trail-map-wrap">
+                <!-- SVG injected by buildTrailMap() -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SPLIT ROW 2 — Two-generation walk (text first, reversed)
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="py-20 lg:py-28 reveal" style="background:#FAF7F2;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-20 items-center">
+
+                <!-- Text — left, 6 columns -->
+                <div class="lg:col-span-6">
+                    <span class="trail-marker mb-5 block">The two-generation walk</span>
+                    <h2 class="font-serif text-3xl lg:text-4xl mb-6 leading-tight" style="color:#1A1208;">
+                        2023 alone. 2025 with my son Jason.
+                    </h2>
+                    <p class="font-light text-lg leading-relaxed mb-5" style="color:#6B5B45;">
+                        The first Camino was about finding out if I could do it. I could. One step at a time, across all of Spain, with only my thoughts and the path ahead.
+                    </p>
+                    <p class="font-light text-lg leading-relaxed" style="color:#6B5B45;">
+                        The second time I walked it with my son Jason. We called it the two-generation walk — father and son, same path, the same blisters and the same awe. To hand something over that means everything to me, that is a feeling I cannot describe. You have to walk it to understand.
+                    </p>
+                </div>
+
+                <!-- Photos — right, 5 columns -->
+                <div class="lg:col-span-5">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="photo-placeholder aspect-[3/4]">
+                            <span>2023 — Camino Francés, solo</span>
+                        </div>
+                        <div class="photo-placeholder aspect-[3/4]">
+                            <span>2025 — Father &amp; son, Jason</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         FOREST QUOTE BAND
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="py-20 lg:py-28 reveal" style="background:#2C4A3E;">
+        <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+            <p class="font-serif text-2xl md:text-3xl lg:text-4xl text-white leading-relaxed" style="font-style:italic;">
+                "People who love to walk love nature, and love connecting. I want to share the beautiful places Tenerife has to offer with people who feel the same."
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         LANGUAGES
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="py-16 reveal" style="background:#FAF7F2;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+            <span class="trail-marker mb-6" style="display:inline-flex; justify-content:center;">We can talk as we walk</span>
+            <div class="flex gap-4 justify-center flex-wrap mt-3">
+                <span class="lang-chip">Deutsch</span>
+                <span class="lang-chip">Nederlands</span>
+                <span class="lang-chip">English</span>
+            </div>
+            <p class="mt-6 font-light text-base" style="color:#8C7E6E; max-width:480px; margin-left:auto; margin-right:auto; margin-top:1.5rem;">
+                Whether you come from Germany, the Netherlands, or anywhere English-speaking — we'll talk as we walk, in your language.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CTA BAND — Walk with me
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="py-20 lg:py-28 reveal" style="background:#2C4A3E;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+            <span class="trail-marker mb-5" style="color:#D4A035; display:inline-flex; justify-content:center;">Walk with me</span>
+            <h2 class="font-serif text-4xl lg:text-5xl text-white mb-4 leading-tight">
+                A path is better shared.
+            </h2>
+            <p class="font-light text-lg mb-10 max-w-xl mx-auto" style="color:rgba(255,255,255,0.72);">
+                Come walk with me on Tenerife. Send a message and we'll find a trail that fits you.
+            </p>
+            <a href="contact.html" class="btn-primary">Send me a message</a>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════════════════ -->
+    <footer class="pt-24 pb-12 w-full mt-auto" style="background:#2C4A3E; color:#fff;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+                <!-- Brand blurb -->
+                <div class="lg:col-span-1">
+                    <div class="mb-6">
+                        <img
+                            src="pics/Camino%20Tenerife%20-%20Logo%20Transparant.png"
+                            alt="Camino Tenerife — Guided Walks"
+                            class="h-28 w-auto"
+                        >
+                    </div>
+                    <p class="font-light text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.60);">
+                        Guided walking experiences connecting you to the soul, history, and landscapes of the Canary Islands.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors"
+                           style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);"
+                           onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';"
+                           onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';">
+                            <i class="ph ph-instagram-logo text-xl"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors"
+                           style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);"
+                           onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';"
+                           onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';">
+                            <i class="ph ph-facebook-logo text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Explore links -->
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Explore</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">All Treks</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Custom Journeys</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Preparation Guide</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company links -->
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="about.html" class="text-sm transition-colors" style="color:#D4A035;"
+                               onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#D4A035'">About Andreas</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Sustainability</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Journal</a></li>
+                        <li><a href="contact.html" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
+                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">The Trail Dispatches</h4>
+                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">
+                        Subscribe for seasonal trail updates and exclusive early access to limited treks.
+                    </p>
+                    <form class="flex flex-col gap-3">
+                        <input
+                            type="email"
+                            placeholder="Email address"
+                            class="bg-transparent px-4 py-3 text-sm text-white focus:outline-none w-full transition-colors"
+                            style="border:1px solid rgba(255,255,255,0.20); font-family:'Cormorant Garamond',serif;"
+                            onfocus="this.style.borderColor='#D4A035'" onblur="this.style.borderColor='rgba(255,255,255,0.20)'"
+                        >
+                        <button type="submit" class="btn-primary w-full text-sm">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
+                 style="border-color:rgba(255,255,255,0.12);">
+                <p class="text-xs" style="color:rgba(255,255,255,0.40);">
+                    &copy; 2024 Camino Tenerife. All rights reserved.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);"
+                       onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Privacy Policy</a>
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);"
+                       onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TRAIL MAP SCRIPT
+    ═══════════════════════════════════════════════════════════ -->
+    <script>
+    function buildTrailMap() {
+        const wrap = document.getElementById('trail-map-wrap');
+        if (!wrap) return;
+
+        const W = 1000, H = 420;
+        const milestones = [
+            { x: 145, y: 100, year: '1977',         desc: 'Born in Hannover' },
+            { x: 338, y: 258, year: '2023',          desc: 'Camino Francés, alone' },
+            { x: 530, y: 118, year: 'Nov 2024',      desc: 'Made Tenerife home' },
+            { x: 722, y: 272, year: '2025',          desc: 'Camino again, with Jason' },
+            { x: 888, y: 138, year: 'Every Sunday',  desc: 'A new island trail' },
+        ];
+
+        // Catmull-Rom → cubic Bézier smooth path through all milestones
+        let d = 'M' + milestones[0].x + ',' + milestones[0].y;
+        for (let i = 0; i < milestones.length - 1; i++) {
+            const p0 = milestones[i - 1] || milestones[i];
+            const p1 = milestones[i];
+            const p2 = milestones[i + 1];
+            const p3 = milestones[i + 2] || p2;
+            const c1x = p1.x + (p2.x - p0.x) / 6;
+            const c1y = p1.y + (p2.y - p0.y) / 6;
+            const c2x = p2.x - (p3.x - p1.x) / 6;
+            const c2y = p2.y - (p3.y - p1.y) / 6;
+            d += ' C' + c1x.toFixed(1) + ',' + c1y.toFixed(1)
+               + ' ' + c2x.toFixed(1) + ',' + c2y.toFixed(1)
+               + ' ' + p2.x + ',' + p2.y;
+        }
+
+        // Faint graticule grid
+        let grat = '';
+        for (let gx = 125; gx < W; gx += 125) {
+            grat += `<line x1="${gx}" y1="0" x2="${gx}" y2="${H}" stroke="rgba(140,126,110,0.09)" stroke-width="1"/>`;
+        }
+        for (let gy = 105; gy < H; gy += 105) {
+            grat += `<line x1="0" y1="${gy}" x2="${W}" y2="${gy}" stroke="rgba(140,126,110,0.09)" stroke-width="1"/>`;
+        }
+
+        // Contour rings around key stops
+        function contour(cx, cy, col) {
+            let s = '';
+            for (let r = 1; r <= 3; r++) {
+                s += `<ellipse cx="${cx}" cy="${cy}" rx="${38*r}" ry="${26*r}" fill="none" stroke="${col}" stroke-width="0.75"/>`;
+            }
+            return s;
+        }
+
+        // Compass rose (top-right)
+        const compass = `
+            <g transform="translate(950,52)">
+                <circle r="22" fill="none" stroke="rgba(140,126,110,0.38)" stroke-width="1"/>
+                <path d="M0,-18 L4.5,2 L-4.5,2 Z" fill="#C4622D"/>
+                <path d="M0,18 L4.5,-2 L-4.5,-2 Z" fill="rgba(140,126,110,0.50)"/>
+                <text x="0" y="-27" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="13" fill="#8C7E6E" letter-spacing="1">N</text>
+            </g>`;
+
+        // Scale bar (bottom-left)
+        const scalebar = `
+            <g transform="translate(58,390)">
+                <line x1="0" y1="0" x2="84" y2="0" stroke="#8C7E6E" stroke-width="1"/>
+                <line x1="0"  y1="-5" x2="0"  y2="5" stroke="#8C7E6E" stroke-width="1"/>
+                <line x1="42" y1="-5" x2="42" y2="5" stroke="#8C7E6E" stroke-width="1"/>
+                <line x1="84" y1="-5" x2="84" y2="5" stroke="#8C7E6E" stroke-width="1"/>
+                <text x="0" y="18" font-family="Cormorant Garamond,serif" font-size="11.5" fill="#8C7E6E" letter-spacing="0.5">the journey</text>
+            </g>`;
+
+        const svgMarkup = `
+            <svg viewBox="0 0 ${W} ${H}" data-trailmap preserveAspectRatio="none"
+                 style="width:100%;height:auto;display:block;overflow:visible;">
+                ${grat}
+                ${contour(180, 340, 'rgba(122,158,126,0.18)')}
+                ${contour(820, 155, 'rgba(196,98,45,0.12)')}
+                ${compass}
+                ${scalebar}
+                <!-- Invisible route used only for getTotalLength() footprint placement -->
+                <path class="route" d="${d}" fill="none" stroke="none"/>
+            </svg>`;
+
+        // Milestone pins, percentage-positioned over the SVG
+        // SVG: width=100%, height=auto → container height = containerWidth * (H/W)
+        // So pin % positions map 1:1 with SVG coords
+        const pinsMarkup = milestones.map(m => {
+            const left = (m.x / W * 100).toFixed(2);
+            const top  = (m.y / H * 100).toFixed(2);
+            return `<div class="trail-pin" style="left:${left}%;top:${top}%;">
+                        <div class="trail-pin-circle"></div>
+                        <div class="trail-pin-year">${m.year}</div>
+                        <div class="trail-pin-desc">${m.desc}</div>
+                    </div>`;
+        }).join('');
+
+        wrap.innerHTML = svgMarkup + pinsMarkup;
+
+        // Draw footprints along the route path
+        const svgEl   = wrap.querySelector('svg[data-trailmap]');
+        const routeEl = svgEl.querySelector('.route');
+        let totalLen;
+        try { totalLen = routeEl.getTotalLength(); } catch (e) { return; }
+        if (!totalLen) return;
+
+        const ns  = 'http://www.w3.org/2000/svg';
+        const grp = document.createElementNS(ns, 'g');
+        let step = 0;
+
+        for (let dist = 16; dist < totalLen - 10; dist += 28) {
+            const pt   = routeEl.getPointAtLength(dist);
+            const pt2  = routeEl.getPointAtLength(Math.min(dist + 1.2, totalLen));
+            const dx   = pt2.x - pt.x;
+            const dy   = pt2.y - pt.y;
+            const len2 = Math.hypot(dx, dy) || 1;
+            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+            // Alternate left/right foot offset
+            const side = (step % 2 ? 1 : -1) * 4.8;
+            const ox   = (-dy / len2) * side;
+            const oy   = ( dx / len2) * side;
+
+            const g = document.createElementNS(ns, 'g');
+            g.setAttribute('transform',
+                `translate(${(pt.x + ox).toFixed(2)},${(pt.y + oy).toFixed(2)}) rotate(${(angle + 90).toFixed(1)})`);
+            g.setAttribute('opacity', '0.42');
+
+            // Sole (front part of foot)
+            const sole = document.createElementNS(ns, 'ellipse');
+            sole.setAttribute('cx', '0'); sole.setAttribute('cy', '-1.8');
+            sole.setAttribute('rx', '3.2'); sole.setAttribute('ry', '5.5');
+            sole.setAttribute('fill', '#C4622D');
+
+            // Heel
+            const heel = document.createElementNS(ns, 'ellipse');
+            heel.setAttribute('cx', '0'); heel.setAttribute('cy', '5.8');
+            heel.setAttribute('rx', '2.1'); heel.setAttribute('ry', '2.7');
+            heel.setAttribute('fill', '#C4622D');
+
+            g.appendChild(sole);
+            g.appendChild(heel);
+            grp.appendChild(g);
+            step++;
+        }
+
+        svgEl.appendChild(grp);
+    }
+
+    // Scroll reveal
+    function initReveal() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        buildTrailMap();
+        initReveal();
+    });
+    </script>
+
+</body>
+</html>
