@@ -396,7 +396,7 @@
     <!-- ═══════════════════════════════════════════════════════════
          TRAIL MAP — The path so far
     ═══════════════════════════════════════════════════════════ -->
-    <section class="py-20 lg:py-28 border-t border-b reveal" style="background:#F5EFE4; border-color:rgba(196,98,45,0.12);">
+    <section class="py-20 lg:py-28 border-t border-b reveal" style="background:linear-gradient(160deg,#f5e9cc 0%,#eedcaa 60%,#e6d096 100%); border-color:rgba(139,100,30,0.22);">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
             <div class="text-center mb-14">
@@ -601,142 +601,182 @@
         const wrap = document.getElementById('trail-map-wrap');
         if (!wrap) return;
 
-        const W = 1000, H = 420;
+        const W = 1100, H = 480;
+
+        // 6 milestones — flag: 'de' | 'nl' | 'es' | null
         const milestones = [
-            { x: 145, y: 100, year: '1977',         desc: 'Born in Hannover' },
-            { x: 338, y: 258, year: '2023',          desc: 'Camino Francés, alone' },
-            { x: 530, y: 118, year: 'Nov 2024',      desc: 'Made Tenerife home' },
-            { x: 722, y: 272, year: '2025',          desc: 'Camino again, with Jason' },
-            { x: 888, y: 138, year: 'Every Sunday',  desc: 'A new island trail' },
+            { x: 100,  y: 105, year: '1977',        desc: 'Born in Hannover',              flag: 'de' },
+            { x: 258,  y: 278, year: '2001',         desc: 'Emigrated to the Netherlands',  flag: 'nl' },
+            { x: 448,  y: 118, year: '2023',         desc: 'Camino Francés, alone',         flag: null },
+            { x: 635,  y: 290, year: 'Nov 2024',     desc: 'Made Tenerife home',            flag: 'es' },
+            { x: 828,  y: 125, year: '2025',         desc: 'Camino again, with Jason',      flag: null },
+            { x: 1010, y: 275, year: 'Every Sunday', desc: 'A new island trail',            flag: null },
         ];
 
-        // Catmull-Rom → cubic Bézier smooth path through all milestones
-        let d = 'M' + milestones[0].x + ',' + milestones[0].y;
+        // Catmull-Rom → cubic Bézier
+        let d = `M${milestones[0].x},${milestones[0].y}`;
         for (let i = 0; i < milestones.length - 1; i++) {
-            const p0 = milestones[i - 1] || milestones[i];
-            const p1 = milestones[i];
-            const p2 = milestones[i + 1];
-            const p3 = milestones[i + 2] || p2;
-            const c1x = p1.x + (p2.x - p0.x) / 6;
-            const c1y = p1.y + (p2.y - p0.y) / 6;
-            const c2x = p2.x - (p3.x - p1.x) / 6;
-            const c2y = p2.y - (p3.y - p1.y) / 6;
-            d += ' C' + c1x.toFixed(1) + ',' + c1y.toFixed(1)
-               + ' ' + c2x.toFixed(1) + ',' + c2y.toFixed(1)
-               + ' ' + p2.x + ',' + p2.y;
+            const p0 = milestones[i-1] || milestones[i];
+            const p1 = milestones[i], p2 = milestones[i+1];
+            const p3 = milestones[i+2] || p2;
+            const c1x = p1.x + (p2.x-p0.x)/6, c1y = p1.y + (p2.y-p0.y)/6;
+            const c2x = p2.x - (p3.x-p1.x)/6, c2y = p2.y - (p3.y-p1.y)/6;
+            d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2.x},${p2.y}`;
         }
 
-        // Faint graticule grid
-        let grat = '';
-        for (let gx = 125; gx < W; gx += 125) {
-            grat += `<line x1="${gx}" y1="0" x2="${gx}" y2="${H}" stroke="rgba(140,126,110,0.09)" stroke-width="1"/>`;
-        }
-        for (let gy = 105; gy < H; gy += 105) {
-            grat += `<line x1="0" y1="${gy}" x2="${W}" y2="${gy}" stroke="rgba(140,126,110,0.09)" stroke-width="1"/>`;
-        }
+        // Aged parchment grid
+        let grid = '';
+        for (let gx = 110; gx < W; gx += 110)
+            grid += `<line x1="${gx}" y1="0" x2="${gx}" y2="${H}" stroke="rgba(120,88,22,0.07)" stroke-width="0.8"/>`;
+        for (let gy = 96; gy < H; gy += 96)
+            grid += `<line x1="0" y1="${gy}" x2="${W}" y2="${gy}" stroke="rgba(120,88,22,0.07)" stroke-width="0.8"/>`;
 
-        // Contour rings around key stops
-        function contour(cx, cy, col) {
-            let s = '';
-            for (let r = 1; r <= 3; r++) {
-                s += `<ellipse cx="${cx}" cy="${cy}" rx="${38*r}" ry="${26*r}" fill="none" stroke="${col}" stroke-width="0.75"/>`;
-            }
-            return s;
-        }
+        // Decorative double border
+        const border = `
+            <rect x="10" y="10" width="${W-20}" height="${H-20}" rx="2"
+                  fill="none" stroke="rgba(120,80,18,0.28)" stroke-width="1.4"/>
+            <rect x="18" y="18" width="${W-36}" height="${H-36}" rx="1"
+                  fill="none" stroke="rgba(120,80,18,0.12)" stroke-width="0.8"/>`;
 
-        // Compass rose (top-right)
+        // Corner crosses
+        const xc = (cx,cy) => `
+            <g transform="translate(${cx},${cy})">
+                <line x1="-10" y1="0" x2="10" y2="0" stroke="rgba(120,80,18,0.38)" stroke-width="1.2"/>
+                <line x1="0" y1="-10" x2="0" y2="10" stroke="rgba(120,80,18,0.38)" stroke-width="1.2"/>
+            </g>`;
+        const corners = xc(18,18)+xc(W-18,18)+xc(18,H-18)+xc(W-18,H-18);
+
+        // Aged ink blot spots — parchment feel
+        const spots = `
+            <circle cx="210" cy="398" r="16" fill="rgba(120,80,18,0.04)"/>
+            <circle cx="880" cy="30"  r="10" fill="rgba(120,80,18,0.05)"/>
+            <circle cx="60"  cy="330" r="13" fill="rgba(120,80,18,0.04)"/>
+            <circle cx="990" cy="430" r="19" fill="rgba(120,80,18,0.04)"/>
+            <circle cx="520" cy="20"  r="8"  fill="rgba(120,80,18,0.05)"/>`;
+
+        // Ornate compass rose
         const compass = `
-            <g transform="translate(950,52)">
-                <circle r="22" fill="none" stroke="rgba(140,126,110,0.38)" stroke-width="1"/>
-                <path d="M0,-18 L4.5,2 L-4.5,2 Z" fill="#C4622D"/>
-                <path d="M0,18 L4.5,-2 L-4.5,-2 Z" fill="rgba(140,126,110,0.50)"/>
-                <text x="0" y="-27" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="13" fill="#8C7E6E" letter-spacing="1">N</text>
+            <g transform="translate(${W-58},52)">
+                <circle r="28" fill="rgba(245,232,195,0.75)" stroke="rgba(120,80,18,0.32)" stroke-width="1.2"/>
+                <circle r="22" fill="none" stroke="rgba(120,80,18,0.15)" stroke-width="0.7"/>
+                <path d="M0,-24 L5,0 L-5,0 Z" fill="#7a3410"/>
+                <path d="M0,24  L5,0 L-5,0 Z" fill="rgba(120,80,18,0.45)"/>
+                <path d="M-24,0 L0,5 L0,-5 Z" fill="rgba(120,80,18,0.35)"/>
+                <path d="M24,0  L0,5 L0,-5 Z" fill="rgba(120,80,18,0.35)"/>
+                <circle r="4" fill="rgba(245,232,195,0.95)" stroke="rgba(120,80,18,0.45)" stroke-width="1"/>
+                <text x="0" y="-33" text-anchor="middle"
+                      font-family="Cormorant Garamond,serif" font-size="11" font-style="italic"
+                      fill="rgba(120,80,18,0.65)" letter-spacing="1">N</text>
             </g>`;
 
-        // Scale bar (bottom-left)
+        // Scale bar
         const scalebar = `
-            <g transform="translate(58,390)">
-                <line x1="0" y1="0" x2="84" y2="0" stroke="#8C7E6E" stroke-width="1"/>
-                <line x1="0"  y1="-5" x2="0"  y2="5" stroke="#8C7E6E" stroke-width="1"/>
-                <line x1="42" y1="-5" x2="42" y2="5" stroke="#8C7E6E" stroke-width="1"/>
-                <line x1="84" y1="-5" x2="84" y2="5" stroke="#8C7E6E" stroke-width="1"/>
-                <text x="0" y="18" font-family="Cormorant Garamond,serif" font-size="11.5" fill="#8C7E6E" letter-spacing="0.5">the journey</text>
+            <g transform="translate(48,${H-42})">
+                <line x1="0" y1="0" x2="88" y2="0" stroke="rgba(120,80,18,0.45)" stroke-width="1"/>
+                <line x1="0"  y1="-4" x2="0"  y2="4" stroke="rgba(120,80,18,0.45)" stroke-width="1"/>
+                <line x1="44" y1="-3" x2="44" y2="3" stroke="rgba(120,80,18,0.35)" stroke-width="0.8"/>
+                <line x1="88" y1="-4" x2="88" y2="4" stroke="rgba(120,80,18,0.45)" stroke-width="1"/>
+                <text x="0" y="16" font-family="Cormorant Garamond,serif" font-size="11"
+                      font-style="italic" fill="rgba(120,80,18,0.50)" letter-spacing="0.5">the journey</text>
             </g>`;
+
+        // Map title
+        const title = `
+            <text x="${W/2}" y="${H-26}" text-anchor="middle"
+                  font-family="Cormorant Garamond,serif" font-size="13" font-style="italic"
+                  fill="rgba(120,80,18,0.40)" letter-spacing="2">~ Terra Incognita ~</text>`;
 
         const svgMarkup = `
             <svg viewBox="0 0 ${W} ${H}" data-trailmap preserveAspectRatio="none"
                  style="width:100%;height:auto;display:block;overflow:visible;">
-                ${grat}
-                ${contour(180, 340, 'rgba(122,158,126,0.18)')}
-                ${contour(820, 155, 'rgba(196,98,45,0.12)')}
+                <defs>
+                    <filter id="tm-rough" x="-4%" y="-4%" width="108%" height="108%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="4" seed="7"/>
+                        <feDisplacementMap in="SourceGraphic" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+                    </filter>
+                </defs>
+                ${grid}
+                ${spots}
+                ${border}
+                ${corners}
+                <!-- Route shadow for depth -->
+                <path d="${d}" fill="none" stroke="rgba(90,50,10,0.12)" stroke-width="6"
+                      stroke-linecap="round" transform="translate(2,3)" filter="url(#tm-rough)"/>
+                <!-- Visible dashed route, hand-drawn feel -->
+                <path d="${d}" fill="none" stroke="#8B5A2B" stroke-width="2.2"
+                      stroke-linecap="round" stroke-dasharray="9 6" filter="url(#tm-rough)" opacity="0.7"/>
+                <!-- Invisible clean route for footprint getTotalLength() -->
+                <path class="route" d="${d}" fill="none" stroke="none"/>
                 ${compass}
                 ${scalebar}
-                <!-- Invisible route used only for getTotalLength() footprint placement -->
-                <path class="route" d="${d}" fill="none" stroke="none"/>
+                ${title}
             </svg>`;
 
-        // Milestone pins, percentage-positioned over the SVG
-        // SVG: width=100%, height=auto → container height = containerWidth * (H/W)
-        // So pin % positions map 1:1 with SVG coords
+        // Flag pin styles
+        const flagBg = {
+            de: 'linear-gradient(to bottom,#000 0% 33.3%,#DD0000 33.3% 66.6%,#FFCE00 66.6% 100%)',
+            nl: 'linear-gradient(to bottom,#AE1C28 0% 33.3%,#FFFFFF 33.3% 66.6%,#21468B 66.6% 100%)',
+            es: 'linear-gradient(to bottom,#C60B1E 0% 25%,#FFC400 25% 75%,#C60B1E 75% 100%)',
+        };
+
         const pinsMarkup = milestones.map(m => {
             const left = (m.x / W * 100).toFixed(2);
             const top  = (m.y / H * 100).toFixed(2);
+            const circleStyle = m.flag
+                ? `background:${flagBg[m.flag]}; border:2px solid rgba(120,80,18,0.55);`
+                : `background:rgba(245,232,195,0.95); border:2px solid rgba(120,80,18,0.50);`;
+            const inner = m.flag ? '' : `<span style="color:rgba(120,80,18,0.65);font-size:16px;line-height:1;">✦</span>`;
             return `<div class="trail-pin" style="left:${left}%;top:${top}%;">
-                        <div class="trail-pin-circle"></div>
-                        <div class="trail-pin-year">${m.year}</div>
-                        <div class="trail-pin-desc">${m.desc}</div>
-                    </div>`;
+                <div style="width:52px;height:52px;border-radius:50%;margin:0 auto 7px;
+                            box-shadow:1px 3px 8px rgba(80,40,8,0.30);
+                            display:flex;align-items:center;justify-content:center;
+                            ${circleStyle}">${inner}</div>
+                <div class="trail-pin-year" style="color:#5C3611;">${m.year}</div>
+                <div class="trail-pin-desc" style="color:#8B6225;font-style:italic;">${m.desc}</div>
+            </div>`;
         }).join('');
 
         wrap.innerHTML = svgMarkup + pinsMarkup;
 
-        // Draw footprints along the route path
+        // Footprints along route
         const svgEl   = wrap.querySelector('svg[data-trailmap]');
         const routeEl = svgEl.querySelector('.route');
         let totalLen;
-        try { totalLen = routeEl.getTotalLength(); } catch (e) { return; }
+        try { totalLen = routeEl.getTotalLength(); } catch(e) { return; }
         if (!totalLen) return;
 
-        const ns  = 'http://www.w3.org/2000/svg';
+        const ns = 'http://www.w3.org/2000/svg';
         const grp = document.createElementNS(ns, 'g');
         let step = 0;
 
-        for (let dist = 16; dist < totalLen - 10; dist += 28) {
-            const pt   = routeEl.getPointAtLength(dist);
-            const pt2  = routeEl.getPointAtLength(Math.min(dist + 1.2, totalLen));
-            const dx   = pt2.x - pt.x;
-            const dy   = pt2.y - pt.y;
+        for (let dist = 18; dist < totalLen - 12; dist += 30) {
+            const pt  = routeEl.getPointAtLength(dist);
+            const pt2 = routeEl.getPointAtLength(Math.min(dist + 1.2, totalLen));
+            const dx = pt2.x - pt.x, dy = pt2.y - pt.y;
             const len2 = Math.hypot(dx, dy) || 1;
             const angle = Math.atan2(dy, dx) * 180 / Math.PI;
-
-            // Alternate left/right foot offset
-            const side = (step % 2 ? 1 : -1) * 4.8;
-            const ox   = (-dy / len2) * side;
-            const oy   = ( dx / len2) * side;
+            const side = (step % 2 ? 1 : -1) * 5;
+            const ox = (-dy / len2) * side, oy = (dx / len2) * side;
 
             const g = document.createElementNS(ns, 'g');
             g.setAttribute('transform',
-                `translate(${(pt.x + ox).toFixed(2)},${(pt.y + oy).toFixed(2)}) rotate(${(angle + 90).toFixed(1)})`);
-            g.setAttribute('opacity', '0.42');
+                `translate(${(pt.x+ox).toFixed(2)},${(pt.y+oy).toFixed(2)}) rotate(${(angle+90).toFixed(1)})`);
+            g.setAttribute('opacity', '0.38');
 
-            // Sole (front part of foot)
             const sole = document.createElementNS(ns, 'ellipse');
-            sole.setAttribute('cx', '0'); sole.setAttribute('cy', '-1.8');
-            sole.setAttribute('rx', '3.2'); sole.setAttribute('ry', '5.5');
-            sole.setAttribute('fill', '#C4622D');
+            sole.setAttribute('cx','0'); sole.setAttribute('cy','-1.8');
+            sole.setAttribute('rx','3.1'); sole.setAttribute('ry','5.4');
+            sole.setAttribute('fill','#7a3410');
 
-            // Heel
             const heel = document.createElementNS(ns, 'ellipse');
-            heel.setAttribute('cx', '0'); heel.setAttribute('cy', '5.8');
-            heel.setAttribute('rx', '2.1'); heel.setAttribute('ry', '2.7');
-            heel.setAttribute('fill', '#C4622D');
+            heel.setAttribute('cx','0'); heel.setAttribute('cy','5.6');
+            heel.setAttribute('rx','2.0'); heel.setAttribute('ry','2.6');
+            heel.setAttribute('fill','#7a3410');
 
-            g.appendChild(sole);
-            g.appendChild(heel);
+            g.appendChild(sole); g.appendChild(heel);
             grp.appendChild(g);
             step++;
         }
-
         svgEl.appendChild(grp);
     }
 
