@@ -606,9 +606,9 @@
         const milestones = [
             { x: 100,  y: 105, year: '1977',        desc: 'Born in Hannover',              flag: 'de' },
             { x: 258,  y: 278, year: '2001',         desc: 'Emigrated to the Netherlands',  flag: 'nl' },
-            { x: 448,  y: 118, year: '2023',         desc: 'Camino Francés, alone',         flag: null },
+            { x: 448,  y: 118, year: '2023',         desc: 'Camino Francés, alone',         flag: null, img: 'pics/2023%20-%20The%20Path%20so%20far.png' },
             { x: 635,  y: 290, year: 'Nov 2024',     desc: 'Made Tenerife home',            flag: 'es' },
-            { x: 828,  y: 125, year: '2025',         desc: 'Camino again, with Jason',      flag: null },
+            { x: 828,  y: 125, year: '2025',         desc: 'Camino again, with Jason',      flag: null, img: 'pics/2025%20-%20The%20Path%20so%20far.png' },
             { x: 1010, y: 275, year: 'Every Sunday', desc: 'A new island trail',            flag: null },
         ];
 
@@ -721,10 +721,17 @@
         const pinsMarkup = milestones.map(m => {
             const left = (m.x / W * 100).toFixed(2);
             const top  = (m.y / H * 100).toFixed(2);
-            const circleStyle = m.flag
-                ? `background:${flagBg[m.flag]}; border:2px solid rgba(120,80,18,0.55);`
-                : `background:rgba(245,232,195,0.95); border:2px solid rgba(120,80,18,0.50);`;
-            const inner = m.flag ? '' : `<span style="color:rgba(120,80,18,0.65);font-size:16px;line-height:1;">✦</span>`;
+            let circleStyle, inner;
+            if (m.flag) {
+                circleStyle = `background:${flagBg[m.flag]}; border:2px solid rgba(120,80,18,0.55);`;
+                inner = '';
+            } else if (m.img) {
+                circleStyle = `border:2.5px solid rgba(120,80,18,0.55); overflow:hidden; padding:0;`;
+                inner = `<img src="${m.img}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`;
+            } else {
+                circleStyle = `background:rgba(245,232,195,0.95); border:2px solid rgba(120,80,18,0.50);`;
+                inner = `<span style="color:rgba(120,80,18,0.65);font-size:16px;line-height:1;">✦</span>`;
+            }
             return `<div class="trail-pin" style="left:${left}%;top:${top}%;">
                 <div style="width:52px;height:52px;border-radius:50%;margin:0 auto 7px;
                             box-shadow:1px 3px 8px rgba(80,40,8,0.30);
