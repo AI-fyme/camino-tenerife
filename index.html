@@ -179,6 +179,17 @@
         }
 
         .text-balance { text-wrap: balance; }
+
+        /* ── Subtle image hover ──────────────────────────────── */
+        .img-hover {
+            transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        filter 0.65s ease;
+            will-change: transform;
+        }
+        .img-hover:hover {
+            transform: scale(1.04);
+            filter: brightness(1.06) saturate(1.08);
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen w-full">
@@ -267,12 +278,14 @@
                 <!-- Image column -->
                 <div class="lg:col-span-7 relative group">
                     <div class="deco-border"></div>
+                    <div class="overflow-hidden shadow-xl">
                     <img
                         src="pics/IMG-20260601-WA0099.jpg"
                         alt="Mount Teide at sunrise above the clouds, Tenerife"
-                        class="w-full h-auto object-cover shadow-xl"
+                        class="w-full h-auto object-cover img-hover"
                         style="aspect-ratio:9/16; object-position:center 20%;"
                     >
+                    </div>
                     <div class="absolute bottom-6 left-6 p-4 pr-12 shadow-lg" style="background:rgba(250,247,242,0.92);">
                         <span class="block font-serif font-bold text-2xl" style="color:#C4622D;">01</span>
                         <span class="block text-xs tracking-widest uppercase mt-1" style="color:#8C7E6E;">Featured Route</span>
@@ -483,12 +496,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-12 items-center">
 
                     <!-- Portrait — left, 5 cols -->
-                    <div class="md:col-span-5 self-stretch" style="min-height:300px;">
+                    <div class="md:col-span-5 self-stretch overflow-hidden" style="min-height:300px; border-right:1.5px solid rgba(196,98,45,0.12);">
                         <img
                             src="pics/Andreas%20walking.jpg"
                             alt="Andreas walking on a Tenerife trail"
-                            class="w-full h-full object-cover"
-                            style="object-position:center 12%; border-right:1.5px solid rgba(196,98,45,0.12);"
+                            class="w-full h-full object-cover img-hover"
+                            style="object-position:center 12%;"
                             loading="lazy"
                         >
                     </div>

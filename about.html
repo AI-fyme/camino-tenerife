@@ -260,6 +260,17 @@
             .trail-pin-year { font-size: 12px; }
             .trail-pin-desc { font-size: 10px; }
         }
+
+        /* ── Subtle image hover ──────────────────────────────── */
+        .img-hover {
+            transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        filter 0.65s ease;
+            will-change: transform;
+        }
+        .img-hover:hover {
+            transform: scale(1.04);
+            filter: brightness(1.06) saturate(1.08);
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen w-full">
@@ -348,11 +359,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-20 items-center">
 
                 <!-- Portrait — left, 5 columns -->
-                <div class="lg:col-span-5">
+                <div class="lg:col-span-5 overflow-hidden">
                     <img
                         src="pics/Andreas%20walking.jpg"
                         alt="Andreas walking on a trail in Tenerife"
-                        class="w-full object-cover"
+                        class="w-full object-cover img-hover"
                         style="aspect-ratio:4/5; object-position:center 10%;"
                         loading="lazy"
                     >
