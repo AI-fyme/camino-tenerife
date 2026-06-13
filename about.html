@@ -271,6 +271,19 @@
             transform: scale(1.04);
             filter: brightness(1.06) saturate(1.08);
         }
+
+        /* ── Trail map subtle animations ─────────────────────── */
+        .trail-pin-circle {
+            transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.38s ease;
+        }
+        .trail-pin:hover .trail-pin-circle {
+            transform: scale(1.15) !important;
+            box-shadow: 3px 10px 26px rgba(80,40,8,0.44) !important;
+        }
+        .trail-pin {
+            cursor: default;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen w-full">
@@ -292,6 +305,7 @@
             <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Camino Tenerife</a>
             <a href="about.html" class="text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:2px solid #D4A035; padding-bottom:3px;">About Me</a>
             <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">The Gear</a>
+            <a href="contact.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Contact Me</a>
         </nav>
 
         <!-- Language switcher -->
@@ -304,7 +318,7 @@
         </div>
 
         <div class="hidden md:block">
-            <a href="#" class="btn-primary rounded-none text-sm">Put me on the waitlist</a>
+            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-primary rounded-none text-sm">WhatsApp Me</a>
         </div>
 
         <button class="md:hidden text-white">
@@ -702,7 +716,7 @@
                 <path d="${d}" fill="none" stroke="rgba(90,50,10,0.12)" stroke-width="6"
                       stroke-linecap="round" transform="translate(2,3)" filter="url(#tm-rough)"/>
                 <!-- Visible dashed route, hand-drawn feel -->
-                <path d="${d}" fill="none" stroke="#8B5A2B" stroke-width="2.2"
+                <path id="trail-draw-path" d="${d}" fill="none" stroke="#8B5A2B" stroke-width="2.2"
                       stroke-linecap="round" stroke-dasharray="9 6" filter="url(#tm-rough)" opacity="0.7"/>
                 <!-- Invisible clean route for footprint getTotalLength() -->
                 <path class="route" d="${d}" fill="none" stroke="none"/>
@@ -735,7 +749,7 @@
             }
             const sz = m.img ? 72 : 52;
             return `<div class="trail-pin" style="left:${left}%;top:${top}%;">
-                <div style="width:${sz}px;height:${sz}px;border-radius:50%;margin:0 auto 7px;
+                <div class="trail-pin-circle" style="width:${sz}px;height:${sz}px;border-radius:50%;margin:0 auto 7px;
                             box-shadow:1px 3px 8px rgba(80,40,8,0.30);
                             display:flex;align-items:center;justify-content:center;
                             ${circleStyle}">${inner}</div>
@@ -745,6 +759,30 @@
         }).join('');
 
         wrap.innerHTML = svgMarkup + pinsMarkup;
+        // ── Trail map subtle animations ──────────────────────────
+        const drawPath = wrap.querySelector('#trail-draw-path');
+        if (drawPath) {
+            try {
+                const pathLen = drawPath.getTotalLength();
+                drawPath.style.strokeDashoffset = `${pathLen}`;
+                const allPins = Array.from(wrap.querySelectorAll('.trail-pin'));
+                allPins.forEach(p => { p.style.opacity = '0'; });
+                const mapObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        drawPath.style.transition = 'stroke-dashoffset 2.8s cubic-bezier(0.37, 0, 0.63, 1)';
+                        drawPath.style.strokeDashoffset = '0';
+                        const sorted = allPins.slice().sort((a,b) => parseFloat(a.style.left) - parseFloat(b.style.left));
+                        sorted.forEach((pin, i) => {
+                            pin.style.transition = 'opacity 0.55s ease';
+                            setTimeout(() => { pin.style.opacity = '1'; }, 500 + i * 260);
+                        });
+                        mapObserver.unobserve(entry.target);
+                    });
+                }, { threshold: 0.18 });
+                mapObserver.observe(wrap);
+            } catch(e) {}
+        }
 
         // Footprints along route
         const svgEl   = wrap.querySelector('svg[data-trailmap]');
