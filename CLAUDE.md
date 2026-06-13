@@ -10,7 +10,7 @@ This file is the project memory for Claude Code. Read it completely at the start
 
 This is not a corporate tourism site. It is a personal, warm, human website. The brand voice is Andreas speaking directly to fellow walkers and pilgrims, not a company selling packages.
 
-**Live site:** Hosted on Netlify, deployed automatically from GitHub on every push.
+**Live site:** Hosted on Cloudflare, deployed automatically from GitHub on every push.
 
 ---
 

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over Andreas | Camino Tenerife</title>
+    <meta name="description" content="Andreas Höfelmeyer, de gids achter Camino Tenerife. Van Hannover naar de Camino Francés, van Spanje naar het Eiland van Vuur.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary:'#C4622D', secondary:'#D4A035', forest:'#2C4A3E', teal:'#2E7D8C', sky:'#5DB8C0', sage:'#7A9E7E', stone:'#8C7E6E', warmblack:'#1A1208', warmgray:'#6B5B45', cream:'#FAF7F2', warmcard:'#F5EFE4', offwhite:'#EDE4D6',
+                    },
+                    fontFamily: { serif:['"Cormorant Garamond"','serif'], sans:['"Cormorant Garamond"','serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { --bg:#FAF7F2; --terracotta:#C4622D; --gold:#D4A035; --gradient:linear-gradient(135deg,#C4622D 0%,#D4A035 100%); }
+        body { font-family:'Cormorant Garamond',serif; font-size:18px; line-height:1.8; color:#1A1208; background:#FAF7F2; -webkit-font-smoothing:antialiased; }
+        ::selection { background:#C4622D; color:#fff; }
+        .image-overlay-gradient { background:linear-gradient(to bottom,rgba(26,18,8,0.35) 0%,rgba(26,18,8,0.10) 40%,rgba(26,18,8,0.82) 100%); }
+        .btn-primary { background:var(--gradient); color:#fff; font-family:'Cormorant Garamond',serif; font-weight:700; font-size:15px; letter-spacing:1.5px; border:none; padding:14px 32px; cursor:pointer; display:inline-block; text-transform:uppercase; transition:opacity 0.2s,transform 0.15s,box-shadow 0.2s; text-decoration:none; }
+        .btn-primary:hover { opacity:0.92; transform:translateY(-2px); box-shadow:0 8px 24px rgba(196,98,45,0.35); }
+        .trail-marker { display:inline-flex; align-items:center; gap:10px; font-family:'Cormorant Garamond',serif; font-weight:700; font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:var(--terracotta); }
+        .trail-marker::before { content:''; display:inline-block; width:24px; height:2px; background:var(--gradient); border-radius:2px; }
+        .trail-pin { position:absolute; transform:translateX(-50%); text-align:center; width:140px; }
+        .trail-pin-circle { width:54px; height:54px; border-radius:50%; background:#EDE4D6; border:2.5px solid #C4622D; box-shadow:0 0 0 3px #FAF7F2,0 0 0 5px rgba(196,98,45,0.35); margin:0 auto 7px; display:flex; align-items:center; justify-content:center; transition:transform 0.38s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.38s ease; }
+        .trail-pin:hover .trail-pin-circle { transform:scale(1.15) !important; box-shadow:3px 10px 26px rgba(80,40,8,0.44) !important; }
+        .trail-pin { cursor:default; }
+        .trail-pin-year { font-family:'Cormorant Garamond',serif; font-weight:700; font-size:17px; color:#1A1208; white-space:nowrap; line-height:1.1; }
+        .trail-pin-desc { font-family:'Cormorant Garamond',serif; font-size:12.5px; color:#6B5B45; line-height:1.3; margin-top:2px; }
+        #trail-map-wrap { position:relative; width:100%; overflow:visible; }
+        #trail-map-wrap svg { display:block; width:100%; height:auto; overflow:visible; }
+        .lang-chip { font-family:'Cormorant Garamond',serif; font-size:15px; letter-spacing:0.08em; border:1.5px solid rgba(196,98,45,0.30); padding:8px 22px; color:#1A1208; background:#fff; }
+        .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.8s ease,transform 0.8s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+        .text-balance { text-wrap:balance; }
+        .img-hover { transition:transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.65s ease; will-change:transform; }
+        .img-hover:hover { transform:scale(1.04); filter:brightness(1.06) saturate(1.08); }
+        @media (max-width:768px) { .trail-pin{width:80px;} .trail-pin-circle{width:38px;height:38px;} .trail-pin-year{font-size:12px;} .trail-pin-desc{font-size:10px;} }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen w-full">
+
+    <header class="absolute top-0 left-0 w-full z-50 px-6 py-0 lg:px-12 flex justify-between items-center border-b border-white/20">
+        <a href="/nl/" class="flex items-center">
+            <img src="/pics/logo.svg" alt="Camino Tenerife. Begeleide Wandelingen" class="h-32 w-auto">
+        </a>
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="/nl/" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">De Ervaring</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Camino Tenerife</a>
+            <a href="/nl/about.html" class="text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:2px solid #D4A035; padding-bottom:3px;">Over mij</a>
+            <a href="#" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Uitrusting</a>
+            <a href="/nl/contact.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Contact</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-1" style="border-left:1px solid rgba(255,255,255,0.20); padding-left:20px; margin-left:8px;">
+            <a href="/about.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">EN</a>
+            <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
+            <a href="/de/about.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">DE</a>
+            <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
+            <span class="text-white text-xs font-bold tracking-widest">NL</span>
+        </div>
+        <div class="hidden md:block">
+            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-primary rounded-none text-sm">WhatsApp mij</a>
+        </div>
+        <button class="md:hidden text-white"><i class="ph ph-list text-3xl"></i></button>
+    </header>
+
+    <section class="relative w-full flex items-end" style="height:82vh; min-height:520px;">
+        <div class="absolute inset-0">
+            <img src="/pics/About%20me%20-%20Hero%2003.jpeg" alt="Andreas kijkt uit over de bergen van Tenerife" class="w-full h-full object-cover" style="object-position:right center;" loading="eager">
+            <div class="absolute inset-0 image-overlay-gradient"></div>
+        </div>
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pb-16 lg:pb-24">
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-normal leading-snug text-balance max-w-3xl mb-5" style="font-style:italic; font-weight:400;">
+                "De kracht van de kleine stap. Veel kleine stappen brengen je buitengewoon ver. Als je maar blijft gaan."
+            </h1>
+            <p class="font-serif text-base md:text-lg font-normal" style="color:rgba(255,255,255,0.60); letter-spacing:0.04em;">
+                Bill Bennett &nbsp;·&nbsp; <em>The Way, My Way</em> &nbsp;·&nbsp; 2024
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 lg:py-28 reveal" style="background:#FAF7F2;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-20 items-center">
+                <div class="lg:col-span-5 overflow-hidden">
+                    <img src="/pics/Andreas%20walking.jpg" alt="Andreas op een wandelpad op Tenerife" class="w-full object-cover img-hover" style="aspect-ratio:4/5; object-position:center 50%;" loading="lazy">
+                </div>
+                <div class="lg:col-span-6">
+                    <span class="trail-marker mb-5 block">Hoe het begon</span>
+                    <h2 class="font-serif text-3xl lg:text-4xl mb-6 leading-tight" style="color:#1A1208;">Van Hannover naar het Eiland van Vuur</h2>
+                    <p class="font-light text-lg leading-relaxed mb-5" style="color:#6B5B45;">
+                        Ik ben geboren in 1977 in Hannover, Duitsland. Duits en Nederlands zijn mijn moedertalen. Engels leerde ik als derde taal en het werd er een die ik dagelijks gebruik. Het grootste deel van mijn leven was wandelen gewoon iets wat ik in het weekend deed.
+                    </p>
+                    <p class="font-light text-lg leading-relaxed" style="color:#6B5B45;">
+                        In 2023 liep ik de Camino Francés voor het eerst. Alleen. Achthonderd kilometer van Saint-Jean-Pied-de-Port naar Santiago de Compostela. Toen ik aankwam, begreep ik waarom mensen dit meer dan één keer doen. De natuur, de mensen, de uitdaging, jij met jezelf. Dus besloot ik dit met mijn zoon te delen. In 2025 deden we het samen. Onze Twee-Generaties Wandeling. In de tussentijd, in november 2024, verhuisde ik naar Tenerife. Het eiland pakte me op een manier die ik niet had verwacht. De paden hier zijn buitengewoon. Prachtige natuur met adembenemende uitzichten. Dit is wat ik met jou wil delen.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 lg:py-28 border-t border-b reveal" style="background:linear-gradient(160deg,#f5e9cc 0%,#eedcaa 60%,#e6d096 100%); border-color:rgba(139,100,30,0.22);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-14">
+                <span class="trail-marker" style="display:inline-flex; justify-content:center; margin-bottom:0.5rem;">Het pad tot nu toe</span>
+            </div>
+            <div id="trail-map-wrap"></div>
+        </div>
+    </section>
+
+    <section class="py-20 lg:py-28 reveal" style="background:#FAF7F2;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-20 items-center">
+                <div class="lg:col-span-6">
+                    <span class="trail-marker mb-5 block">De twee-generaties wandeling</span>
+                    <h2 class="font-serif text-3xl lg:text-4xl mb-6 leading-tight" style="color:#1A1208;">2023 alleen. 2025 met mijn zoon Jason.</h2>
+                    <p class="font-light text-lg leading-relaxed mb-5" style="color:#6B5B45;">
+                        De eerste Camino ging over de vraag of ik het kon. Dat kon ik. Stap voor stap, dwars door Spanje, met alleen mijn gedachten en het pad voor me.
+                    </p>
+                    <p class="font-light text-lg leading-relaxed" style="color:#6B5B45;">
+                        De tweede keer liep ik het met mijn zoon Jason. We noemden het de twee-generaties wandeling. Vader en zoon, hetzelfde pad, dezelfde blaren en dezelfde verwondering. Iets doorgeven dat alles voor mij betekent — dat is een gevoel dat ik niet kan beschrijven. Je moet het lopen om het te begrijpen.
+                    </p>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <div class="overflow-hidden">
+                                <img src="/pics/2023%20-%20Solo%2001.jpeg" alt="Andreas op de Camino Francés, 2023" class="w-full object-cover img-hover" style="aspect-ratio:3/4; object-position:center 45%;" loading="lazy">
+                            </div>
+                            <p class="font-serif text-center mt-3 text-lg" style="color:#8C7E6E; letter-spacing:0.08em;">2023</p>
+                        </div>
+                        <div>
+                            <div class="overflow-hidden">
+                                <img src="/pics/2025%20-%20Father%20and%20Son%2001.jpeg" alt="Andreas en Jason op de Camino, 2025" class="w-full object-cover img-hover" style="aspect-ratio:3/4; object-position:center 30%;" loading="lazy">
+                            </div>
+                            <p class="font-serif text-center mt-3 text-lg" style="color:#8C7E6E; letter-spacing:0.08em;">2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 lg:py-28 reveal" style="background:#2C4A3E;">
+        <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+            <p class="font-serif text-2xl md:text-3xl lg:text-4xl text-white leading-relaxed" style="font-style:italic;">
+                "Mensen die graag wandelen, houden van de natuur en van verbinding. Ik wil de mooie plekken die Tenerife te bieden heeft delen met mensen die hetzelfde voelen."
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 reveal" style="background:#FAF7F2;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+            <span class="trail-marker mb-6" style="display:inline-flex; justify-content:center;">We praten terwijl we lopen</span>
+            <div class="flex gap-4 justify-center flex-wrap mt-3">
+                <span class="lang-chip">Deutsch</span>
+                <span class="lang-chip">Nederlands</span>
+                <span class="lang-chip">English</span>
+            </div>
+            <p class="mt-6 font-light text-base" style="color:#8C7E6E; max-width:480px; margin-left:auto; margin-right:auto; margin-top:1.5rem;">
+                Of je nu uit Duitsland, Nederland of een Engelstalig land komt — we praten onderweg in jouw taal.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 lg:py-28 reveal" style="background:#2C4A3E;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+            <span class="trail-marker mb-5" style="color:#D4A035; display:inline-flex; justify-content:center;">Loop met mij</span>
+            <h2 class="font-serif text-4xl lg:text-5xl text-white mb-4 leading-tight">Een pad is mooier als je het deelt.</h2>
+            <p class="font-light text-lg mb-10 max-w-xl mx-auto" style="color:rgba(255,255,255,0.72);">
+                Kom met mij wandelen op Tenerife. Stuur een berichtje en we vinden een route die bij jou past.
+            </p>
+            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-primary">App me op WhatsApp</a>
+        </div>
+    </section>
+
+    <footer class="pt-24 pb-12 w-full mt-auto" style="background:#2C4A3E; color:#fff;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="lg:col-span-1">
+                    <div class="mb-6"><img src="/pics/logo.svg" alt="Camino Tenerife. Begeleide Wandelingen" class="h-28 w-auto"></div>
+                    <p class="font-light text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.60);">Begeleide wandelervaringen die je verbinden met de ziel, geschiedenis en landschappen van de Canarische Eilanden.</p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-instagram-logo text-xl"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-facebook-logo text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Verkennen</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Alle wandelingen</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Persoonlijke reizen</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Voorbereidingsgids</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Over ons</h4>
+                    <ul class="space-y-4">
+                        <li><a href="/nl/about.html" class="text-sm transition-colors" style="color:#D4A035;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#D4A035'">Over Andreas</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Duurzaamheid</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Journal</a></li>
+                        <li><a href="/nl/contact.html" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">De Trail-nieuwsbrief</h4>
+                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">Schrijf je in voor seizoensgebonden trail-updates en exclusieve vroegboektoegang tot beperkte wandelingen.</p>
+                    <form class="flex flex-col gap-3">
+                        <input type="email" placeholder="E-mailadres" class="bg-transparent px-4 py-3 text-sm text-white focus:outline-none w-full transition-colors" style="border:1px solid rgba(255,255,255,0.20); font-family:'Cormorant Garamond',serif;" onfocus="this.style.borderColor='#D4A035'" onblur="this.style.borderColor='rgba(255,255,255,0.20)'">
+                        <button type="submit" class="btn-primary w-full text-sm">Inschrijven</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-color:rgba(255,255,255,0.12);">
+                <p class="text-xs" style="color:rgba(255,255,255,0.40);">&copy; 2024 Camino Tenerife. Alle rechten voorbehouden.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Privacybeleid</a>
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Algemene Voorwaarden</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function buildTrailMap() {
+        const wrap = document.getElementById('trail-map-wrap');
+        if (!wrap) return;
+        const W = 1100, H = 480;
+        const milestones = [
+            { x: 100,  y: 105, year: '1977',         desc: 'Geboren in Hannover',          flag: 'de' },
+            { x: 258,  y: 278, year: '2001',          desc: 'Geëmigreerd naar Nederland',   flag: 'nl' },
+            { x: 448,  y: 118, year: '2023',          desc: 'Camino Francés, alleen',       flag: null, img: '/pics/2023%20-%20Solo%2001.jpeg', pinScale: 2.8, pinOrigin: 'center 48%' },
+            { x: 635,  y: 290, year: 'Nov 2024',      desc: 'Tenerife werd thuis',          flag: 'es' },
+            { x: 828,  y: 125, year: '2025',          desc: 'Camino met Jason',             flag: null, img: '/pics/2025%20-%20Father%20and%20Son%2001.jpeg' },
+            { x: 1010, y: 275, year: 'Elke zondag',   desc: 'Een nieuw eilandpad',          flag: null },
+        ];
+        let d = `M${milestones[0].x},${milestones[0].y}`;
+        for (let i = 0; i < milestones.length - 1; i++) {
+            const p0=milestones[i-1]||milestones[i],p1=milestones[i],p2=milestones[i+1],p3=milestones[i+2]||p2;
+            const c1x=p1.x+(p2.x-p0.x)/6,c1y=p1.y+(p2.y-p0.y)/6,c2x=p2.x-(p3.x-p1.x)/6,c2y=p2.y-(p3.y-p1.y)/6;
+            d+=` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2.x},${p2.y}`;
+        }
+        let grid='';
+        for(let gx=110;gx<W;gx+=110)grid+=`<line x1="${gx}" y1="0" x2="${gx}" y2="${H}" stroke="rgba(120,88,22,0.07)" stroke-width="0.8"/>`;
+        for(let gy=96;gy<H;gy+=96)grid+=`<line x1="0" y1="${gy}" x2="${W}" y2="${gy}" stroke="rgba(120,88,22,0.07)" stroke-width="0.8"/>`;
+        const border=`<rect x="10" y="10" width="${W-20}" height="${H-20}" rx="2" fill="none" stroke="rgba(120,80,18,0.28)" stroke-width="1.4"/><rect x="18" y="18" width="${W-36}" height="${H-36}" rx="1" fill="none" stroke="rgba(120,80,18,0.12)" stroke-width="0.8"/>`;
+        const xc=(cx,cy)=>`<g transform="translate(${cx},${cy})"><line x1="-10" y1="0" x2="10" y2="0" stroke="rgba(120,80,18,0.38)" stroke-width="1.2"/><line x1="0" y1="-10" x2="0" y2="10" stroke="rgba(120,80,18,0.38)" stroke-width="1.2"/></g>`;
+        const corners=xc(18,18)+xc(W-18,18)+xc(18,H-18)+xc(W-18,H-18);
+        const spots=`<circle cx="210" cy="398" r="16" fill="rgba(120,80,18,0.04)"/><circle cx="880" cy="30" r="10" fill="rgba(120,80,18,0.05)"/><circle cx="60" cy="330" r="13" fill="rgba(120,80,18,0.04)"/><circle cx="990" cy="430" r="19" fill="rgba(120,80,18,0.04)"/><circle cx="520" cy="20" r="8" fill="rgba(120,80,18,0.05)"/>`;
+        const compass=`<g transform="translate(${W-58},52)"><circle r="28" fill="rgba(245,232,195,0.75)" stroke="rgba(120,80,18,0.32)" stroke-width="1.2"/><circle r="22" fill="none" stroke="rgba(120,80,18,0.15)" stroke-width="0.7"/><path d="M0,-24 L5,0 L-5,0 Z" fill="#7a3410"/><path d="M0,24 L5,0 L-5,0 Z" fill="rgba(120,80,18,0.45)"/><path d="M-24,0 L0,5 L0,-5 Z" fill="rgba(120,80,18,0.35)"/><path d="M24,0 L0,5 L0,-5 Z" fill="rgba(120,80,18,0.35)"/><circle r="4" fill="rgba(245,232,195,0.95)" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><text x="0" y="-33" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="11" font-style="italic" fill="rgba(120,80,18,0.65)" letter-spacing="1">N</text></g>`;
+        const scalebar=`<g transform="translate(48,${H-42})"><line x1="0" y1="0" x2="88" y2="0" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><line x1="0" y1="-4" x2="0" y2="4" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><line x1="44" y1="-3" x2="44" y2="3" stroke="rgba(120,80,18,0.35)" stroke-width="0.8"/><line x1="88" y1="-4" x2="88" y2="4" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><text x="0" y="16" font-family="Cormorant Garamond,serif" font-size="11" font-style="italic" fill="rgba(120,80,18,0.50)" letter-spacing="0.5">de reis</text></g>`;
+        const title=`<text x="${W/2}" y="${H-26}" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="13" font-style="italic" fill="rgba(120,80,18,0.40)" letter-spacing="2">~ Terra Incognita ~</text>`;
+        const svgMarkup=`<svg viewBox="0 0 ${W} ${H}" data-trailmap preserveAspectRatio="none" style="width:100%;height:auto;display:block;overflow:visible;"><defs><filter id="tm-rough" x="-4%" y="-4%" width="108%" height="108%"><feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="4" seed="7"/><feDisplacementMap in="SourceGraphic" scale="5" xChannelSelector="R" yChannelSelector="G"/></filter></defs>${grid}${spots}${border}${corners}<path d="${d}" fill="none" stroke="rgba(90,50,10,0.12)" stroke-width="6" stroke-linecap="round" transform="translate(2,3)" filter="url(#tm-rough)"/><path id="trail-draw-path" d="${d}" fill="none" stroke="#8B5A2B" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="9 6" filter="url(#tm-rough)" opacity="0.7"/><path class="route" d="${d}" fill="none" stroke="none"/>${compass}${scalebar}${title}</svg>`;
+        const flagBg={de:'linear-gradient(to bottom,#000 0% 33.3%,#DD0000 33.3% 66.6%,#FFCE00 66.6% 100%)',nl:'linear-gradient(to bottom,#AE1C28 0% 33.3%,#FFFFFF 33.3% 66.6%,#21468B 66.6% 100%)',es:'linear-gradient(to bottom,#C60B1E 0% 25%,#FFC400 25% 75%,#C60B1E 75% 100%)'};
+        const pinsMarkup=milestones.map(m=>{
+            const left=(m.x/W*100).toFixed(2),top=(m.y/H*100).toFixed(2);
+            let circleStyle,inner;
+            if(m.flag){circleStyle=`background:${flagBg[m.flag]}; border:2px solid rgba(120,80,18,0.55);`;inner='';}
+            else if(m.img){circleStyle=`border:2.5px solid rgba(120,80,18,0.55); overflow:hidden; padding:0;`;const scaleStyle=m.pinScale?`transform:scale(${m.pinScale}); transform-origin:${m.pinOrigin||'center center'};`:'';inner=`<img src="${m.img}" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;${scaleStyle}" loading="lazy">`;}
+            else{circleStyle=`background:rgba(245,232,195,0.95); border:2px solid rgba(120,80,18,0.50);`;inner=`<span style="color:rgba(120,80,18,0.65);font-size:16px;line-height:1;">✦</span>`;}
+            const sz=m.img?72:52;
+            return `<div class="trail-pin" style="left:${left}%;top:${top}%;"><div class="trail-pin-circle" style="width:${sz}px;height:${sz}px;border-radius:50%;margin:0 auto 7px;box-shadow:1px 3px 8px rgba(80,40,8,0.30);display:flex;align-items:center;justify-content:center;${circleStyle}">${inner}</div><div class="trail-pin-year" style="color:#5C3611;">${m.year}</div><div class="trail-pin-desc" style="color:#8B6225;font-style:italic;">${m.desc}</div></div>`;
+        }).join('');
+        wrap.innerHTML=svgMarkup+pinsMarkup;
+        const drawPath=wrap.querySelector('#trail-draw-path');
+        if(drawPath){try{const pathLen=drawPath.getTotalLength();drawPath.style.strokeDashoffset=`${pathLen}`;const allPins=Array.from(wrap.querySelectorAll('.trail-pin'));allPins.forEach(p=>{p.style.opacity='0';});const mapObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;drawPath.style.transition='stroke-dashoffset 2.8s cubic-bezier(0.37,0,0.63,1)';drawPath.style.strokeDashoffset='0';const sorted=allPins.slice().sort((a,b)=>parseFloat(a.style.left)-parseFloat(b.style.left));sorted.forEach((pin,i)=>{pin.style.transition='opacity 0.55s ease';setTimeout(()=>{pin.style.opacity='1';},500+i*260);});mapObserver.unobserve(entry.target);});},{threshold:0.18});mapObserver.observe(wrap);}catch(e){}}
+        const svgEl=wrap.querySelector('svg[data-trailmap]'),routeEl=svgEl.querySelector('.route');let totalLen;try{totalLen=routeEl.getTotalLength();}catch(e){return;}if(!totalLen)return;
+        const ns='http://www.w3.org/2000/svg',grp=document.createElementNS(ns,'g');let step=0;
+        for(let dist=18;dist<totalLen-12;dist+=30){const pt=routeEl.getPointAtLength(dist),pt2=routeEl.getPointAtLength(Math.min(dist+1.2,totalLen));const dx=pt2.x-pt.x,dy=pt2.y-pt.y,len2=Math.hypot(dx,dy)||1,angle=Math.atan2(dy,dx)*180/Math.PI,side=(step%2?1:-1)*5,ox=(-dy/len2)*side,oy=(dx/len2)*side;const g=document.createElementNS(ns,'g');g.setAttribute('transform',`translate(${(pt.x+ox).toFixed(2)},${(pt.y+oy).toFixed(2)}) rotate(${(angle+90).toFixed(1)})`);g.setAttribute('opacity','0.38');const sole=document.createElementNS(ns,'ellipse');sole.setAttribute('cx','0');sole.setAttribute('cy','-1.8');sole.setAttribute('rx','3.1');sole.setAttribute('ry','5.4');sole.setAttribute('fill','#7a3410');const heel=document.createElementNS(ns,'ellipse');heel.setAttribute('cx','0');heel.setAttribute('cy','5.6');heel.setAttribute('rx','2.0');heel.setAttribute('ry','2.6');heel.setAttribute('fill','#7a3410');g.appendChild(sole);g.appendChild(heel);grp.appendChild(g);step++;}
+        svgEl.appendChild(grp);
+    }
+    function initReveal(){const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));}
+    document.addEventListener('DOMContentLoaded',()=>{buildTrailMap();initReveal();});
+    </script>
+
+</body>
+</html>
