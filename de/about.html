@@ -428,5 +428,18 @@
     document.addEventListener('DOMContentLoaded', () => { buildTrailMap(); initReveal(); });
     </script>
 
+    <script>
+      // Close the mobile menu when tapping outside it
+      (function () {
+        var menu = document.getElementById('ctMobileMenu');
+        var btn = document.querySelector('button[aria-controls="ctMobileMenu"]');
+        if (!menu || !btn) return;
+        document.addEventListener('click', function (e) {
+          if (menu.classList.contains('hidden')) return;
+          if (menu.contains(e.target) || btn.contains(e.target)) return;
+          menu.classList.add('hidden');
+        });
+      })();
+    </script>
 </body>
 </html>
