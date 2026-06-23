@@ -392,6 +392,15 @@
   .ct-info-block h3 svg { flex-shrink: 0; }
   .ct-info-block p { font-size: 15.5px; line-height: 1.85; color: var(--ct-text); }
 
+  /* FAQ accordion */
+  .ct-faq { max-width: 760px; margin: 0 auto; }
+  .ct-faq-item { border-bottom: 1px solid rgba(196,98,45,0.16); }
+  .ct-faq-item summary { cursor: pointer; list-style: none; padding: 20px 4px; display: flex; justify-content: space-between; align-items: center; gap: 18px; font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 700; color: var(--ct-forest); }
+  .ct-faq-item summary::-webkit-details-marker { display: none; }
+  .ct-faq-item summary::after { content: "+"; font-size: 26px; line-height: 1; color: var(--ct-terra); flex-shrink: 0; }
+  .ct-faq-item[open] summary::after { content: "\2212"; }
+  .ct-faq-item p { padding: 0 4px 22px; font-size: 15.5px; line-height: 1.8; color: var(--ct-muted); }
+
   /* what's included strip */
   .ct-included { background: #fff; border: 1px solid rgba(196,98,45,0.16); border-radius: var(--ct-r); padding: 24px 28px; margin-bottom: 28px; }
   .ct-included-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; margin-bottom: 18px; }
@@ -742,23 +751,20 @@
     </div>
   </section>
 
-  <!-- ════════════════════════════ GOED OM TE WETEN ════════════════════════════ -->
+  <!-- ════════════════════════════ FAQ ════════════════════════════ -->
   <section class="ct-info-section">
     <div class="ct-section">
       <div class="ct-section-head">
         <span class="ct-eyebrow">03 · Goed om te weten</span>
-        <h2>Wat je kunt verwachten</h2>
-        <p>Waar je slaapt, en hoe het lopen echt voelt.</p>
+        <h2>Veelgestelde vragen</h2>
+        <p>De praktische details, beantwoord.</p>
       </div>
-      <div class="ct-info-grid">
-        <div class="ct-info-block">
-          <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.7"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg>Authentieke pelgrimsverblijven</h3>
-          <p>Om de echte Camino-geest levend te houden, overnachten we in traditionele plattelandsgasthuizen en af en toe in een eenvoudige berghut. Verwacht schoon, eenvoudig comfort en een warme, lokale sfeer in plaats van luxe. Het is de perfecte manier om los te komen en uit te rusten na een dag op het pad.</p>
-        </div>
-        <div class="ct-info-block">
-          <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.7"><path d="M3 20l6-9 4 5 3-4 5 8z"/></svg>Tempo en terrein</h3>
-          <p>Wandelaars moeten in goede algemene gezondheid zijn en zich prettig voelen bij ongeveer 20 km per dag. Er komt geen technisch klimwerk aan te pas, maar de bergpaden kennen gestage stijgingen en dalingen. We lopen in een natuurlijk tempo en plannen elke dag ruim tijd in om te rusten, te fotograferen en het landschap echt te beleven.</p>
-        </div>
+      <div class="ct-faq">
+        <details class="ct-faq-item"><summary>Waar slaap ik?</summary><p>Om de echte Camino-geest levend te houden, overnacht je in traditionele plattelandsgasthuizen en af en toe in een eenvoudige berghut. Verwacht schoon, eenvoudig comfort en een warme, lokale sfeer in plaats van luxe. Het is de perfecte manier om los te komen en uit te rusten na een dag op het pad.</p></details>
+        <details class="ct-faq-item"><summary>Hoe fit moet ik zijn?</summary><p>Je moet in goede algemene gezondheid zijn en je prettig voelen bij ongeveer 20 km per dag. Er komt geen technisch klimwerk aan te pas, maar de bergpaden kennen gestage stijgingen en dalingen. Het tempo is natuurlijk, met elke dag ruim tijd om te rusten, te fotograferen en het landschap echt te beleven.</p></details>
+        <details class="ct-faq-item"><summary>Hoe groot zijn de groepen?</summary><p>Klein en persoonlijk. Maximaal zes wandelaars, persoonlijk door mij begeleid, van de vulkaan naar de oceaan.</p></details>
+        <details class="ct-faq-item"><summary>In welke talen begeleid je?</summary><p>Engels, Duits en Nederlands. Of je nu uit Londen, Amsterdam of München komt, een goed gesprek onderweg staat niets in de weg.</p></details>
+        <details class="ct-faq-item"><summary>Wat is de beste wandeltijd?</summary><p>Het hele jaar door. Tenerife heeft geen slecht seizoen, alleen andere seizoenen.</p></details>
       </div>
     </div>
   </section>

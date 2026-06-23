@@ -481,6 +481,15 @@
   .ct-info-block h3 svg { flex-shrink: 0; }
   .ct-info-block p { font-size: 15.5px; line-height: 1.85; color: var(--ct-text); }
 
+  /* FAQ accordion */
+  .ct-faq { max-width: 760px; margin: 0 auto; }
+  .ct-faq-item { border-bottom: 1px solid rgba(196,98,45,0.16); }
+  .ct-faq-item summary { cursor: pointer; list-style: none; padding: 20px 4px; display: flex; justify-content: space-between; align-items: center; gap: 18px; font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 700; color: var(--ct-forest); }
+  .ct-faq-item summary::-webkit-details-marker { display: none; }
+  .ct-faq-item summary::after { content: "+"; font-size: 26px; line-height: 1; color: var(--ct-terra); flex-shrink: 0; }
+  .ct-faq-item[open] summary::after { content: "\2212"; }
+  .ct-faq-item p { padding: 0 4px 22px; font-size: 15.5px; line-height: 1.8; color: var(--ct-muted); }
+
   /* what's included strip */
   .ct-included { background: #fff; border: 1px solid rgba(196,98,45,0.16); border-radius: var(--ct-r); padding: 24px 28px; margin-bottom: 28px; }
   .ct-included-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; margin-bottom: 18px; }
@@ -831,23 +840,20 @@
     </div>
   </section>
 
-  <!-- ════════════════════════════ GOOD TO KNOW ════════════════════════════ -->
+  <!-- ════════════════════════════ FAQ ════════════════════════════ -->
   <section class="ct-info-section">
     <div class="ct-section">
       <div class="ct-section-head">
         <span class="ct-eyebrow">03 · Good to Know</span>
-        <h2>What to expect</h2>
-        <p>Where you will sleep, and how the walking really feels.</p>
+        <h2>Frequently asked questions</h2>
+        <p>The practical details, answered.</p>
       </div>
-      <div class="ct-info-grid">
-        <div class="ct-info-block">
-          <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.7"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg>Authentic Pilgrim Lodging</h3>
-          <p>To keep the true Camino spirit alive, our nights are spent in traditional rural guesthouses and occasionally a shared mountain hostel. Expect clean, simple comfort and a warm, local atmosphere rather than luxury. It is the perfect way to disconnect and rest after a day on the trail.</p>
-        </div>
-        <div class="ct-info-block">
-          <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.7"><path d="M3 20l6-9 4 5 3-4 5 8z"/></svg>Pace and Terrain</h3>
-          <p>Walkers should be in good general health and comfortable walking around 20km a day. There is no technical climbing involved, but the mountain trails do feature steady ups and downs. We walk at a natural pace with plenty of time scheduled each day to rest, take photos, and truly experience the landscape.</p>
-        </div>
+      <div class="ct-faq">
+        <details class="ct-faq-item"><summary>Where will I sleep?</summary><p>To keep the true Camino spirit alive, nights are spent in traditional rural guesthouses and occasionally a simple shared mountain hostel. Expect clean, simple comfort and a warm, local atmosphere rather than luxury. It is the perfect way to disconnect and rest after a day on the trail.</p></details>
+        <details class="ct-faq-item"><summary>How fit do I need to be?</summary><p>You should be in good general health and comfortable walking around 20km a day. There is no technical climbing involved, but the mountain trails do feature steady ups and downs. The pace is natural, with plenty of time scheduled each day to rest, take photos, and truly experience the landscape.</p></details>
+        <details class="ct-faq-item"><summary>How big are the groups?</summary><p>Small and personal. A maximum of six walkers, guided personally by me from the volcano to the ocean.</p></details>
+        <details class="ct-faq-item"><summary>Which languages do you guide in?</summary><p>English, German, and Dutch. Whether you come from London, Amsterdam, or Munich, there is no barrier to a good conversation on the trail.</p></details>
+        <details class="ct-faq-item"><summary>When is the best time to walk?</summary><p>Year round. Tenerife has no bad season, only different ones.</p></details>
       </div>
     </div>
   </section>
