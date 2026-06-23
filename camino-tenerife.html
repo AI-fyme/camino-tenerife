@@ -436,6 +436,38 @@
   .ct-departures p:last-child { margin-bottom: 0; }
   .ct-departures strong { color: var(--ct-forest); font-weight: 600; }
 
+  /* ════════════ GOOD TO KNOW ════════════ */
+  .ct-info-section { background: var(--ct-bg); }
+  .ct-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .ct-info-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; color: var(--ct-forest); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .ct-info-block h3 svg { flex-shrink: 0; }
+  .ct-info-block p { font-size: 15.5px; line-height: 1.85; color: var(--ct-text); }
+
+  /* what's included strip */
+  .ct-included { background: #fff; border: 1px solid rgba(196,98,45,0.16); border-radius: var(--ct-r); padding: 24px 28px; margin-bottom: 28px; }
+  .ct-included-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; margin-bottom: 18px; }
+  .ct-included-head .t { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--ct-forest); line-height: 1; }
+  .ct-included-head .p { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ct-terra); font-weight: 600; }
+  .ct-included-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ct-included-items span { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; line-height: 1.4; color: var(--ct-text); }
+  .ct-included-items svg { flex-shrink: 0; margin-top: 3px; }
+
+  /* upcoming dates / notify */
+  .ct-dates { margin-top: 40px; background: var(--ct-forest); color: #F0E9DC; border-radius: var(--ct-r); padding: 40px 30px; text-align: center; position: relative; overflow: hidden; }
+  .ct-dates::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(46,125,140,0.28) 0%, transparent 60%); }
+  .ct-dates > * { position: relative; z-index: 1; }
+  .ct-dates h3 { font-family: 'Cormorant Garamond', serif; color: #F8F3E9; font-size: clamp(24px, 3.5vw, 32px); margin-bottom: 10px; }
+  .ct-dates p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: rgba(248,243,233,0.78); margin: 0 auto 24px; max-width: 460px; }
+  .ct-dates form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+  .ct-dates input { flex: 1 1 240px; min-width: 0; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.28); color: #fff; padding: 14px 16px; border-radius: var(--ct-rs); font-family: 'Outfit', sans-serif; font-size: 14px; }
+  .ct-dates input::placeholder { color: rgba(255,255,255,0.55); }
+  .ct-dates input:focus { outline: none; border-color: var(--ct-gold); }
+  .ct-dates .ct-btn { border: none; cursor: pointer; }
+
   /* ════════════ CLOSING CTA ════════════ */
   .ct-cta {
     background: var(--ct-forest);
@@ -486,6 +518,8 @@
     .ct-section { padding: 60px 6vw; }
     .ct-hero { padding: 48px 7vw 56px; }
     .ct-pricing-grid { grid-template-columns: 1fr; }
+    .ct-info-grid { grid-template-columns: 1fr; gap: 26px; }
+    .ct-included-items { grid-template-columns: 1fr; }
   }
   @media (max-width: 480px) {
     .ct-marquee img { height: 140px; }
@@ -763,13 +797,47 @@
     </div>
   </section>
 
+  <!-- ════════════════════════════ GOOD TO KNOW ════════════════════════════ -->
+  <section class="ct-info-section">
+    <div class="ct-section">
+      <div class="ct-section-head">
+        <span class="ct-eyebrow">03 · Good to Know</span>
+        <h2>What to expect</h2>
+        <p>Where you will sleep, and how the walking really feels.</p>
+      </div>
+      <div class="ct-info-grid">
+        <div class="ct-info-block">
+          <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.7"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg>Authentic Pilgrim Lodging</h3>
+          <p>To keep the true Camino spirit alive, our nights are spent in traditional rural guesthouses and occasionally a shared mountain hostel. Expect clean, simple comfort and a warm, local atmosphere rather than luxury. It is the perfect way to disconnect and rest after a day on the trail.</p>
+        </div>
+        <div class="ct-info-block">
+          <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.7"><path d="M3 20l6-9 4 5 3-4 5 8z"/></svg>Pace and Terrain</h3>
+          <p>Walkers should be in good general health and comfortable walking around 20km a day. There is no technical climbing involved, but the mountain trails do feature steady ups and downs. We walk at a natural pace with plenty of time scheduled each day to rest, take photos, and truly experience the landscape.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════════════════════════ PRICING ════════════════════════════ -->
   <section class="ct-pricing-section">
     <div class="ct-section">
       <div class="ct-section-head">
-        <span class="ct-eyebrow">03 · Booking</span>
+        <span class="ct-eyebrow">04 · Booking</span>
         <h2>Choose Your Camino</h2>
         <p>We keep our groups small, with a maximum of six walkers, to ensure a premium and personal experience. Choose the booking option that fits your travel style.</p>
+      </div>
+
+      <!-- What every trek includes -->
+      <div class="ct-included">
+        <div class="ct-included-head">
+          <span class="t">5 Day Trek</span>
+          <span class="p">Starting from €997 EUR</span>
+        </div>
+        <div class="ct-included-items">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Expert guide services</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Complete route planning</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>All accommodations during the trek</span>
+        </div>
       </div>
 
       <div class="ct-pricing-grid">
@@ -822,6 +890,16 @@
         <p><strong>Booking for two or more:</strong> Your trip is instantly confirmed. Feel free to book your flights right away.</p>
         <p><strong>Booking as a solo walker:</strong> Your spot is secured, but the trip will be marked as "Pending" until a second walker joins those same dates. Please wait for our official "Guaranteed Departure" email before booking your flights to Tenerife.</p>
         <p>If the minimum group size is not reached 30 days before the start date, we will offer a full refund or the option to easily switch to another confirmed date.</p>
+      </div>
+
+      <!-- Upcoming dates / notify signup -->
+      <div class="ct-dates">
+        <h3>Upcoming Dates Announced Soon</h3>
+        <p>New dates for the coming season are being finalised. Leave your email and you will be the first to know.</p>
+        <form onsubmit="event.preventDefault(); var v=this.email.value.trim(); window.open('https://wa.me/34616850933?text=' + encodeURIComponent('Hi Andreas, please notify me when new Camino Tenerife dates are announced.' + (v ? ' My email: ' + v : '')), '_blank');">
+          <input type="email" name="email" placeholder="Email address" aria-label="Email address" required>
+          <button type="submit" class="ct-btn">Notify me</button>
+        </form>
       </div>
     </div>
   </section>
