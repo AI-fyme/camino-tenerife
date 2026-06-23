@@ -225,9 +225,26 @@
             <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-primary rounded-none text-sm">WhatsApp Me</a>
         </div>
 
-        <button class="md:hidden text-white">
+        <button class="md:hidden text-white" aria-label="Menu" aria-controls="ctMobileMenu" onclick="document.getElementById('ctMobileMenu').classList.toggle('hidden')">
             <i class="ph ph-list text-3xl"></i>
         </button>
+
+        <!-- Mobile dropdown menu -->
+        <div id="ctMobileMenu" class="hidden md:hidden absolute top-full left-0 w-full" style="background:#2C4A3E; border-top:1px solid rgba(255,255,255,0.12); box-shadow:0 14px 30px rgba(26,18,8,0.3);">
+            <nav class="flex flex-col px-6 py-3">
+                <a href="camino-tenerife.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Camino Tenerife</a>
+                <a href="about.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">About Me</a>
+                <a href="contact.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Contact Me</a>
+                <div class="flex items-center gap-3 py-4 text-xs font-bold tracking-widest">
+                    <span class="text-white">EN</span>
+                    <span style="color:rgba(255,255,255,0.25);">|</span>
+                    <a href="/de/" style="color:rgba(255,255,255,0.55);">DE</a>
+                    <span style="color:rgba(255,255,255,0.25);">|</span>
+                    <a href="/nl/" style="color:rgba(255,255,255,0.55);">NL</a>
+                </div>
+                <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-primary rounded-none text-sm text-center mb-3">WhatsApp Me</a>
+            </nav>
+        </div>
     </header>
 
     <!-- ═══════════════════════════════════════════════════════════
