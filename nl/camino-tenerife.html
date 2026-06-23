@@ -137,7 +137,7 @@
   }
   .ct-hero-bg {
     position: absolute; inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop');
+    background-image: url('/pics/Camino%20Tenerife/Hero.jpg');
     background-size: cover;
     background-position: center;
     z-index: 0;
@@ -188,50 +188,31 @@
   }
   .ct-section-head p { font-size: 17px; color: var(--ct-muted); line-height: 1.8; }
 
-  /* ════════════ GALLERY ════════════ */
-  .ct-gallery-section { background: var(--ct-bg-warm); }
-  .ct-gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 200px;
-    gap: 14px;
-  }
-  .ct-photo {
-    position: relative;
+  /* ════════════ GALLERY MARQUEE ════════════ */
+  .ct-gallery-section { background: var(--ct-bg-warm); padding-bottom: 88px; }
+  .ct-marquee {
+    display: flex; flex-direction: column; gap: 14px;
     overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+  .ct-marquee-row { display: flex; gap: 14px; width: max-content; will-change: transform; }
+  .ct-marquee-row.r1 { animation: ct-marquee-left 70s linear infinite; }
+  .ct-marquee-row.r2 { animation: ct-marquee-right 70s linear infinite; }
+  .ct-marquee:hover .ct-marquee-row { animation-play-state: paused; }
+  .ct-marquee img {
+    height: 240px; width: auto; max-width: none;
     border-radius: var(--ct-rs);
-    background: var(--ct-bg-deep);
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
     border: 1px solid rgba(196,98,45,0.12);
   }
-  .ct-photo.tall { grid-row: span 2; }
-  .ct-photo.wide { grid-column: span 2; }
-  .ct-photo-placeholder {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 10px;
-    color: var(--ct-stone);
-    background:
-      repeating-linear-gradient(45deg, transparent, transparent 14px, rgba(140,126,110,0.04) 14px, rgba(140,126,110,0.04) 28px),
-      linear-gradient(160deg, var(--ct-bg) 0%, var(--ct-bg-deep) 100%);
-    text-align: center;
-    padding: 16px;
-    transition: background 0.2s;
-  }
-  .ct-photo-placeholder svg { opacity: 0.4; }
-  .ct-photo-placeholder .cap {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px; font-style: italic; color: var(--ct-muted);
-  }
-  .ct-photo-placeholder .day-tag {
-    font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--ct-terra); font-weight: 600;
-  }
-  .ct-photo img { width: 100%; height: 100%; object-fit: cover; }
-  .ct-gallery-note {
-    margin-top: 20px;
-    font-size: 13px; color: var(--ct-stone); font-style: italic;
-    font-family: 'Cormorant Garamond', serif;
-    text-align: center;
+  @keyframes ct-marquee-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+  @keyframes ct-marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .ct-marquee-row { animation: none; }
+    .ct-marquee { overflow-x: auto; }
   }
 
   /* ════════════ DAYS ════════════ */
@@ -373,15 +354,12 @@
     .ct-day { grid-template-columns: 1fr; }
     .ct-day:nth-child(even) .ct-day-visual { order: 0; }
     .ct-day-visual { min-height: 280px; }
-    .ct-gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
-    .ct-photo.wide { grid-column: span 2; }
-    .ct-photo.tall { grid-row: span 1; }
+    .ct-marquee img { height: 190px; }
     .ct-section { padding: 60px 6vw; }
     .ct-hero { padding: 48px 7vw 56px; }
   }
   @media (max-width: 480px) {
-    .ct-gallery { grid-template-columns: 1fr; }
-    .ct-photo.wide { grid-column: span 1; }
+    .ct-marquee img { height: 140px; }
     .ct-hero-stats { gap: 24px; }
   }
 </style>
@@ -408,59 +386,59 @@
 
   <!-- ════════════════════════════ GALLERY ════════════════════════════ -->
   <section class="ct-gallery-section">
-    <div class="ct-section">
-      <div class="ct-section-head">
+    <div class="ct-section" style="padding-bottom:40px;">
+      <div class="ct-section-head" style="margin-bottom:0;">
         <span class="ct-eyebrow">01 · De reis in beelden</span>
         <h2>Vijf dagen, één eiland</h2>
-        <p>Van de lavavelden van de top tot de wilde Atlantische kust. Zet je eigen foto's van de wandeling in de kaders hieronder. Eén of twee per dag vertellen het hele verhaal.</p>
+        <p>Van de lavavelden van de top tot de wilde Atlantische kust. Een paar beelden van onderweg.</p>
       </div>
+    </div>
 
-      <div class="ct-gallery">
-        <!-- Vervang elke .ct-photo-placeholder door: <img src="jouw-foto.jpg" alt="..."> -->
-        <figure class="ct-photo wide tall">
-          <div class="ct-photo-placeholder">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Dag 1 · Vulkaan</span>
-            <span class="cap">De krater bij zonsopgang</span>
-          </div>
-        </figure>
-        <figure class="ct-photo">
-          <div class="ct-photo-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Dag 2 · Bergen</span>
-            <span class="cap">Oude paden naar Santiago</span>
-          </div>
-        </figure>
-        <figure class="ct-photo">
-          <div class="ct-photo-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Dag 3 · Teno-kam</span>
-            <span class="cap">Beide kusten tegelijk</span>
-          </div>
-        </figure>
-        <figure class="ct-photo wide">
-          <div class="ct-photo-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Dag 4 · Kust</span>
-            <span class="cap">Garachico &amp; de lavabaden</span>
-          </div>
-        </figure>
-        <figure class="ct-photo">
-          <div class="ct-photo-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Dag 5 · Aankomst</span>
-            <span class="cap">De kliffen van Rambla de Castro</span>
-          </div>
-        </figure>
-        <figure class="ct-photo">
-          <div class="ct-photo-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">De groep</span>
-            <span class="cap">Samen wandelen</span>
-          </div>
-        </figure>
+    <div class="ct-marquee">
+      <div class="ct-marquee-row r1">
+        <img src="/pics/Camino%20Tenerife/Day%201%20-%2001.jpg" alt="Dag 1, het vulkanische plateau bij de Teide" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%201%20-%2002.jpg" alt="Dag 1, afdaling onder het Nationaal Park" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%201%20-%2003.jpg" alt="Dag 1, dennenbos boven Guía de Isora" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%201%20-%2004.jpg" alt="Dag 1, de lange weg omlaag" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%202%20-%2001.jpg" alt="Dag 2, het oude koninklijke pad" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%202%20-%2002.jpg" alt="Dag 2, terrassen en amandelgaarden" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%202%20-%2003.jpg" alt="Dag 2, omhoog de bergen in" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%202%20-%2004.jpg" alt="Dag 2, aankomst in Santiago del Teide" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2001.jpg" alt="Dag 3, het wilde Teno-massief" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2002.jpg" alt="Dag 3, eeuwenoude geitenpaden" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%201%20-%2001.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%201%20-%2002.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%201%20-%2003.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%201%20-%2004.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%202%20-%2001.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%202%20-%2002.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%202%20-%2003.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%202%20-%2004.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2001.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2002.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
       </div>
-      <p class="ct-gallery-note">Vervang de kaders door je eigen foto's. Elk blok is één <code>&lt;img&gt;</code>.</p>
+      <div class="ct-marquee-row r2">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2003.jpg" alt="Dag 3, de hooglanden van Teno" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2004.jpg" alt="Dag 3, stenen muren en leeg land" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2005.jpg" alt="Dag 3, nabij Teno Alto" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2006.jpg" alt="Dag 3, de afgelegen oversteek" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%204%20-%2001.jpg" alt="Dag 4, de afdaling naar de zee" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%204%20-%2002.jpg" alt="Dag 4, de Atlantische kust" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%204%20-%2003.jpg" alt="Dag 4, het kustpad naar Garachico" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%204%20-%2004.jpg" alt="Dag 4, Garachico en de lavabaden" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%205%20-%2001.jpeg" alt="Dag 5, de groene noordkust" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%205%20-%2002.jpg" alt="Dag 5, aankomst in Puerto de la Cruz" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2003.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2004.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2005.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%203%20-%2006.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%204%20-%2001.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%204%20-%2002.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%204%20-%2003.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%204%20-%2004.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%205%20-%2001.jpeg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="/pics/Camino%20Tenerife/Day%205%20-%2002.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      </div>
     </div>
   </section>
 
