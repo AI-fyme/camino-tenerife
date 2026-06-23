@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The 5-Day Camino, Volcano to Ocean | Camino Tenerife</title>
-    <meta name="description" content="Five days walking across Tenerife with Andreas, from just over 2,100 metres in the Teide caldera down to the Atlantic coast. Small guided groups of up to six.">
+    <title>De 5-daagse Camino, van vulkaan naar oceaan | Camino Tenerife</title>
+    <meta name="description" content="Vijf dagen wandelen over Tenerife met Andreas, van net iets boven 2.100 meter in de Teide-krater omlaag naar de Atlantische kust. Kleine begeleide groepen van maximaal zes.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
@@ -19,123 +19,56 @@
             theme: {
                 extend: {
                     colors: {
-                        primary:     '#C4622D',
-                        secondary:   '#D4A035',
-                        forest:      '#2C4A3E',
-                        teal:        '#2E7D8C',
-                        sky:         '#5DB8C0',
-                        sage:        '#7A9E7E',
-                        stone:       '#8C7E6E',
-                        warmblack:   '#1A1208',
-                        warmgray:    '#6B5B45',
-                        cream:       '#FAF7F2',
-                        warmcard:    '#F5EFE4',
-                        offwhite:    '#EDE4D6',
+                        primary:'#C4622D', secondary:'#D4A035', forest:'#2C4A3E', teal:'#2E7D8C', sky:'#5DB8C0', sage:'#7A9E7E', stone:'#8C7E6E', warmblack:'#1A1208', warmgray:'#6B5B45', cream:'#FAF7F2', warmcard:'#F5EFE4', offwhite:'#EDE4D6',
                     },
-                    fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'serif'],
-                        sans:  ['"Cormorant Garamond"', 'serif'],
-                    }
+                    fontFamily: { serif:['"Cormorant Garamond"','serif'], sans:['"Cormorant Garamond"','serif'] }
                 }
             }
         }
     </script>
     <style>
-        :root {
-            --bg:           #FAF7F2;
-            --bg-warm:      #F5EFE4;
-            --bg-deep:      #EDE4D6;
-            --text:         #1A1208;
-            --text-muted:   #6B5B45;
-            --forest-deep:  #2C4A3E;
-            --terracotta:   #C4622D;
-            --gold:         #D4A035;
-            --stone:        #8C7E6E;
-            --gradient:     linear-gradient(135deg, #C4622D 0%, #D4A035 100%);
-        }
-
-        body {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            line-height: 1.8;
-            color: #1A1208;
-            background: #FAF7F2;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        ::selection { background: #C4622D; color: #fff; }
-
-        /* Shared button used by the site header and footer */
-        .btn-primary {
-            background: var(--gradient);
-            color: #fff;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-            font-size: 15px;
-            letter-spacing: 1.5px;
-            border: none;
-            padding: 14px 32px;
-            cursor: pointer;
-            display: inline-block;
-            text-transform: uppercase;
-            transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-            text-decoration: none;
-        }
-        .btn-primary:hover {
-            opacity: 0.92;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(196, 98, 45, 0.35);
-        }
+        :root { --bg:#FAF7F2; --terracotta:#C4622D; --gold:#D4A035; --gradient:linear-gradient(135deg,#C4622D 0%,#D4A035 100%); }
+        body { font-family:'Cormorant Garamond',serif; font-size:18px; line-height:1.8; color:#1A1208; background:#FAF7F2; -webkit-font-smoothing:antialiased; }
+        ::selection { background:#C4622D; color:#fff; }
+        .btn-primary { background:var(--gradient); color:#fff; font-family:'Cormorant Garamond',serif; font-weight:700; font-size:15px; letter-spacing:1.5px; border:none; padding:14px 32px; cursor:pointer; display:inline-block; text-transform:uppercase; transition:opacity 0.2s,transform 0.15s,box-shadow 0.2s; text-decoration:none; }
+        .btn-primary:hover { opacity:0.92; transform:translateY(-2px); box-shadow:0 8px 24px rgba(196,98,45,0.35); }
     </style>
 </head>
 <body class="flex flex-col min-h-screen w-full">
 
     <!-- ═══════════════════════════════════════════════════════════
-         HEADER / NAV  (site shell, overlays the dark hero below)
+         HEADER / NAV  (site-frame, ligt over de donkere hero)
     ═══════════════════════════════════════════════════════════ -->
     <header class="absolute top-0 left-0 w-full z-50 px-6 py-0 lg:px-12 flex justify-between items-center border-b border-white/20">
-        <a href="index.html" class="flex items-center">
-            <img
-                src="/pics/logo.svg"
-                alt="Camino Tenerife. Guided Walks"
-                class="h-32 w-auto"
-            >
+        <a href="/nl/" class="flex items-center">
+            <img src="/pics/logo.svg" alt="Camino Tenerife. Begeleide Wandelingen" class="h-32 w-auto">
         </a>
-
         <nav class="hidden md:flex items-center gap-8">
-            <a href="camino-tenerife.html" class="text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:2px solid #D4A035; padding-bottom:3px;">Camino Tenerife</a>
-            <a href="about.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">About Me</a>
-            <a href="contact.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Contact Me</a>
+            <a href="/nl/camino-tenerife.html" class="text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:2px solid #D4A035; padding-bottom:3px;">Camino Tenerife</a>
+            <a href="/nl/about.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Over mij</a>
+            <a href="/nl/contact.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Contact</a>
         </nav>
-
-        <!-- Language switcher -->
         <div class="hidden md:flex items-center gap-1" style="border-left:1px solid rgba(255,255,255,0.20); padding-left:20px; margin-left:8px;">
-            <span class="text-white text-xs font-bold tracking-widest">EN</span>
+            <a href="/camino-tenerife.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">EN</a>
             <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
             <a href="/de/camino-tenerife.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">DE</a>
             <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
-            <a href="/nl/camino-tenerife.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">NL</a>
+            <span class="text-white text-xs font-bold tracking-widest">NL</span>
         </div>
-
         <div class="hidden md:block">
-            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-primary rounded-none text-sm">WhatsApp Me</a>
+            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-primary rounded-none text-sm">WhatsApp mij</a>
         </div>
-
-        <button class="md:hidden text-white">
-            <i class="ph ph-list text-3xl"></i>
-        </button>
+        <button class="md:hidden text-white"><i class="ph ph-list text-3xl"></i></button>
     </header>
 
 <!-- ============================================================
-     CAMINO TENERIFE  5-DAY HIKING TRIP
-     Single unified page (BODY only)
-     Theme matched to caminotenerife.com
-     Fonts required in <head>:
-     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+     CAMINO TENERIFE  5-DAAGSE WANDELREIS
+     Losse pagina (alleen BODY)
+     Thema afgestemd op caminotenerife.com
      ============================================================ -->
 
 <style>
-  /* ─── Scoped tokens (match caminotenerife.com) ─── */
+  /* ─── Scoped tokens (afgestemd op caminotenerife.com) ─── */
   .ct-page {
     --ct-bg: #FAF7F2;
     --ct-bg-warm: #F5EFE4;
@@ -459,15 +392,15 @@
   <header class="ct-hero">
     <div class="ct-hero-bg"></div>
     <div class="ct-hero-inner">
-      <span class="ct-eyebrow light">The Signature Journey</span>
-      <h1>Five Days from <em>Volcano</em> to Ocean</h1>
-      <p class="ct-hero-lead">One island, walked end to end. We begin at just over 2,100 metres in the silence of the Teide caldera and finish where the Atlantic meets the old north coast. This is not a tour. It is a Camino.</p>
+      <span class="ct-eyebrow light">De bijzondere reis</span>
+      <h1>Vijf dagen van <em>vulkaan</em> naar oceaan</h1>
+      <p class="ct-hero-lead">Eén eiland, van begin tot eind belopen. We beginnen op net iets boven 2.100 meter in de stilte van de Teide-krater en eindigen waar de Atlantische Oceaan de oude noordkust raakt. Dit is geen tour. Dit is een Camino.</p>
       <div class="ct-hero-stats">
-        <div class="ct-hero-stat"><span class="v">5</span><span class="l">Days</span></div>
-        <div class="ct-hero-stat"><span class="v">4</span><span class="l">Nights</span></div>
-        <div class="ct-hero-stat"><span class="v">~100 km</span><span class="l">On foot</span></div>
-        <div class="ct-hero-stat"><span class="v">6</span><span class="l">Walkers max</span></div>
-        <div class="ct-hero-stat"><span class="v">3</span><span class="l">Landscapes</span></div>
+        <div class="ct-hero-stat"><span class="v">5</span><span class="l">Dagen</span></div>
+        <div class="ct-hero-stat"><span class="v">4</span><span class="l">Nachten</span></div>
+        <div class="ct-hero-stat"><span class="v">~100 km</span><span class="l">Te voet</span></div>
+        <div class="ct-hero-stat"><span class="v">6</span><span class="l">Wandelaars max.</span></div>
+        <div class="ct-hero-stat"><span class="v">3</span><span class="l">Landschappen</span></div>
       </div>
     </div>
   </header>
@@ -477,57 +410,57 @@
   <section class="ct-gallery-section">
     <div class="ct-section">
       <div class="ct-section-head">
-        <span class="ct-eyebrow">01 · The Journey in Pictures</span>
-        <h2>Five days, one island</h2>
-        <p>From the lava fields of the summit to the wild Atlantic shore. Drop your own photos from the walk into the frames below. One or two from each day tells the whole story.</p>
+        <span class="ct-eyebrow">01 · De reis in beelden</span>
+        <h2>Vijf dagen, één eiland</h2>
+        <p>Van de lavavelden van de top tot de wilde Atlantische kust. Zet je eigen foto's van de wandeling in de kaders hieronder. Eén of twee per dag vertellen het hele verhaal.</p>
       </div>
 
       <div class="ct-gallery">
-        <!-- Replace each .ct-photo-placeholder with: <img src="your-photo.jpg" alt="..."> -->
+        <!-- Vervang elke .ct-photo-placeholder door: <img src="jouw-foto.jpg" alt="..."> -->
         <figure class="ct-photo wide tall">
           <div class="ct-photo-placeholder">
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Day 1 · Volcano</span>
-            <span class="cap">The caldera at sunrise</span>
+            <span class="day-tag">Dag 1 · Vulkaan</span>
+            <span class="cap">De krater bij zonsopgang</span>
           </div>
         </figure>
         <figure class="ct-photo">
           <div class="ct-photo-placeholder">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Day 2 · Mountains</span>
-            <span class="cap">Old paths to Santiago</span>
+            <span class="day-tag">Dag 2 · Bergen</span>
+            <span class="cap">Oude paden naar Santiago</span>
           </div>
         </figure>
         <figure class="ct-photo">
           <div class="ct-photo-placeholder">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Day 3 · Teno ridge</span>
-            <span class="cap">Both coasts at once</span>
+            <span class="day-tag">Dag 3 · Teno-kam</span>
+            <span class="cap">Beide kusten tegelijk</span>
           </div>
         </figure>
         <figure class="ct-photo wide">
           <div class="ct-photo-placeholder">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Day 4 · Coast</span>
-            <span class="cap">Garachico &amp; the lava pools</span>
+            <span class="day-tag">Dag 4 · Kust</span>
+            <span class="cap">Garachico &amp; de lavabaden</span>
           </div>
         </figure>
         <figure class="ct-photo">
           <div class="ct-photo-placeholder">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">Day 5 · Arrival</span>
-            <span class="cap">Rambla de Castro cliffs</span>
+            <span class="day-tag">Dag 5 · Aankomst</span>
+            <span class="cap">De kliffen van Rambla de Castro</span>
           </div>
         </figure>
         <figure class="ct-photo">
           <div class="ct-photo-placeholder">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></svg>
-            <span class="day-tag">The group</span>
-            <span class="cap">Walking together</span>
+            <span class="day-tag">De groep</span>
+            <span class="cap">Samen wandelen</span>
           </div>
         </figure>
       </div>
-      <p class="ct-gallery-note">Replace the frames with your own photographs. Each block is one <code>&lt;img&gt;</code>.</p>
+      <p class="ct-gallery-note">Vervang de kaders door je eigen foto's. Elk blok is één <code>&lt;img&gt;</code>.</p>
     </div>
   </section>
 
@@ -535,21 +468,21 @@
   <section class="ct-days-section">
     <div class="ct-section">
       <div class="ct-section-head">
-        <span class="ct-eyebrow">02 · Day by Day</span>
-        <h2>The five days</h2>
-        <p>Each day is its own world. Here is what your feet, your eyes, and your lungs will know from morning to evening.</p>
+        <span class="ct-eyebrow">02 · Dag voor dag</span>
+        <h2>De vijf dagen</h2>
+        <p>Elke dag is een eigen wereld. Dit is wat je voeten, je ogen en je longen van ochtend tot avond zullen kennen.</p>
       </div>
 
-      <!-- ─────────── DAY 1 ─────────── -->
+      <!-- ─────────── DAG 1 ─────────── -->
       <article class="ct-day">
         <div class="ct-day-visual">
           <div>
-            <span class="ct-day-number">Day 1 · Volcano</span>
+            <span class="ct-day-number">Dag 1 · Vulkaan</span>
             <h3 class="ct-day-route">Parador del Teide → Guía de Isora</h3>
-            <p class="ct-day-landscape">The caldera, the lava, the long way down</p>
+            <p class="ct-day-landscape">De krater, de lava, de lange weg omlaag</p>
           </div>
           <div class="ct-day-elev">
-            <div class="ct-day-elev-label">Elevation · 2,150m to 600m</div>
+            <div class="ct-day-elev-label">Hoogte · 2.150m tot 600m</div>
             <svg viewBox="0 0 300 50" preserveAspectRatio="none">
               <defs><linearGradient id="ctd1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4A035" stop-opacity=".45"/><stop offset="100%" stop-color="#D4A035" stop-opacity="0"/></linearGradient></defs>
               <path d="M0 6 Q60 8 120 18 Q190 30 250 40 Q280 44 300 45 L300 50 L0 50Z" fill="url(#ctd1)"/>
@@ -559,33 +492,33 @@
         </div>
         <div class="ct-day-body">
           <div class="ct-metrics">
-            <span class="ct-chip diff-mod"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18l6-9 4 5 3-4 5 8z"/></svg>Moderate</span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M7 13l5 5 5-5M7 7l5 5 5-5"/></svg><span class="chip-val">Mostly downhill</span></span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E7D8C" stroke-width="2"><path d="M3 20h18M5 20V9l4-3 4 3 6-4v15"/></svg><span class="chip-val">2,150 to 600 m</span></span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">5-6 hours · ~16 km</span></span>
+            <span class="ct-chip diff-mod"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18l6-9 4 5 3-4 5 8z"/></svg>Gemiddeld</span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M7 13l5 5 5-5M7 7l5 5 5-5"/></svg><span class="chip-val">Vooral bergaf</span></span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E7D8C" stroke-width="2"><path d="M3 20h18M5 20V9l4-3 4 3 6-4v15"/></svg><span class="chip-val">2.150 tot 600 m</span></span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">5-6 uur · ~16 km</span></span>
           </div>
           <div class="ct-day-summary">
-            <p class="lead">We begin our journey high up, around 2,150 metres, right beside the Teide volcano.</p>
-            <p>The first kilometres run almost flat across an open plateau of black rock and pale pumice. The silence is total. You hear only your own footsteps and the wind moving over the lava. It feels less like a Spanish island and more like walking on the moon, or somewhere on Mars.</p>
-            <p>Then the trail begins to drop. We leave the National Park behind and the first pines appear, twisted and resin-scented. The world slowly turns green again. By mid-afternoon we reach the old village of Chirche, where the bakery still smells of warm bread and, on a clear day, you can see La Gomera and La Palma floating on the sea. From there it is a gentle descent into Guía de Isora for our first night.</p>
+            <p class="lead">We beginnen onze reis hoog, rond 2.150 meter, vlak naast de vulkaan Teide.</p>
+            <p>De eerste kilometers lopen bijna vlak over een open plateau van zwart gesteente en bleke puimsteen. De stilte is volkomen. Je hoort alleen je eigen voetstappen en de wind die over de lava strijkt. Het voelt minder als een Spaans eiland en meer als een wandeling op de maan, of ergens op Mars.</p>
+            <p>Dan begint het pad te dalen. We laten het Nationaal Park achter ons en de eerste dennen verschijnen, knoestig en naar hars geurend. De wereld wordt langzaam weer groen. In de namiddag bereiken we het oude dorp Chirche, waar de bakkerij nog naar warm brood ruikt en je op een heldere dag La Gomera en La Palma op zee ziet drijven. Vandaar is het een zachte afdaling naar Guía de Isora voor onze eerste nacht.</p>
           </div>
           <div class="ct-day-sleep">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.8"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 14h18M7 10V7a1 1 0 011-1h3"/></svg>
-            <span><strong>Where we rest, Night 1:</strong> Guía de Isora</span>
+            <span><strong>Waar we rusten, Nacht 1:</strong> Guía de Isora</span>
           </div>
         </div>
       </article>
 
-      <!-- ─────────── DAY 2 ─────────── -->
+      <!-- ─────────── DAG 2 ─────────── -->
       <article class="ct-day">
         <div class="ct-day-visual">
           <div>
-            <span class="ct-day-number">Day 2 · Mountains</span>
+            <span class="ct-day-number">Dag 2 · Bergen</span>
             <h3 class="ct-day-route">Guía de Isora → Santiago del Teide</h3>
-            <p class="ct-day-landscape">The old royal path through pine and almond</p>
+            <p class="ct-day-landscape">Het oude koninklijke pad door den en amandel</p>
           </div>
           <div class="ct-day-elev">
-            <div class="ct-day-elev-label">Elevation · 600m → 950m → 900m</div>
+            <div class="ct-day-elev-label">Hoogte · 600m → 950m → 900m</div>
             <svg viewBox="0 0 300 50" preserveAspectRatio="none">
               <defs><linearGradient id="ctd2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7A9E7E" stop-opacity=".5"/><stop offset="100%" stop-color="#7A9E7E" stop-opacity="0"/></linearGradient></defs>
               <path d="M0 40 Q70 30 130 16 Q170 8 210 12 Q250 18 300 14 L300 50 L0 50Z" fill="url(#ctd2)"/>
@@ -595,33 +528,33 @@
         </div>
         <div class="ct-day-body">
           <div class="ct-metrics">
-            <span class="ct-chip diff-mod"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18l6-9 4 5 3-4 5 8z"/></svg>Moderate</span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M7 11l5-5 5 5M7 17l5-5 5 5"/></svg><span class="chip-val">Gentle climb</span></span>
+            <span class="ct-chip diff-mod"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18l6-9 4 5 3-4 5 8z"/></svg>Gemiddeld</span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M7 11l5-5 5 5M7 17l5-5 5 5"/></svg><span class="chip-val">Zachte klim</span></span>
             <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E7D8C" stroke-width="2"><path d="M3 20h18M5 20V9l4-3 4 3 6-4v15"/></svg><span class="chip-val">600 → 950 m</span></span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">5-6 hours · ~16 km</span></span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">5-6 uur · ~16 km</span></span>
           </div>
           <div class="ct-day-summary">
-            <p class="lead">Today we turn our backs to the coast and walk up into the heart of the island.</p>
-            <p>We follow the Camino Real, the old royal path that farmers and pilgrims have used for centuries. It climbs steadily through terraces and almond groves, switching from sun-baked slopes to the cool shade of pine. The air changes as we rise: drier, sharper, scented with resin and wild mint.</p>
-            <p>Around the halfway point we reach the sleepy village of Arguayo, where a single bar serves coffee and the Chinyero volcano, the last on Tenerife to erupt in 1909, rises quietly behind the rooftops. From here a final easy stretch brings us to Santiago del Teide, a true mountain village with a stone church and a plaza made for tired legs and a cold drink.</p>
+            <p class="lead">Vandaag keren we de kust de rug toe en lopen we omhoog het hart van het eiland in.</p>
+            <p>We volgen de Camino Real, het oude koninklijke pad dat boeren en pelgrims al eeuwenlang gebruiken. Het klimt gestaag door terrassen en amandelgaarden, wisselt van zonverbrande hellingen naar de koele schaduw van dennen. De lucht verandert naarmate we stijgen: droger, scherper, geurend naar hars en wilde munt.</p>
+            <p>Rond het halverwege punt bereiken we het slaperige dorp Arguayo, waar een enkele bar koffie schenkt en de vulkaan Chinyero, de laatste op Tenerife die uitbarstte in 1909, stil achter de daken oprijst. Vanaf hier brengt een laatste makkelijk stuk ons naar Santiago del Teide, een echt bergdorp met een stenen kerk en een plein gemaakt voor vermoeide benen en een koud drankje.</p>
           </div>
           <div class="ct-day-sleep">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.8"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 14h18M7 10V7a1 1 0 011-1h3"/></svg>
-            <span><strong>Where we rest, Night 2:</strong> Santiago del Teide</span>
+            <span><strong>Waar we rusten, Nacht 2:</strong> Santiago del Teide</span>
           </div>
         </div>
       </article>
 
-      <!-- ─────────── DAY 3 ─────────── -->
+      <!-- ─────────── DAG 3 ─────────── -->
       <article class="ct-day">
         <div class="ct-day-visual">
           <div>
-            <span class="ct-day-number">Day 3 · The Crossing</span>
+            <span class="ct-day-number">Dag 3 · De oversteek</span>
             <h3 class="ct-day-route">Santiago del Teide → Teno Alto</h3>
-            <p class="ct-day-landscape">Over the wild Teno massif, the day that earns its name</p>
+            <p class="ct-day-landscape">Over het wilde Teno-massief, de dag die zijn naam verdient</p>
           </div>
           <div class="ct-day-elev">
-            <div class="ct-day-elev-label">Elevation · 900m → 1,020m → 770m</div>
+            <div class="ct-day-elev-label">Hoogte · 900m → 1.020m → 770m</div>
             <svg viewBox="0 0 300 50" preserveAspectRatio="none">
               <defs><linearGradient id="ctd3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#A32D2D" stop-opacity=".4"/><stop offset="100%" stop-color="#A32D2D" stop-opacity="0"/></linearGradient></defs>
               <path d="M0 30 Q50 16 90 8 Q120 4 150 12 Q190 24 230 22 Q265 20 300 26 L300 50 L0 50Z" fill="url(#ctd3)"/>
@@ -631,33 +564,33 @@
         </div>
         <div class="ct-day-body">
           <div class="ct-metrics">
-            <span class="ct-chip diff-hard"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 20h20z"/><path d="M12 9v5M12 17h.01"/></svg>Challenging</span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M7 11l5-5 5 5M7 17l5-5 5 5"/></svg><span class="chip-val">Steep up, then down</span></span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E7D8C" stroke-width="2"><path d="M3 20h18M5 20V9l4-3 4 3 6-4v15"/></svg><span class="chip-val">up to 1,020 m</span></span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">6-7 hours · ~15 km</span></span>
+            <span class="ct-chip diff-hard"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 20h20z"/><path d="M12 9v5M12 17h.01"/></svg>Uitdagend</span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M7 11l5-5 5 5M7 17l5-5 5 5"/></svg><span class="chip-val">Steil omhoog, dan omlaag</span></span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E7D8C" stroke-width="2"><path d="M3 20h18M5 20V9l4-3 4 3 6-4v15"/></svg><span class="chip-val">tot 1.020 m</span></span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">6-7 uur · ~15 km</span></span>
           </div>
           <div class="ct-day-summary">
-            <p class="lead">This is the day we leave the easy world behind and cross into the oldest, wildest part of the island.</p>
-            <p>We start before sunrise. The climb to Cruz de Gala is the hardest of the whole walk. Steep, honest, unrelenting. But at the top the reward is rare: on a clear morning you can see the Atlantic on both sides of the island at once, the whole world dropping away beneath your boots.</p>
-            <p>From there we follow ancient goat paths across the Teno highlands, past stone walls built by hands long gone. The land is empty and enormous. We stop for the night in Teno Alto, the most remote point of the entire Camino, where the cheese is made by hand and the night sky has no light to compete with. Stars all the way down to the horizon.</p>
+            <p class="lead">Dit is de dag dat we de makkelijke wereld achter ons laten en oversteken naar het oudste, wildste deel van het eiland.</p>
+            <p>We vertrekken voor zonsopgang. De klim naar Cruz de Gala is de zwaarste van de hele wandeling. Steil, eerlijk, meedogenloos. Maar op de top is de beloning zeldzaam: op een heldere ochtend zie je de Atlantische Oceaan aan beide kanten van het eiland tegelijk, de hele wereld valt weg onder je schoenen.</p>
+            <p>Vandaar volgen we eeuwenoude geitenpaden over de hooglanden van Teno, langs stenen muren gebouwd door handen die er allang niet meer zijn. Het land is leeg en immens. We overnachten in Teno Alto, het meest afgelegen punt van de hele Camino, waar de kaas met de hand wordt gemaakt en de nachthemel geen licht heeft om mee te concurreren. Sterren tot helemaal aan de horizon.</p>
           </div>
           <div class="ct-day-sleep">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.8"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 14h18M7 10V7a1 1 0 011-1h3"/></svg>
-            <span><strong>Where we rest, Night 3:</strong> Teno Alto / Las Portelas</span>
+            <span><strong>Waar we rusten, Nacht 3:</strong> Teno Alto / Las Portelas</span>
           </div>
         </div>
       </article>
 
-      <!-- ─────────── DAY 4 ─────────── -->
+      <!-- ─────────── DAG 4 ─────────── -->
       <article class="ct-day">
         <div class="ct-day-visual">
           <div>
-            <span class="ct-day-number">Day 4 · Coast</span>
+            <span class="ct-day-number">Dag 4 · Kust</span>
             <h3 class="ct-day-route">Teno Alto → Buenavista → Garachico</h3>
-            <p class="ct-day-landscape">Down the cliff to the sea, then along the Atlantic</p>
+            <p class="ct-day-landscape">De klif af naar de zee, dan langs de Atlantische Oceaan</p>
           </div>
           <div class="ct-day-elev">
-            <div class="ct-day-elev-label">Elevation · 770m → sea level</div>
+            <div class="ct-day-elev-label">Hoogte · 770m → zeeniveau</div>
             <svg viewBox="0 0 300 50" preserveAspectRatio="none">
               <defs><linearGradient id="ctd4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5DB8C0" stop-opacity=".5"/><stop offset="100%" stop-color="#5DB8C0" stop-opacity="0"/></linearGradient></defs>
               <path d="M0 10 Q50 14 100 30 Q140 42 190 44 Q245 45 300 43 L300 50 L0 50Z" fill="url(#ctd4)"/>
@@ -667,33 +600,33 @@
         </div>
         <div class="ct-day-body">
           <div class="ct-metrics">
-            <span class="ct-chip diff-mod"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18l6-9 4 5 3-4 5 8z"/></svg>Moderate</span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M7 13l5 5 5-5M7 7l5 5 5-5"/></svg><span class="chip-val">Steep descent, then flat</span></span>
+            <span class="ct-chip diff-mod"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18l6-9 4 5 3-4 5 8z"/></svg>Gemiddeld</span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M7 13l5 5 5-5M7 7l5 5 5-5"/></svg><span class="chip-val">Steile afdaling, dan vlak</span></span>
             <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E7D8C" stroke-width="2"><path d="M3 20h18M5 20V9l4-3 4 3 6-4v15"/></svg><span class="chip-val">770 → 0 m</span></span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">6-7 hours · ~21 km</span></span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">6-7 uur · ~21 km</span></span>
           </div>
           <div class="ct-day-summary">
-            <p class="lead">After the hard mountain day, today is the gift, and it begins with one of the most dramatic descents on the island.</p>
-            <p>The Camino del Risco drops off the Teno massif in tight switchbacks carved into a sheer cliff face. The ocean appears below us, impossibly blue, growing closer with every turn. We reach the coast at Buenavista del Norte and put our feet straight into the Atlantic.</p>
-            <p>From there the path turns gentle and flat, following the shore past salt flats, hidden rock pools, and the quiet fishing village of Los Silos. We finish in Garachico, a town the sea once tried to bury under lava in 1706, now considered one of the most beautiful villages in Spain. We swim in the natural lava pools as the sun goes down, then eat fresh fish by the water.</p>
+            <p class="lead">Na de zware bergdag is vandaag het cadeau, en het begint met een van de meest dramatische afdalingen van het eiland.</p>
+            <p>De Camino del Risco daalt in krappe haarspeldbochten van het Teno-massief af, uitgehakt in een steile rotswand. Onder ons verschijnt de oceaan, onwaarschijnlijk blauw, en komt met elke bocht dichterbij. We bereiken de kust bij Buenavista del Norte en zetten onze voeten recht in de Atlantische Oceaan.</p>
+            <p>Vandaar wordt het pad zacht en vlak, langs de kust voorbij zoutpannen, verborgen rotsbaden en het stille vissersdorp Los Silos. We eindigen in Garachico, een stad die de zee in 1706 onder lava probeerde te bedelven en die nu geldt als een van de mooiste dorpen van Spanje. We zwemmen bij zonsondergang in de natuurlijke lavabaden en eten daarna verse vis aan het water.</p>
           </div>
           <div class="ct-day-sleep">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.8"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 14h18M7 10V7a1 1 0 011-1h3"/></svg>
-            <span><strong>Where we rest, Night 4:</strong> Garachico</span>
+            <span><strong>Waar we rusten, Nacht 4:</strong> Garachico</span>
           </div>
         </div>
       </article>
 
-      <!-- ─────────── DAY 5 ─────────── -->
+      <!-- ─────────── DAG 5 ─────────── -->
       <article class="ct-day">
         <div class="ct-day-visual">
           <div>
-            <span class="ct-day-number">Day 5 · The Arrival</span>
+            <span class="ct-day-number">Dag 5 · De aankomst</span>
             <h3 class="ct-day-route">Garachico → Icod → Puerto de la Cruz</h3>
-            <p class="ct-day-landscape">The thousand-year tree and the cliff path home</p>
+            <p class="ct-day-landscape">De duizendjarige boom en het klifpad naar huis</p>
           </div>
           <div class="ct-day-elev">
-            <div class="ct-day-elev-label">Elevation · rolling coast, ~50m finish</div>
+            <div class="ct-day-elev-label">Hoogte · golvende kust, finish op ~50m</div>
             <svg viewBox="0 0 300 50" preserveAspectRatio="none">
               <defs><linearGradient id="ctd5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2E7D8C" stop-opacity=".5"/><stop offset="100%" stop-color="#2E7D8C" stop-opacity="0"/></linearGradient></defs>
               <path d="M0 36 Q50 26 90 18 Q120 12 150 20 Q190 30 230 32 Q265 33 300 30 L300 50 L0 50Z" fill="url(#ctd5)"/>
@@ -703,19 +636,19 @@
         </div>
         <div class="ct-day-body">
           <div class="ct-metrics">
-            <span class="ct-chip diff-easy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M5 12l4-4M5 12l4 4"/></svg>Easy-Moderate</span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M5 12h14"/></svg><span class="chip-val">Rolling &amp; flat</span></span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E7D8C" stroke-width="2"><path d="M3 20h18M5 20V9l4-3 4 3 6-4v15"/></svg><span class="chip-val">near sea level</span></span>
-            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">flexible · 3-6 hours</span></span>
+            <span class="ct-chip diff-easy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M5 12l4-4M5 12l4 4"/></svg>Makkelijk-Gemiddeld</span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2"><path d="M5 12h14"/></svg><span class="chip-val">Golvend &amp; vlak</span></span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E7D8C" stroke-width="2"><path d="M3 20h18M5 20V9l4-3 4 3 6-4v15"/></svg><span class="chip-val">nabij zeeniveau</span></span>
+            <span class="ct-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="chip-val">flexibel · 3-6 uur</span></span>
           </div>
           <div class="ct-day-summary">
-            <p class="lead">The last day belongs to the green north coast, and to a slow, satisfying arrival.</p>
-            <p>We leave Garachico along the old Camino Real del Norte and climb gently to Icod de los Vinos, home of the Drago Milenario: a dragon tree said to be a thousand years old. Standing beneath it, you feel exactly how old this island really is.</p>
-            <p>From there we trace the coast through small historic villages until we reach the Rambla de Castro, a cliff path winding through banana plantations with Teide rising behind us and the ocean breaking below. This is the most beautiful stretch of the whole journey, and we walk it slowly on purpose. We arrive in Puerto de la Cruz, at the Plaza del Charco, with a glass of wine and the quiet certainty that we have crossed an entire island on foot. From the volcano to the sea. That is the Camino Tenerife.</p>
+            <p class="lead">De laatste dag is voor de groene noordkust, en voor een trage, voldane aankomst.</p>
+            <p>We verlaten Garachico via de oude Camino Real del Norte en klimmen zachtjes naar Icod de los Vinos, thuis van de Drago Milenario: een drakenboom die duizend jaar oud zou zijn. Als je eronder staat, voel je precies hoe oud dit eiland werkelijk is.</p>
+            <p>Vandaar volgen we de kust door kleine historische dorpen tot we de Rambla de Castro bereiken, een klifpad dat door bananenplantages slingert met de Teide achter ons en de oceaan die beneden breekt. Dit is het mooiste stuk van de hele reis, en we lopen het bewust langzaam. We komen aan in Puerto de la Cruz, op de Plaza del Charco, met een glas wijn en de stille zekerheid dat we een heel eiland te voet hebben overgestoken. Van de vulkaan naar de zee. Dat is de Camino Tenerife.</p>
           </div>
           <div class="ct-day-sleep">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            <span><strong>Journey's end:</strong> Puerto de la Cruz</span>
+            <span><strong>Einde van de reis:</strong> Puerto de la Cruz</span>
           </div>
         </div>
       </article>
@@ -726,112 +659,62 @@
   <!-- ════════════════════════════ CTA ════════════════════════════ -->
   <section class="ct-cta">
     <div class="ct-cta-inner">
-      <span class="ct-eyebrow light" style="justify-content:center;">Walk With Me</span>
-      <h2 style="margin-top:18px;">Five days. One island. <em>One Camino.</em></h2>
-      <p>Small groups of up to six, guided personally from the volcano to the ocean. Accommodation, route, and the stories along the way, all carried for you.</p>
-      <a class="ct-btn" href="https://wa.me/34616850933">WhatsApp me to walk the Camino</a>
-      <div class="ct-cta-signoff">Andreas · Camino Tenerife · Guided Walks</div>
+      <span class="ct-eyebrow light" style="justify-content:center;">Loop met mij</span>
+      <h2 style="margin-top:18px;">Vijf dagen. Eén eiland. <em>Eén Camino.</em></h2>
+      <p>Kleine groepen van maximaal zes, persoonlijk begeleid van de vulkaan naar de oceaan. Accommodatie, route en de verhalen onderweg, allemaal voor jou gedragen.</p>
+      <a class="ct-btn" href="https://wa.me/34616850933">App me op WhatsApp om de Camino te lopen</a>
+      <div class="ct-cta-signoff">Andreas · Camino Tenerife · Begeleide Wandelingen</div>
     </div>
   </section>
 
 </div>
 
     <!-- ═══════════════════════════════════════════════════════════
-         FOOTER  (site shell)
+         FOOTER  (site-frame)
     ═══════════════════════════════════════════════════════════ -->
     <footer class="pt-24 pb-12 w-full mt-auto" style="background:#2C4A3E; color:#fff;">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
-                <!-- Brand blurb -->
                 <div class="lg:col-span-1">
-                    <div class="mb-6">
-                        <img
-                            src="/pics/logo.svg"
-                            alt="Camino Tenerife. Guided Walks"
-                            class="h-28 w-auto"
-                        >
-                    </div>
-                    <p class="font-light text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.60);">
-                        Guided walking experiences connecting you to the soul, history, and landscapes of the Canary Islands.
-                    </p>
+                    <div class="mb-6"><img src="/pics/logo.svg" alt="Camino Tenerife. Begeleide Wandelingen" class="h-28 w-auto"></div>
+                    <p class="font-light text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.60);">Begeleide wandelervaringen die je verbinden met de ziel, geschiedenis en landschappen van de Canarische Eilanden.</p>
                     <div class="flex items-center gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors"
-                           style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);"
-                           onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';"
-                           onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';">
-                            <i class="ph ph-instagram-logo text-xl"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors"
-                           style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);"
-                           onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';"
-                           onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';">
-                            <i class="ph ph-facebook-logo text-xl"></i>
-                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-instagram-logo text-xl"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-facebook-logo text-xl"></i></a>
                     </div>
                 </div>
-
-                <!-- Explore links -->
                 <div>
-                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Explore</h4>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Verkennen</h4>
                     <ul class="space-y-4">
-                        <li><a href="camino-tenerife.html" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
-                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">The 5-Day Camino</a></li>
-                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
-                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Custom Journeys</a></li>
-                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
-                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Preparation Guide</a></li>
-                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
-                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">FAQ</a></li>
+                        <li><a href="/nl/camino-tenerife.html" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">De 5-daagse Camino</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Persoonlijke reizen</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Voorbereidingsgids</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">FAQ</a></li>
                     </ul>
                 </div>
-
-                <!-- Company links -->
                 <div>
-                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Company</h4>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">Over ons</h4>
                     <ul class="space-y-4">
-                        <li><a href="about.html" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
-                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">About Andreas</a></li>
-                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
-                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Sustainability</a></li>
-                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
-                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Journal</a></li>
-                        <li><a href="contact.html" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);"
-                               onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Contact</a></li>
+                        <li><a href="/nl/about.html" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Over Andreas</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Duurzaamheid</a></li>
+                        <li><a href="#" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Journal</a></li>
+                        <li><a href="/nl/contact.html" class="text-sm transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#D4A035'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Contact</a></li>
                     </ul>
                 </div>
-
-                <!-- Newsletter -->
                 <div>
-                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">The Trail Dispatches</h4>
-                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">
-                        Subscribe for seasonal trail updates and exclusive early access to limited treks.
-                    </p>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-6" style="color:rgba(255,255,255,0.40);">De Trail-nieuwsbrief</h4>
+                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">Schrijf je in voor seizoensgebonden trail-updates en exclusieve vroegboektoegang tot beperkte wandelingen.</p>
                     <form class="flex flex-col gap-3">
-                        <input
-                            type="email"
-                            placeholder="Email address"
-                            class="bg-transparent px-4 py-3 text-sm text-white focus:outline-none w-full transition-colors"
-                            style="border:1px solid rgba(255,255,255,0.20); font-family:'Cormorant Garamond',serif;"
-                            onfocus="this.style.borderColor='#D4A035'" onblur="this.style.borderColor='rgba(255,255,255,0.20)'"
-                        >
-                        <button type="submit" class="btn-primary w-full text-sm">Subscribe</button>
+                        <input type="email" placeholder="E-mailadres" class="bg-transparent px-4 py-3 text-sm text-white focus:outline-none w-full transition-colors" style="border:1px solid rgba(255,255,255,0.20); font-family:'Cormorant Garamond',serif;" onfocus="this.style.borderColor='#D4A035'" onblur="this.style.borderColor='rgba(255,255,255,0.20)'">
+                        <button type="submit" class="btn-primary w-full text-sm">Inschrijven</button>
                     </form>
                 </div>
-
             </div>
-
-            <!-- Bottom bar -->
-            <div class="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
-                 style="border-color:rgba(255,255,255,0.12);">
-                <p class="text-xs" style="color:rgba(255,255,255,0.40);">
-                    &copy; 2026 Camino Tenerife. All rights reserved.
-                </p>
+            <div class="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-color:rgba(255,255,255,0.12);">
+                <p class="text-xs" style="color:rgba(255,255,255,0.40);">&copy; 2026 Camino Tenerife. Alle rechten voorbehouden.</p>
                 <div class="flex gap-6">
-                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);"
-                       onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Privacy Policy</a>
-                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);"
-                       onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Terms of Service</a>
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Privacybeleid</a>
+                    <a href="#" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Algemene Voorwaarden</a>
                 </div>
             </div>
         </div>
