@@ -321,6 +321,86 @@
   }
   .ct-day-sleep strong { color: var(--ct-forest); font-weight: 600; }
 
+  /* ════════════ PRICING ════════════ */
+  .ct-pricing-section { background: var(--ct-bg-warm); }
+  .ct-pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
+  .ct-price-card {
+    display: flex; flex-direction: column;
+    background: #fff;
+    border: 1px solid rgba(196,98,45,0.16);
+    border-radius: var(--ct-r);
+    padding: 32px 28px;
+    box-shadow: 0 6px 30px rgba(26,18,8,0.06);
+  }
+  .ct-price-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 700; color: var(--ct-forest); line-height: 1.1;
+  }
+  .ct-price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px; font-weight: 700; color: var(--ct-text); line-height: 1; margin-top: 14px;
+  }
+  .ct-price-per { font-size: 14px; color: var(--ct-muted); font-weight: 400; font-style: italic; }
+  .ct-price-desc { font-size: 14.5px; line-height: 1.7; color: var(--ct-muted); margin-top: 16px; }
+  .ct-price-features { list-style: none; margin: 22px 0 0; padding: 0; border-top: 1px solid rgba(196,98,45,0.12); }
+  .ct-price-features li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14px; line-height: 1.5; color: var(--ct-text);
+    padding: 12px 0; border-bottom: 1px solid rgba(196,98,45,0.08);
+  }
+  .ct-price-features svg { flex-shrink: 0; margin-top: 3px; }
+  .ct-price-card .ct-btn { display: block; text-align: center; margin-top: 26px; }
+
+  /* departures info box */
+  .ct-departures {
+    margin-top: 40px;
+    background: #fff;
+    border: 1px solid rgba(196,98,45,0.16);
+    border-left: 4px solid var(--ct-terra);
+    border-radius: var(--ct-rs);
+    padding: 32px 30px;
+  }
+  .ct-departures h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; color: var(--ct-forest); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .ct-departures p { font-size: 15px; line-height: 1.75; color: var(--ct-text); margin-bottom: 14px; }
+  .ct-departures p:last-child { margin-bottom: 0; }
+  .ct-departures strong { color: var(--ct-forest); font-weight: 600; }
+
+  /* ════════════ GOOD TO KNOW ════════════ */
+  .ct-info-section { background: var(--ct-bg); }
+  .ct-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .ct-info-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; color: var(--ct-forest); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .ct-info-block h3 svg { flex-shrink: 0; }
+  .ct-info-block p { font-size: 15.5px; line-height: 1.85; color: var(--ct-text); }
+
+  /* what's included strip */
+  .ct-included { background: #fff; border: 1px solid rgba(196,98,45,0.16); border-radius: var(--ct-r); padding: 24px 28px; margin-bottom: 28px; }
+  .ct-included-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; margin-bottom: 18px; }
+  .ct-included-head .t { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--ct-forest); line-height: 1; }
+  .ct-included-head .p { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ct-terra); font-weight: 600; }
+  .ct-included-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ct-included-items span { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; line-height: 1.4; color: var(--ct-text); }
+  .ct-included-items svg { flex-shrink: 0; margin-top: 3px; }
+
+  /* upcoming dates / notify */
+  .ct-dates { margin-top: 40px; background: var(--ct-forest); color: #F0E9DC; border-radius: var(--ct-r); padding: 40px 30px; text-align: center; position: relative; overflow: hidden; }
+  .ct-dates::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(46,125,140,0.28) 0%, transparent 60%); }
+  .ct-dates > * { position: relative; z-index: 1; }
+  .ct-dates h3 { font-family: 'Cormorant Garamond', serif; color: #F8F3E9; font-size: clamp(24px, 3.5vw, 32px); margin-bottom: 10px; }
+  .ct-dates p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: rgba(248,243,233,0.78); margin: 0 auto 24px; max-width: 460px; }
+  .ct-dates form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+  .ct-dates input { flex: 1 1 240px; min-width: 0; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.28); color: #fff; padding: 14px 16px; border-radius: var(--ct-rs); font-family: 'Outfit', sans-serif; font-size: 14px; }
+  .ct-dates input::placeholder { color: rgba(255,255,255,0.55); }
+  .ct-dates input:focus { outline: none; border-color: var(--ct-gold); }
+  .ct-dates .ct-btn { border: none; cursor: pointer; }
+
   /* ════════════ CLOSING CTA ════════════ */
   .ct-cta {
     background: var(--ct-forest);
@@ -370,6 +450,9 @@
     .ct-marquee img { height: 190px; }
     .ct-section { padding: 60px 6vw; }
     .ct-hero { padding: 48px 7vw 56px; }
+    .ct-pricing-grid { grid-template-columns: 1fr; }
+    .ct-info-grid { grid-template-columns: 1fr; gap: 26px; }
+    .ct-included-items { grid-template-columns: 1fr; }
   }
   @media (max-width: 480px) {
     .ct-marquee img { height: 140px; }
@@ -644,6 +727,113 @@
         </div>
       </article>
 
+    </div>
+  </section>
+
+  <!-- ════════════════════════════ GOED OM TE WETEN ════════════════════════════ -->
+  <section class="ct-info-section">
+    <div class="ct-section">
+      <div class="ct-section-head">
+        <span class="ct-eyebrow">03 · Goed om te weten</span>
+        <h2>Wat je kunt verwachten</h2>
+        <p>Waar je slaapt, en hoe het lopen echt voelt.</p>
+      </div>
+      <div class="ct-info-grid">
+        <div class="ct-info-block">
+          <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.7"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg>Authentieke pelgrimsverblijven</h3>
+          <p>Om de echte Camino-geest levend te houden, overnachten we in traditionele plattelandsgasthuizen en af en toe in een eenvoudige berghut. Verwacht schoon, eenvoudig comfort en een warme, lokale sfeer in plaats van luxe. Het is de perfecte manier om los te komen en uit te rusten na een dag op het pad.</p>
+        </div>
+        <div class="ct-info-block">
+          <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.7"><path d="M3 20l6-9 4 5 3-4 5 8z"/></svg>Tempo en terrein</h3>
+          <p>Wandelaars moeten in goede algemene gezondheid zijn en zich prettig voelen bij ongeveer 20 km per dag. Er komt geen technisch klimwerk aan te pas, maar de bergpaden kennen gestage stijgingen en dalingen. We lopen in een natuurlijk tempo en plannen elke dag ruim tijd in om te rusten, te fotograferen en het landschap echt te beleven.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════ PRIJZEN ════════════════════════════ -->
+  <section class="ct-pricing-section">
+    <div class="ct-section">
+      <div class="ct-section-head">
+        <span class="ct-eyebrow">04 · Boeken</span>
+        <h2>Kies jouw Camino</h2>
+        <p>We houden onze groepen klein, met maximaal zes wandelaars, voor een hoogwaardige en persoonlijke ervaring. Kies de boekingsoptie die bij jouw reisstijl past.</p>
+      </div>
+
+      <!-- Wat elke tocht omvat -->
+      <div class="ct-included">
+        <div class="ct-included-head">
+          <span class="t">5-daagse tocht</span>
+          <span class="p">Vanaf 997 EUR</span>
+        </div>
+        <div class="ct-included-items">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Deskundige gidsbegeleiding</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Volledige routeplanning</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Alle accommodaties tijdens de tocht</span>
+        </div>
+      </div>
+
+      <div class="ct-pricing-grid">
+
+        <!-- Kaart 1 -->
+        <div class="ct-price-card">
+          <h3 class="ct-price-name">De gedeelde reis</h3>
+          <div class="ct-price-amount">€997 <span class="ct-price-per">per persoon</span></div>
+          <p class="ct-price-desc">Perfect voor vrienden of stellen die samen boeken. Door tijdens onze vier overnachtingen een kamer te delen, profiteren beide wandelaars van een voordeeltarief.</p>
+          <ul class="ct-price-features">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Gedeelde tweepersoons- of twinkamer</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Volledige begeleide ervaring van vijf dagen</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Direct gegarandeerd vertrek</li>
+          </ul>
+          <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="ct-btn">Reserveer via WhatsApp</a>
+        </div>
+
+        <!-- Kaart 2 -->
+        <div class="ct-price-card">
+          <h3 class="ct-price-name">De solowandelaar</h3>
+          <div class="ct-price-amount">€1.097</div>
+          <p class="ct-price-desc">Sluit je als individuele wandelaar aan bij een aankomende groep.</p>
+          <ul class="ct-price-features">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Sluit je aan bij een kleine, intieme groep</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Volledige begeleide ervaring van vijf dagen</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Lees ons gegarandeerde-vertrekbeleid hieronder voordat je vluchten boekt</li>
+          </ul>
+          <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="ct-btn">Reserveer via WhatsApp</a>
+        </div>
+
+        <!-- Kaart 3 -->
+        <div class="ct-price-card">
+          <h3 class="ct-price-name">De privétocht</h3>
+          <div class="ct-price-amount">€1.797</div>
+          <p class="ct-price-desc">Loop de Camino in je eigen tempo, zonder op een groep te wachten. Boek de gids exclusief voor jezelf.</p>
+          <ul class="ct-price-features">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Privé-eenpersoonskamer voor alle vier de nachten</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Persoonlijke begeleiding één op één</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Direct gegarandeerd vertrek op je gekozen data</li>
+          </ul>
+          <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="ct-btn">Reserveer via WhatsApp</a>
+        </div>
+
+      </div>
+
+      <!-- Gegarandeerde vertrekken -->
+      <div class="ct-departures">
+        <h3><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="1.7"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>Hoe onze gegarandeerde vertrekken werken</h3>
+        <p>Om de kwaliteit en duurzaamheid van onze wandelingen te waarborgen, hebben onze reguliere groepsreizen minimaal twee deelnemers nodig om door te gaan.</p>
+        <p><strong>Boeken met twee of meer:</strong> Je reis is direct bevestigd. Je kunt meteen je vluchten boeken.</p>
+        <p><strong>Boeken als solowandelaar:</strong> Je plek is verzekerd, maar de reis krijgt de status "In afwachting" totdat een tweede wandelaar zich voor dezelfde data aanmeldt. Wacht op onze officiële "Gegarandeerd vertrek"-e-mail voordat je je vluchten naar Tenerife boekt.</p>
+        <p>Wordt de minimale groepsgrootte 30 dagen voor de startdatum niet bereikt, dan bieden we een volledige terugbetaling of de mogelijkheid om eenvoudig naar een andere bevestigde datum te wisselen.</p>
+      </div>
+
+      <!-- Nieuwe data / notificatie -->
+      <div class="ct-dates">
+        <h3>Nieuwe data binnenkort bekend</h3>
+        <p>De nieuwe data voor het komende seizoen worden afgerond. Laat je e-mail achter en jij hoort het als eerste.</p>
+        <form onsubmit="event.preventDefault(); var v=this.email.value.trim(); window.open('https://wa.me/34616850933?text=' + encodeURIComponent('Hoi Andreas, laat me weten zodra er nieuwe data voor de Camino Tenerife bekend zijn.' + (v ? ' Mijn e-mail: ' + v : '')), '_blank');">
+          <input type="email" name="email" placeholder="E-mailadres" aria-label="E-mailadres" required>
+          <button type="submit" class="ct-btn">Houd me op de hoogte</button>
+        </form>
+      </div>
     </div>
   </section>
 
