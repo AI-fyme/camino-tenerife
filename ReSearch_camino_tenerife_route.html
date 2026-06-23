@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camino Tenerife — Jouw Route</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ─── Reset & Base ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #FAF7F2;
+    color: #1A1208;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── CSS Variables ─── */
+  :root {
+    --bg: #FAF7F2;
+    --bg-warm: #F5EFE4;
+    --bg-deep: #EDE4D6;
+    --text: #1A1208;
+    --text-muted: #6B5B45;
+    --forest: #2C4A3E;
+    --teal: #2E7D8C;
+    --sky: #5DB8C0;
+    --terra: #C4622D;
+    --gold: #D4A035;
+    --sage: #7A9E7E;
+    --stone: #8C7E6E;
+    --grad: linear-gradient(135deg, #C4622D 0%, #D4A035 100%);
+    --card-bg: rgba(250,247,242,0.95);
+    --r: 12px;
+    --rs: 6px;
+    --shadow: 0 4px 24px rgba(26,18,8,0.08);
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    background: var(--forest);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 60px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(46,125,140,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(196,98,45,0.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--grad);
+    border-radius: 2px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    color: #F0E9DC;
+    line-height: 1.0;
+    margin-bottom: 8px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2vw, 20px);
+    font-style: italic;
+    color: rgba(240,233,220,0.65);
+    margin-bottom: 40px;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 32px;
+    align-items: start;
+  }
+  .hero-stat-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F0E9DC;
+    display: block;
+    line-height: 1;
+  }
+  .hero-stat-lbl {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(240,233,220,0.45);
+    margin-top: 4px;
+    display: block;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    right: 48px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(240,233,220,0.35);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: rgba(240,233,220,0.2);
+  }
+
+  /* ─── Brand line ─── */
+  .brand-line {
+    height: 2px;
+    background: linear-gradient(90deg, var(--terra) 0%, var(--gold) 60%, transparent 100%);
+    border: none;
+    margin: 0;
+  }
+
+  /* ─── Nav Tabs ─── */
+  .tab-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--forest);
+    display: flex;
+    gap: 0;
+    padding: 0 32px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    box-shadow: 0 2px 20px rgba(26,18,8,0.15);
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 14px 20px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(240,233,220,0.45);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: rgba(240,233,220,0.8); }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ─── Content ─── */
+  .content { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ─── Panels ─── */
+  .panel { display: none; padding: 56px 0; }
+  .panel.active { display: block; }
+
+  /* ─── Overview Panel ─── */
+  .overview-intro {
+    margin-bottom: 40px;
+  }
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--grad);
+  }
+  .overview-intro h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .overview-intro p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-muted);
+    max-width: 640px;
+  }
+  .overview-intro p + p { margin-top: 12px; }
+
+  /* ─── Day Cards (overview) ─── */
+  .day-cards { display: flex; flex-direction: column; gap: 0; }
+  .day-card-ov {
+    display: grid;
+    grid-template-columns: 72px 1fr auto;
+    gap: 0 24px;
+    align-items: center;
+    padding: 20px 24px;
+    border: 0.5px solid rgba(196,98,45,0.15);
+    border-bottom: none;
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .day-card-ov:first-child { border-radius: var(--r) var(--r) 0 0; }
+  .day-card-ov:last-child { border-bottom: 0.5px solid rgba(196,98,45,0.15); border-radius: 0 0 var(--r) var(--r); }
+  .day-card-ov:hover { background: var(--bg-warm); }
+  .day-card-ov:hover .ov-arrow { transform: translateX(4px); }
+  .ov-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--terra);
+  }
+  .ov-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 3px;
+  }
+  .ov-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .ov-meta span { display: flex; align-items: center; gap: 4px; }
+  .ov-right { display: flex; align-items: center; gap: 16px; }
+  .ov-km {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-volcano { background: rgba(196,98,45,0.12); color: var(--terra); border: 0.5px solid rgba(196,98,45,0.3); }
+  .badge-mountain { background: rgba(122,158,126,0.12); color: #3d7042; border: 0.5px solid rgba(122,158,126,0.3); }
+  .badge-coast { background: rgba(46,125,140,0.12); color: var(--teal); border: 0.5px solid rgba(46,125,140,0.3); }
+  .ov-arrow { color: var(--stone); transition: transform 0.15s; font-size: 18px; }
+
+  /* ─── Day Panels ─── */
+  .day-header {
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 0.5px solid rgba(196,98,45,0.15);
+  }
+  .day-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .day-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .day-quick-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .qs-box {
+    background: var(--bg-warm);
+    border: 0.5px solid rgba(196,98,45,0.12);
+    border-radius: var(--rs);
+    padding: 12px 14px;
+  }
+  .qs-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--forest);
+    display: block;
+    line-height: 1;
+  }
+  .qs-lbl {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ─── Difficulty bar ─── */
+  .diff-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0 28px;
+  }
+  .diff-label { font-size: 12px; color: var(--text-muted); min-width: 80px; }
+  .diff-bar {
+    flex: 1;
+    height: 5px;
+    background: rgba(140,126,110,0.2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .diff-fill { height: 100%; border-radius: 3px; }
+  .diff-tag { font-size: 12px; font-weight: 500; min-width: 60px; text-align: right; }
+
+  /* ─── Elevation SVG ─── */
+  .elev-wrap {
+    background: var(--bg-warm);
+    border: 0.5px solid rgba(196,98,45,0.12);
+    border-radius: var(--r);
+    padding: 20px 24px 16px;
+    margin-bottom: 32px;
+  }
+  .elev-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 12px;
+  }
+  .elev-svg { width: 100%; display: block; }
+
+  /* ─── Route Steps ─── */
+  .route-section-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .route-section-title::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: rgba(196,98,45,0.2);
+  }
+  .route-steps { display: flex; flex-direction: column; margin-bottom: 36px; }
+  .route-step { display: flex; gap: 14px; align-items: flex-start; }
+  .step-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 14px; padding-top: 4px; }
+  .step-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .step-dot.start { background: var(--sage); width: 12px; height: 12px; }
+  .step-dot.mid { background: var(--terra); }
+  .step-dot.end { background: var(--teal); width: 12px; height: 12px; }
+  .step-connector { width: 1.5px; background: rgba(196,98,45,0.2); flex: 1; min-height: 28px; margin: 3px 0; }
+  .step-body { padding-bottom: 14px; flex: 1; }
+  .step-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 2px;
+  }
+  .step-info {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .step-km {
+    font-size: 11px;
+    color: var(--stone);
+    background: rgba(140,126,110,0.1);
+    padding: 1px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ─── Guide note ─── */
+  .guide-note {
+    background: linear-gradient(135deg, rgba(196,98,45,0.05), rgba(212,160,53,0.05));
+    border-left: 3px solid var(--terra);
+    border-radius: 0 var(--rs) var(--rs) 0;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+  .guide-note p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .guide-from {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-top: 8px;
+  }
+
+  /* ─── Warning note ─── */
+  .alert-note {
+    background: rgba(212,160,53,0.08);
+    border: 0.5px solid rgba(212,160,53,0.3);
+    border-radius: var(--rs);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #6B4E12;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+
+  /* ─── Accommodation ─── */
+  .accom-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .accom-title::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: rgba(196,98,45,0.2);
+  }
+  .accom-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .accom-card {
+    background: var(--card-bg);
+    border: 0.5px solid rgba(196,98,45,0.15);
+    border-radius: var(--r);
+    padding: 16px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s, box-shadow 0.15s;
+  }
+  .accom-card:hover { background: var(--bg-warm); box-shadow: var(--shadow); }
+  .accom-card.top { border: 1.5px solid rgba(122,158,126,0.5); }
+  .accom-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .accom-badge {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: rgba(122,158,126,0.12);
+    color: #3d7042;
+    border: 0.5px solid rgba(122,158,126,0.4);
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .accom-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 4px;
+  }
+  .accom-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+  .accom-link {
+    font-size: 12px;
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ─── Maps button ─── */
+  .maps-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 24px;
+    background: none;
+    border: 1.5px solid var(--terra);
+    border-radius: var(--rs);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--terra);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: 8px;
+  }
+  .maps-btn:hover { background: rgba(196,98,45,0.06); }
+
+  /* ─── Footer ─── */
+  footer {
+    background: var(--forest);
+    padding: 48px;
+    margin-top: 0;
+  }
+  .footer-inner { max-width: 860px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F0E9DC;
+  }
+  .footer-brand em { color: var(--gold); font-style: italic; }
+  .footer-meta {
+    font-size: 11px;
+    color: rgba(240,233,220,0.4);
+    letter-spacing: 1px;
+    text-align: right;
+    line-height: 1.8;
+  }
+  .footer-meta a { color: rgba(240,233,220,0.55); text-decoration: none; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 640px) {
+    .hero { padding: 40px 24px 48px; }
+    .hero-stats { grid-template-columns: repeat(2, auto); }
+    .content { padding: 0 20px; }
+    .day-quick-stats { grid-template-columns: repeat(2, 1fr); }
+    .tab-nav { padding: 0 16px; }
+    footer { padding: 32px 24px; }
+    .footer-inner { flex-direction: column; }
+    .footer-meta { text-align: left; }
+    .day-header h2 { font-size: 28px; }
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .panel.active { animation: fadeUp 0.35s ease; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════ HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Camino Tenerife · Jouw Route · 2025/2026</div>
+  <h1>De Westelijke<br><em>Camino</em></h1>
+  <p class="hero-sub">"Van de caldera naar de kust. Van 2,100 meter naar zee. Vijf dagen die iets veranderen aan hoe je naar een eiland kijkt."</p>
+  <div class="hero-stats">
+    <div>
+      <span class="hero-stat-val">5</span>
+      <span class="hero-stat-lbl">Etappes</span>
+    </div>
+    <div>
+      <span class="hero-stat-val">~102 km</span>
+      <span class="hero-stat-lbl">Totaal</span>
+    </div>
+    <div>
+      <span class="hero-stat-val">-1,900m</span>
+      <span class="hero-stat-lbl">Netto daling</span>
+    </div>
+    <div>
+      <span class="hero-stat-val">6</span>
+      <span class="hero-stat-lbl">Wandelaars</span>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+<div class="brand-line"></div>
+
+<!-- ══════════════════════════════════════════════════════ NAV -->
+<nav class="tab-nav" id="tabNav">
+  <button class="tab-btn active" onclick="showTab('overview')">Overzicht</button>
+  <button class="tab-btn" onclick="showTab('dag1')">Dag 1</button>
+  <button class="tab-btn" onclick="showTab('dag2')">Dag 2</button>
+  <button class="tab-btn" onclick="showTab('dag3')">Dag 3</button>
+  <button class="tab-btn" onclick="showTab('dag4')">Dag 4</button>
+  <button class="tab-btn" onclick="showTab('dag5')">Dag 5</button>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ PANELS -->
+<div class="content">
+
+  <!-- ── OVERZICHT ── -->
+  <div id="panel-overview" class="panel active">
+    <div class="overview-intro">
+      <div class="section-eyebrow">De Route</div>
+      <h2>Jouw Camino Tenerife</h2>
+      <p>Je loopt bijna exact de officiële Camino entre Volcanes — met één extra etappe vooraan. Je begint op 2,100 meter in de caldera van de Teide, daalt af naar de westkust, steekt het Teno-gebergte over en volgt daarna de noordkust naar Puerto de la Cruz.</p>
+      <p>Vulkaan. Bos. Berg. Kust. Dal. Stad. Geen enkele andere 5-daagse route op Tenerife dekt dat spectrum zo volledig.</p>
+    </div>
+
+    <div class="day-cards">
+      <div class="day-card-ov" onclick="showTab('dag1')">
+        <div>
+          <div class="ov-num">Dag 1</div>
+          <div style="font-size:9px;letter-spacing:1px;color:var(--stone);text-transform:uppercase;margin-top:2px">Vulkaan</div>
+        </div>
+        <div>
+          <div class="ov-name">Parador del Teide → Chirche → Guía de Isora</div>
+          <div class="ov-meta">
+            <span>📍 -1,900m daling</span>
+            <span>⏱ 5–6 uur</span>
+            <span>⚡ ~2.8 km/u</span>
+            <span>Matig</span>
+          </div>
+        </div>
+        <div class="ov-right">
+          <span class="ov-km">~16 km</span>
+          <span class="badge badge-volcano">Vulkaan</span>
+          <span class="ov-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="day-card-ov" onclick="showTab('dag2')">
+        <div>
+          <div class="ov-num">Dag 2</div>
+          <div style="font-size:9px;letter-spacing:1px;color:var(--stone);text-transform:uppercase;margin-top:2px">Berg</div>
+        </div>
+        <div>
+          <div class="ov-name">Guía de Isora → Arguayo → Santiago del Teide</div>
+          <div class="ov-meta">
+            <span>📍 +630m / -200m</span>
+            <span>⏱ 5–6 uur</span>
+            <span>⚡ ~2.8 km/u</span>
+            <span>Matig</span>
+          </div>
+        </div>
+        <div class="ov-right">
+          <span class="ov-km">~16 km</span>
+          <span class="badge badge-mountain">Berg</span>
+          <span class="ov-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="day-card-ov" onclick="showTab('dag3')">
+        <div>
+          <div class="ov-num">Dag 3</div>
+          <div style="font-size:9px;letter-spacing:1px;color:var(--stone);text-transform:uppercase;margin-top:2px">Berg</div>
+        </div>
+        <div>
+          <div class="ov-name">Santiago del Teide → Cruz de Gala → Teno Alto</div>
+          <div class="ov-meta">
+            <span>📍 +420m / -250m</span>
+            <span>⏱ 6–7 uur</span>
+            <span>⚡ ~2.2 km/u</span>
+            <span style="color:var(--terra)">Zwaar</span>
+          </div>
+        </div>
+        <div class="ov-right">
+          <span class="ov-km">~15 km</span>
+          <span class="badge badge-mountain">Berg</span>
+          <span class="ov-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="day-card-ov" onclick="showTab('dag4')">
+        <div>
+          <div class="ov-num">Dag 4</div>
+          <div style="font-size:9px;letter-spacing:1px;color:var(--stone);text-transform:uppercase;margin-top:2px">Kust</div>
+        </div>
+        <div>
+          <div class="ov-name">Teno Alto → Buenavista → Los Silos → Garachico</div>
+          <div class="ov-meta">
+            <span>📍 -770m daling</span>
+            <span>⏱ 6–7 uur</span>
+            <span>⚡ ~3.0 km/u</span>
+            <span>Matig</span>
+          </div>
+        </div>
+        <div class="ov-right">
+          <span class="ov-km">~21 km</span>
+          <span class="badge badge-coast">Kust</span>
+          <span class="ov-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="day-card-ov" onclick="showTab('dag5')">
+        <div>
+          <div class="ov-num">Dag 5</div>
+          <div style="font-size:9px;letter-spacing:1px;color:var(--stone);text-transform:uppercase;margin-top:2px">Kust</div>
+        </div>
+        <div>
+          <div class="ov-name">Garachico → Icod → Los Realejos → Puerto de la Cruz</div>
+          <div class="ov-meta">
+            <span>📍 ±400m</span>
+            <span>⏱ 9–10 uur</span>
+            <span>⚡ ~3.2 km/u</span>
+            <span>Matig</span>
+          </div>
+        </div>
+        <div class="ov-right">
+          <span class="ov-km">~34 km</span>
+          <span class="badge badge-coast">Kust</span>
+          <span class="ov-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;padding:20px 24px;background:rgba(44,74,62,0.05);border:0.5px solid rgba(44,74,62,0.15);border-radius:var(--r);">
+      <div style="font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--forest);margin-bottom:8px;">⚠ GPS Verplicht</div>
+      <p style="font-size:13px;color:var(--text-muted);line-height:1.6;">De Camino entre Volcanes heeft nog geen officiële pelgrimsmarkering (gele pijlen). Gebruik Wikiloc, Komoot of AllTrails met offline kaarten. De PR- en GR-routes zijn wel gemarkeerd met wit/geel en wit/rood.</p>
+    </div>
+  </div>
+
+  <!-- ── DAG 1 ── -->
+  <div id="panel-dag1" class="panel">
+    <div class="day-header">
+      <div class="section-eyebrow">Dag 1 · Vulkaan</div>
+      <h2>Parador del Teide<br>→ Guía de Isora</h2>
+      <p class="day-subtitle">Afdaling uit de caldera — de wereld wordt langzaam groener</p>
+      <div class="day-quick-stats">
+        <div class="qs-box"><span class="qs-val">~16 km</span><span class="qs-lbl">Afstand</span></div>
+        <div class="qs-box"><span class="qs-val">-1,900m</span><span class="qs-lbl">Hoogte</span></div>
+        <div class="qs-box"><span class="qs-val">5–6 uur</span><span class="qs-lbl">Duur</span></div>
+        <div class="qs-box"><span class="qs-val">~2.8 km/u</span><span class="qs-lbl">Snelheid</span></div>
+      </div>
+    </div>
+
+    <div class="diff-wrap">
+      <span class="diff-label">Moeilijkheid</span>
+      <div class="diff-bar"><div class="diff-fill" style="width:52%;background:linear-gradient(90deg,#C4622D,#D4A035)"></div></div>
+      <span class="diff-tag" style="color:var(--terra)">Matig</span>
+    </div>
+
+    <div class="elev-wrap">
+      <div class="elev-title">Hoogteprofiel</div>
+      <svg class="elev-svg" viewBox="0 0 680 90" role="img">
+        <title>Dag 1: daling van 2100m naar 200m — Trail 18 Nationaal Park via Chirche</title>
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#C4622D" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#C4622D" stop-opacity=".03"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 10 Q80 12 150 22 Q220 34 300 52 Q380 66 460 74 Q540 79 650 82 L650 86 L20 86Z" fill="url(#g1)"/>
+        <path d="M20 10 Q80 12 150 22 Q220 34 300 52 Q380 66 460 74 Q540 79 650 82" stroke="#C4622D" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="20" y1="85" x2="650" y2="85" stroke="#C4B090" stroke-width="0.5"/>
+        <text x="24" y="9" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">2,100m</text>
+        <text x="285" y="68" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">Chirche 900m</text>
+        <text x="610" y="80" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">200m</text>
+        <text x="340" y="86" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="#B4A090">16 km</text>
+      </svg>
+    </div>
+
+    <div class="route-section-title">De route</div>
+    <div class="route-steps">
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot start"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Parador de Las Cañadas del Teide<span class="step-km">Start · 2,100m · 06:00</span></div>
+          <div class="step-info">We vertrekken vroeg — voor de hitte en de toeristen. De caldera is bij zonsopgang oranje en leeg. Trail 18 van het Nationaal Park begint achter het Parador-parkeerterrein.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Boca Tauce<span class="step-km">4 km · 1,800m</span></div>
+          <div class="step-info">De grens van het Nationaal Park. Het landschap verandert — van maanoppervlak naar de eerste pijnbomen. Laatste infobord. Geen water meer tussen hier en Chirche — vul bij de Parador.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Chirche<span class="step-km">11 km · 900m</span></div>
+          <div class="step-info">Een van de mooiste dorpjes van Tenerife — nauwelijks veranderd in honderd jaar. Brood bij de bakker, rust in de schaduw. Op een heldere dag zie je La Gomera én La Palma. Mirador de Chirche vlak bij.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot end"></div></div>
+        <div class="step-body">
+          <div class="step-name">Guía de Isora centrum<span class="step-km">16 km · 200m</span></div>
+          <div class="step-info">De westkust en de hitte. Supermarkt voor morgen. Plaza, terras, eerste avondmaaltijd van de Camino.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-note">
+      <p>"Neem de tijd bij Chirche. Niet de snelste route, de mooiste. Op die plek begrijp je wat het verschil is tussen een toerist en een pelgrim — het tempo."</p>
+      <div class="guide-from">— Andreas · Camino Tenerife</div>
+    </div>
+
+    <div class="alert-note">
+      <span class="alert-icon">💧</span>
+      <span>Minimaal 3 liter water meenemen vanuit de Parador. Geen bronnen tussen 2,100m en Chirche. Hoge UV op hoogte — zonnebrand verplicht.</span>
+    </div>
+
+    <div class="accom-title">3 overnachtingen — Guía de Isora</div>
+    <div class="accom-cards">
+      <a class="accom-card top" href="https://www.booking.com/hotel/es/finca-gaia-la-segunda.html" target="_blank" rel="noopener">
+        <span class="accom-icon">🏡</span>
+        <div>
+          <div class="accom-name">Finca Gaia La Segunda<span class="accom-badge">Aanbevolen</span></div>
+          <div class="accom-desc">Casa rural met zwembad, tuin en ontbijt. Rustig en vol lokale sfeer — precies wat je nodig hebt na een lange eerste dag. Vlak bij de route richting Arguayo.</div>
+          <div class="accom-link">↗ booking.com — Finca Gaia La Segunda</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.booking.com/hotel/es/rural-el-navio.html" target="_blank" rel="noopener">
+        <span class="accom-icon">🏨</span>
+        <div>
+          <div class="accom-name">Hotel Rural El Navío</div>
+          <div class="accom-desc">Adults-only ruraal hotel, comfortabele kamers, restaurant, terras met zeezicht. Iets meer comfort voor dag 1.</div>
+          <div class="accom-link">↗ booking.com — Hotel Rural El Navío</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.booking.com/city/es/guia-de-isora.html" target="_blank" rel="noopener">
+        <span class="accom-icon">🏢</span>
+        <div>
+          <div class="accom-name">Appartementen Guía de Isora centrum</div>
+          <div class="accom-desc">Vakantieappartementen in het historische centrum. Eigen keuken, ideaal voor de groep van 6. Meest betaalbare optie, alles op loopafstand.</div>
+          <div class="accom-link">↗ booking.com — Guía de Isora</div>
+        </div>
+      </a>
+    </div>
+
+    <a class="maps-btn" href="https://www.google.com/maps/dir/Parador+de+Las+Ca%C3%B1adas+del+Teide/Chirche,+Tenerife/Gu%C3%ADa+de+Isora,+Tenerife" target="_blank" rel="noopener">
+      🗺 Open Dag 1 in Google Maps
+    </a>
+  </div>
+
+  <!-- ── DAG 2 ── -->
+  <div id="panel-dag2" class="panel">
+    <div class="day-header">
+      <div class="section-eyebrow">Dag 2 · Berg</div>
+      <h2>Guía de Isora<br>→ Santiago del Teide</h2>
+      <p class="day-subtitle">Het Camino Real — oude boerenpaadjes omhoog naar het bergdorp</p>
+      <div class="day-quick-stats">
+        <div class="qs-box"><span class="qs-val">~16 km</span><span class="qs-lbl">Afstand</span></div>
+        <div class="qs-box"><span class="qs-val">+630m / -200m</span><span class="qs-lbl">Hoogte</span></div>
+        <div class="qs-box"><span class="qs-val">5–6 uur</span><span class="qs-lbl">Duur</span></div>
+        <div class="qs-box"><span class="qs-val">~2.8 km/u</span><span class="qs-lbl">Snelheid</span></div>
+      </div>
+    </div>
+
+    <div class="diff-wrap">
+      <span class="diff-label">Moeilijkheid</span>
+      <div class="diff-bar"><div class="diff-fill" style="width:50%;background:linear-gradient(90deg,#C4622D,#D4A035)"></div></div>
+      <span class="diff-tag" style="color:var(--terra)">Matig</span>
+    </div>
+
+    <div class="elev-wrap">
+      <div class="elev-title">Hoogteprofiel</div>
+      <svg class="elev-svg" viewBox="0 0 680 90" role="img">
+        <title>Dag 2: stijging van 200m naar 950m via Arguayo, eindigend op 600m in Santiago del Teide</title>
+        <defs>
+          <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#7A9E7E" stop-opacity=".3"/>
+            <stop offset="100%" stop-color="#7A9E7E" stop-opacity=".03"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 74 Q90 60 160 42 Q230 24 300 18 Q360 14 400 18 Q450 26 490 36 Q550 48 600 40 Q630 34 650 38 L650 86 L20 86Z" fill="url(#g2)"/>
+        <path d="M20 74 Q90 60 160 42 Q230 24 300 18 Q360 14 400 18 Q450 26 490 36 Q550 48 600 40 Q630 34 650 38" stroke="#7A9E7E" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="20" y1="85" x2="650" y2="85" stroke="#C4B090" stroke-width="0.5"/>
+        <text x="24" y="73" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">200m</text>
+        <text x="330" y="14" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">950m</text>
+        <text x="618" y="37" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">600m</text>
+        <text x="340" y="86" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="#B4A090">16 km</text>
+      </svg>
+    </div>
+
+    <div class="route-section-title">De route — Camino Real del Sur (etappe VII)</div>
+    <div class="route-steps">
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot start"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Guía de Isora — Iglesia Nuestra Señora de la Luz<span class="step-km">Start · 200m · 07:00</span></div>
+          <div class="step-info">Stempel ophalen bij de kerk — dit is officieel Camino-terrein. De route volgt het PR TF-70 / Camino Real richting Arguayo. Begin met de warmste sectie vroeg.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Arguayo<span class="step-km">8.7 km · 750m</span></div>
+          <div class="step-info">Rustig dorpje met bar en kerk. Rustpunt verplicht. Hier begin je het pijnbos te ruiken. De Chinyero-vulkaan (1909, laatste uitbarsting Tenerife) is zichtbaar op de achtergrond.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Santuario de la Virgen<span class="step-km">15 km · 800m</span></div>
+          <div class="step-info">Historisch heiligdom boven het dorp. Uitzicht over de westkust richting Los Gigantes-kliffen. Korte afdaling naar Santiago.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot end"></div></div>
+        <div class="step-body">
+          <div class="step-name">Santiago del Teide — Plaza en Iglesia de San Fernando Rey<span class="step-km">16 km · 600m</span></div>
+          <div class="step-info">Het echte bergdorp. Plaza, terrassen, kerk. Morgen begint het zwaarste stuk — rust nu.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-note">
+      <p>"Arguayo is het moment waarop je de kust achter je laat en het eiland van binnenuit begint te leren kennen. Hier ruikt het naar pijnhout en poleo — de munt van Tenerife. Neem een kop kruidenthee als de bar open is."</p>
+      <div class="guide-from">— Andreas · Camino Tenerife</div>
+    </div>
+
+    <div class="accom-title">3 overnachtingen — Santiago del Teide</div>
+    <div class="accom-cards">
+      <a class="accom-card top" href="https://www.booking.com/hotel/es/la-casona-del-patio.html" target="_blank" rel="noopener">
+        <span class="accom-icon">🏡</span>
+        <div>
+          <div class="accom-name">Hotel Rural La Casona del Patio<span class="accom-badge">Aanbevolen</span></div>
+          <div class="accom-desc">Authentiek Canarisch boerderijhotel. Paardenstallen, terras, restaurant, groepsvriendelijk. 5 minuten van de trailhead van dag 3 — ideaal voor een vroeg vertrek.</div>
+          <div class="accom-link">↗ booking.com — La Casona del Patio</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.airbnb.com/s/Santiago-del-Teide--Tenerife/homes" target="_blank" rel="noopener">
+        <span class="accom-icon">🏠</span>
+        <div>
+          <div class="accom-name">Casa Tamara — volledig huis</div>
+          <div class="accom-desc">Privéhuis met panoramisch uitzicht op de Los Gigantes-kliffen, La Gomera en La Palma. Terras voor lange avonden. Ideaal voor 6 personen.</div>
+          <div class="accom-link">↗ Airbnb — Santiago del Teide groepswoningen</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.booking.com/searchresults.html?ss=Santiago+del+Teide+Tenerife" target="_blank" rel="noopener">
+        <span class="accom-icon">🛏</span>
+        <div>
+          <div class="accom-name">Pensión / guesthouse centrum</div>
+          <div class="accom-desc">Eenvoudig en betaalbaar. Alles op loopafstand. Restaurant op het plein. Meest budgetvriendelijke optie voor de groep.</div>
+          <div class="accom-link">↗ booking.com — Santiago del Teide</div>
+        </div>
+      </a>
+    </div>
+
+    <a class="maps-btn" href="https://www.google.com/maps/dir/Gu%C3%ADa+de+Isora,+Tenerife/Arguayo,+Tenerife/Santiago+del+Teide,+Tenerife" target="_blank" rel="noopener">
+      🗺 Open Dag 2 in Google Maps
+    </a>
+  </div>
+
+  <!-- ── DAG 3 ── -->
+  <div id="panel-dag3" class="panel">
+    <div class="day-header">
+      <div class="section-eyebrow">Dag 3 · Berg · Zwaarste etappe</div>
+      <h2>Santiago del Teide<br>→ Teno Alto</h2>
+      <p class="day-subtitle">De oversteek van het Teno-gebergte — dit is wat de Camino onderscheidt van een wandelvakantie</p>
+      <div class="day-quick-stats">
+        <div class="qs-box"><span class="qs-val">~15 km</span><span class="qs-lbl">Afstand</span></div>
+        <div class="qs-box"><span class="qs-val">+420m / -250m</span><span class="qs-lbl">Hoogte</span></div>
+        <div class="qs-box"><span class="qs-val">6–7 uur</span><span class="qs-lbl">Duur</span></div>
+        <div class="qs-box"><span class="qs-val">~2.2 km/u</span><span class="qs-lbl">Snelheid</span></div>
+      </div>
+    </div>
+
+    <div class="diff-wrap">
+      <span class="diff-label">Moeilijkheid</span>
+      <div class="diff-bar"><div class="diff-fill" style="width:85%;background:linear-gradient(90deg,#C4622D,#A32D2D)"></div></div>
+      <span class="diff-tag" style="color:#A32D2D">Zwaar</span>
+    </div>
+
+    <div class="elev-wrap">
+      <div class="elev-title">Hoogteprofiel (gesplitst — je stopt in Teno Alto)</div>
+      <svg class="elev-svg" viewBox="0 0 680 90" role="img">
+        <title>Dag 3: klim naar Cruz de Gala 1020m, afdaling naar Teno Alto 770m — morgen verder naar de kust</title>
+        <defs>
+          <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E24B4A" stop-opacity=".2"/>
+            <stop offset="100%" stop-color="#E24B4A" stop-opacity=".03"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 60 Q80 46 150 24 Q200 10 240 7 Q270 8 300 18 Q340 34 380 46 Q430 56 480 48 Q530 40 580 43 L580 86 L20 86Z" fill="url(#g3)"/>
+        <path d="M20 60 Q80 46 150 24 Q200 10 240 7 Q270 8 300 18 Q340 34 380 46 Q430 56 480 48 Q530 40 580 43" stroke="#E24B4A" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="580" y1="10" x2="580" y2="85" stroke="#C4B090" stroke-width="0.5" stroke-dasharray="4 3"/>
+        <line x1="20" y1="85" x2="580" y2="85" stroke="#C4B090" stroke-width="0.5"/>
+        <text x="24" y="59" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">600m</text>
+        <text x="205" y="6" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">Cruz de Gala 1,020m</text>
+        <text x="540" y="42" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">Teno Alto 770m</text>
+        <text x="295" y="86" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="#B4A090">15 km → overnachting Teno Alto</text>
+      </svg>
+    </div>
+
+    <div class="alert-note">
+      <span class="alert-icon">⏰</span>
+      <span>Vertrek om 06:00 — niet later. Cruz de Gala is de zwaarste klim van de hele Camino. Teno Alto is je stopplaats vandaag. De Camino del Risco-afdaling naar de kust doe je morgenochtend uitgerust.</span>
+    </div>
+
+    <div class="route-section-title">De route — PF TR 51 · Parque Rural de Teno</div>
+    <div class="route-steps">
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot start"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Santiago del Teide — Iglesia de San Fernando Rey<span class="step-km">Start · 600m · 06:00</span></div>
+          <div class="step-info">PF TR 51 richting Cruz de Gala. Vroeg vertrek is niet onderhandelbaar. Ontbijt op het plein om 05:45.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid" style="background:#A32D2D"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Cruz de Gala<span class="step-km">6 km · 1,020m</span></div>
+          <div class="step-info">De zwaarste klim. Steil en onverbiddelijk. Op een heldere ochtend zijn beide kusten zichtbaar — de Atlantische Oceaan aan weerszijden van het eiland. Rustpunt hier.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Baracán / La Mesita<span class="step-km">10 km · 900m</span></div>
+          <div class="step-info">Oeroude geitenpaadjes. Stenen muren van eeuwen oud. Verlaten bergvlakte. Hier begrijp je waarom Teno een van de meest geïsoleerde gebieden van het eiland was.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot end"></div></div>
+        <div class="step-body">
+          <div class="step-name">Teno Alto<span class="step-km">15 km · 770m · STOP</span></div>
+          <div class="step-info">Bar. Lokale kaas. Sterrenhemel zonder lichtvervuiling. Dit is het meest afgelegen punt van je Camino. Geniet ervan.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-note">
+      <p>"Cruz de Gala is de dag dat je voelt dat dit geen vakantie is. Op die top, met wind en beide kusten zichtbaar, staat de groep stil. Niet om uit te rusten — maar omdat het moment dat vraagt."</p>
+      <div class="guide-from">— Andreas · Camino Tenerife</div>
+    </div>
+
+    <div class="accom-title">3 overnachtingen — Teno Alto / Las Portelas</div>
+    <div class="accom-cards">
+      <a class="accom-card top" href="https://www.booking.com/hotel/es/casa-rural-teno-alto.html" target="_blank" rel="noopener">
+        <span class="accom-icon">🏡</span>
+        <div>
+          <div class="accom-name">Casa Rural Teno Alto<span class="accom-badge">Aanbevolen</span></div>
+          <div class="accom-desc">Authentiek boerenhuisje in Teno Alto. 2 slaapkamers, open haard, tuin, barbecue, zonnepanelen. Slaapt 5–6 personen. Meest afgelegen nacht van de Camino. Ruim van tevoren boeken.</div>
+          <div class="accom-link">↗ booking.com — Casa Rural Teno Alto</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.booking.com/searchresults.html?ss=Teno+Alto+Tenerife" target="_blank" rel="noopener">
+        <span class="accom-icon">🏠</span>
+        <div>
+          <div class="accom-name">El Albergue de Bolico (Las Portelas)</div>
+          <div class="accom-desc">Kleine berghut in Las Portelas, 10 minuten lopen van Teno Alto. Dormitory en privékamers. Populair bij wandelaars. Budget-optie met goede sfeer.</div>
+          <div class="accom-link">↗ booking.com — Teno Alto omgeving</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.booking.com/searchresults.html?ss=El+Palmar+Tenerife" target="_blank" rel="noopener">
+        <span class="accom-icon">🏘</span>
+        <div>
+          <div class="accom-name">Casa Rural El Palmar (El Palmar vallei)</div>
+          <div class="accom-desc">Rustige boerderijaccommodatie in de El Palmar-vallei, 15 minuten taxi van Teno Alto. Meer comfort, eigen keuken. Goede back-up als de andere vol zijn.</div>
+          <div class="accom-link">↗ booking.com — El Palmar Tenerife</div>
+        </div>
+      </a>
+    </div>
+
+    <a class="maps-btn" href="https://www.google.com/maps/dir/Santiago+del+Teide,+Tenerife/Cruz+de+Gala,+Tenerife/Teno+Alto,+Tenerife" target="_blank" rel="noopener">
+      🗺 Open Dag 3 in Google Maps
+    </a>
+  </div>
+
+  <!-- ── DAG 4 ── -->
+  <div id="panel-dag4" class="panel">
+    <div class="day-header">
+      <div class="section-eyebrow">Dag 4 · Kust</div>
+      <h2>Teno Alto → Buenavista<br>→ Los Silos → Garachico</h2>
+      <p class="day-subtitle">De afdaling naar de oceaan — en het mooiste dorp van Spanje</p>
+      <div class="day-quick-stats">
+        <div class="qs-box"><span class="qs-val">~21 km</span><span class="qs-lbl">Afstand</span></div>
+        <div class="qs-box"><span class="qs-val">-770m / +50m</span><span class="qs-lbl">Hoogte</span></div>
+        <div class="qs-box"><span class="qs-val">6–7 uur</span><span class="qs-lbl">Duur</span></div>
+        <div class="qs-box"><span class="qs-val">~3.0 km/u</span><span class="qs-lbl">Snelheid</span></div>
+      </div>
+    </div>
+
+    <div class="diff-wrap">
+      <span class="diff-label">Moeilijkheid</span>
+      <div class="diff-bar"><div class="diff-fill" style="width:55%;background:linear-gradient(90deg,#C4622D,#D4A035)"></div></div>
+      <span class="diff-tag" style="color:var(--terra)">Matig</span>
+    </div>
+
+    <div class="elev-wrap">
+      <div class="elev-title">Hoogteprofiel</div>
+      <svg class="elev-svg" viewBox="0 0 680 90" role="img">
+        <title>Dag 4: steile afdaling via Camino del Risco van 770m naar zeeniveau, dan vlak kustpad naar Garachico</title>
+        <defs>
+          <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5DB8C0" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#5DB8C0" stop-opacity=".03"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 24 Q70 28 120 40 Q165 54 210 74 Q250 83 310 83 Q380 83 440 78 Q500 72 560 75 Q600 77 650 74 L650 86 L20 86Z" fill="url(#g4)"/>
+        <path d="M20 24 Q70 28 120 40 Q165 54 210 74 Q250 83 310 83 Q380 83 440 78 Q500 72 560 75 Q600 77 650 74" stroke="#5DB8C0" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="20" y1="85" x2="650" y2="85" stroke="#C4B090" stroke-width="0.5"/>
+        <text x="24" y="22" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">770m</text>
+        <text x="220" y="82" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">0m — zee</text>
+        <text x="620" y="72" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">0m</text>
+        <text x="340" y="86" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="#B4A090">21 km → Garachico</text>
+      </svg>
+    </div>
+
+    <div class="alert-note">
+      <span class="alert-icon">🏊</span>
+      <span>Camino del Risco heeft blootgestelde secties langs de klifwand. Stokken zijn aan te raden. Breng een badpak mee — Buenavista en de lavapoelen van Garachico zijn het bewaren waard.</span>
+    </div>
+
+    <div class="route-section-title">De route — PR TF-58 · Kustpad</div>
+    <div class="route-steps">
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot start"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Teno Alto<span class="step-km">Start · 770m · 07:30</span></div>
+          <div class="step-info">De afdaling via Camino del Risco: 3.8 km langs een steile klifwand richting de kust. De oceaan verschijnt tussen elke schakelaar.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid" style="background:var(--sky)"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Buenavista del Norte<span class="step-km">8 km · zeeniveau</span></div>
+          <div class="step-info">Voeten in de Atlantische Oceaan. Koffie op het plaza. Optie: detour naar de Faro de Buenavista. Dan het kustpad richting Los Silos.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Los Silos — Charco de la Araña<span class="step-km">14 km · vlak</span></div>
+          <div class="step-info">Het kustpad langs rotsen, zoutpannen en verborgen strandinhammen. Charco de la Araña: natuurlijk zwembad. Lunch hier als de zon hoog staat.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot end"></div></div>
+        <div class="step-body">
+          <div class="step-name">Garachico — El Caletón lavapoelen<span class="step-km">21 km · 0m</span></div>
+          <div class="step-info">Het mooiste dorp van Spanje — en een dorp dat zichzelf heeft heropgebouwd na een vulkaanuitbarsting in 1706. Zwem in de lavapoelen. Eet vis aan het water. Nacht 4.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-note">
+      <p>"Na gisteren is vandaag het cadeau. Zout in de lucht, vlakke grond, de hele Atlantische Oceaan aan je linkerhand. Garachico verdient de avond — ga niet te vroeg naar bed."</p>
+      <div class="guide-from">— Andreas · Camino Tenerife</div>
+    </div>
+
+    <div class="accom-title">3 overnachtingen — Garachico</div>
+    <div class="accom-cards">
+      <a class="accom-card top" href="https://www.booking.com/hotel/es/la-quinta-roja-garachico.html" target="_blank" rel="noopener">
+        <span class="accom-icon">🏛</span>
+        <div>
+          <div class="accom-name">Hotel Rural La Quinta Roja<span class="accom-badge">Aanbevolen</span></div>
+          <div class="accom-desc">16e-eeuws herenhuis, 50 meter van de lavapoelen. Historische kamers, zwembad, midden in Garachico. De mooiste nacht van de route — in het mooiste dorp.</div>
+          <div class="accom-link">↗ booking.com — La Quinta Roja Garachico</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.booking.com/searchresults.html?ss=Garachico+Tenerife" target="_blank" rel="noopener">
+        <span class="accom-icon">🏨</span>
+        <div>
+          <div class="accom-name">Hotel El Caletón</div>
+          <div class="accom-desc">Direct aan de lavapoelen. Eenvoudiger maar onverslaanbare locatie — 's morgens stap je het water in voor aanvang dag 5.</div>
+          <div class="accom-link">↗ booking.com — Garachico hotels</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.airbnb.com/s/Garachico--Tenerife/homes" target="_blank" rel="noopener">
+        <span class="accom-icon">🏠</span>
+        <div>
+          <div class="accom-name">Vakantiewoning Garachico centrum</div>
+          <div class="accom-desc">Volledig huis voor de groep van 6 in het historische centrum. Eigen keuken, lokale sfeer. Alles te voet.</div>
+          <div class="accom-link">↗ Airbnb — Garachico groepswoningen</div>
+        </div>
+      </a>
+    </div>
+
+    <a class="maps-btn" href="https://www.google.com/maps/dir/Teno+Alto,+Tenerife/Buenavista+del+Norte,+Tenerife/Los+Silos,+Tenerife/Garachico,+Tenerife" target="_blank" rel="noopener">
+      🗺 Open Dag 4 in Google Maps
+    </a>
+  </div>
+
+  <!-- ── DAG 5 ── -->
+  <div id="panel-dag5" class="panel">
+    <div class="day-header">
+      <div class="section-eyebrow">Dag 5 · Kust · Slotdag</div>
+      <h2>Garachico → Icod<br>→ Los Realejos → Puerto de la Cruz</h2>
+      <p class="day-subtitle">De langste dag — en de mooiste aankomst. De Rambla de Castro kliffen als slotakkoord.</p>
+      <div class="day-quick-stats">
+        <div class="qs-box"><span class="qs-val">~34 km</span><span class="qs-lbl">Afstand</span></div>
+        <div class="qs-box"><span class="qs-val">±400m</span><span class="qs-lbl">Hoogte</span></div>
+        <div class="qs-box"><span class="qs-val">9–10 uur</span><span class="qs-lbl">Duur</span></div>
+        <div class="qs-box"><span class="qs-val">~3.4 km/u</span><span class="qs-lbl">Snelheid</span></div>
+      </div>
+    </div>
+
+    <div class="diff-wrap">
+      <span class="diff-label">Moeilijkheid</span>
+      <div class="diff-bar"><div class="diff-fill" style="width:55%;background:linear-gradient(90deg,#C4622D,#D4A035)"></div></div>
+      <span class="diff-tag" style="color:var(--terra)">Matig</span>
+    </div>
+
+    <div class="elev-wrap">
+      <div class="elev-title">Hoogteprofiel</div>
+      <svg class="elev-svg" viewBox="0 0 680 90" role="img">
+        <title>Dag 5: vlak begin bij Garachico, kort omhoog bij Icod, kustpad langs Los Realejos naar Puerto de la Cruz</title>
+        <defs>
+          <linearGradient id="g5" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#7A9E7E" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#7A9E7E" stop-opacity=".03"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 74 Q80 68 130 56 Q175 42 215 26 Q240 16 260 20 Q290 30 330 46 Q370 58 420 62 Q475 65 520 58 Q570 50 620 54 L650 56 L650 86 L20 86Z" fill="url(#g5)"/>
+        <path d="M20 74 Q80 68 130 56 Q175 42 215 26 Q240 16 260 20 Q290 30 330 46 Q370 58 420 62 Q475 65 520 58 Q570 50 620 54 L650 56" stroke="#7A9E7E" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="20" y1="85" x2="650" y2="85" stroke="#C4B090" stroke-width="0.5"/>
+        <text x="24" y="73" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">0m</text>
+        <text x="224" y="15" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">~550m</text>
+        <text x="618" y="54" font-family="Outfit,sans-serif" font-size="10" fill="#8C7E6E">50m</text>
+        <text x="340" y="86" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="#B4A090">34 km → Puerto de la Cruz</text>
+      </svg>
+    </div>
+
+    <div class="alert-note">
+      <span class="alert-icon">🌅</span>
+      <span>Dit is de langste dag — vroeg vertrekken. De Rambla de Castro (het klifpad vóór Puerto de la Cruz) is het mooiste stuk van de hele Camino. Bewaar energie voor de aankomst.</span>
+    </div>
+
+    <div class="route-section-title">De route — Camino Real del Norte</div>
+    <div class="route-steps">
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot start"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Garachico — Plaza de la Villa<span class="step-km">Start · 0m · 06:30</span></div>
+          <div class="step-info">Vroeg koffie op het plein. Een laatste blik op de lavapoelen. Dan het Camino Real del Norte richting Icod.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Icod de los Vinos — Drago Milenario<span class="step-km">7 km · 250m</span></div>
+          <div class="step-info">Rustpunt verplicht. De Drago Milenario is 1,000 jaar oud — de oudste drakenboom ter wereld. Hier begrijp je hoe oud dit eiland is.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">La Guancha / San Juan de la Rambla<span class="step-km">18 km · 300m</span></div>
+          <div class="step-info">Historische kustdorpen op het Camino Real. Uitzicht over de noordkust. Tanken voor het laatste stuk.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot mid"></div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-name">Los Realejos — Rambla de Castro<span class="step-km">25 km · 150m</span></div>
+          <div class="step-info">Het mooiste klifpad van Noord-Tenerife. Bananenplantages, vulkanische kliffen, uitzicht op de Teide vanuit zeeniveau. Hier vertraag je vanzelf.</div>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="step-line"><div class="step-dot end" style="width:14px;height:14px"></div></div>
+        <div class="step-body">
+          <div class="step-name">Puerto de la Cruz — Plaza del Charco<span class="step-km">34 km · 50m · AANKOMST</span></div>
+          <div class="step-info">Glas wijn. Je hebt de Camino Tenerife gelopen.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-note">
+      <p>"Puerto de la Cruz is geen eindstreep — het is een goede plek om te stoppen en terug te kijken. Van de caldera tot hier: vijf dagen, één eiland, van boven tot beneden. Dat is geen tour. Dat is een Camino."</p>
+      <div class="guide-from">— Andreas · Camino Tenerife</div>
+    </div>
+
+    <div class="accom-title">3 opties na aankomst — Puerto de la Cruz</div>
+    <div class="accom-cards">
+      <a class="accom-card top" href="https://www.booking.com/hotel/es/botanico.html" target="_blank" rel="noopener">
+        <span class="accom-icon">⭐</span>
+        <div>
+          <div class="accom-name">Hotel Botánico & The Oriental Spa<span class="accom-badge">Aanbevolen</span></div>
+          <div class="accom-desc">Luxe spa-hotel naast de botanische tuin. Na 5 etappes meer dan verdiend — boek een massage zodra je aankomt. Groepskamers beschikbaar.</div>
+          <div class="accom-link">↗ booking.com — Hotel Botánico Puerto de la Cruz</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.booking.com/hotel/es/monopol-puerto-de-la-cruz.html" target="_blank" rel="noopener">
+        <span class="accom-icon">🏨</span>
+        <div>
+          <div class="accom-name">Hotel Monopol</div>
+          <div class="accom-desc">Canarisch koloniaal huis, 4 sterren, Plaza del Charco. Je loopt je aankomst rechtstreeks in. Sfeervolle afronding van een echte Camino.</div>
+          <div class="accom-link">↗ booking.com — Hotel Monopol Puerto de la Cruz</div>
+        </div>
+      </a>
+      <a class="accom-card" href="https://www.airbnb.com/s/Puerto-de-la-Cruz--Tenerife/homes" target="_blank" rel="noopener">
+        <span class="accom-icon">🏠</span>
+        <div>
+          <div class="accom-name">Vakantiewoning centrum Puerto</div>
+          <div class="accom-desc">Groot appartement voor 6 personen, eigen terras, dicht bij Plaza Martínez. Eigen feestje. Eigen tempo. De goedkoopste optie voor de groep.</div>
+          <div class="accom-link">↗ Airbnb — Puerto de la Cruz groep</div>
+        </div>
+      </a>
+    </div>
+
+    <a class="maps-btn" href="https://www.google.com/maps/dir/Garachico,+Tenerife/Icod+de+los+Vinos,+Tenerife/La+Guancha,+Tenerife/Los+Realejos,+Tenerife/Puerto+de+la+Cruz,+Tenerife" target="_blank" rel="noopener">
+      🗺 Open Dag 5 in Google Maps
+    </a>
+  </div>
+
+</div><!-- /content -->
+
+<!-- ══════════════════════════════════════════════════════ FOOTER -->
+<div class="brand-line"></div>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Camino <em>Tenerife</em></div>
+      <div style="font-size:13px;color:rgba(240,233,220,0.45);margin-top:6px;font-family:'Cormorant Garamond',serif;font-style:italic;">"Walk the Island. Find Your Way."</div>
+    </div>
+    <div class="footer-meta">
+      <div><a href="https://kaminotenerife.com" target="_blank" rel="noopener">kaminotenerife.com</a></div>
+      <div>Gids: Andreas Höfelmeyer</div>
+      <div>Camino Francés veteran · lokale gids Tenerife</div>
+      <div style="margin-top:8px;color:rgba(240,233,220,0.25);">Routedata: Wikiloc · AllTrails · caminosantiagoentrevolcanes.com</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════ JS -->
+<script>
+  const tabs = ['overview','dag1','dag2','dag3','dag4','dag5'];
+
+  function showTab(id) {
+    tabs.forEach(function(t) {
+      const panel = document.getElementById('panel-' + t);
+      if (panel) panel.classList.remove('active');
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+      btn.classList.remove('active');
+    });
+
+    const target = document.getElementById('panel-' + id);
+    if (target) target.classList.add('active');
+
+    const idx = tabs.indexOf(id);
+    const btns = document.querySelectorAll('.tab-btn');
+    if (btns[idx]) btns[idx].classList.add('active');
+
+    // Scroll nav into view on mobile
+    const nav = document.getElementById('tabNav');
+    if (nav) nav.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
+
+</body>
+</html>
