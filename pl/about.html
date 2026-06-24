@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="nl" class="scroll-smooth">
+<html lang="pl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Over Andreas | Camino Tenerife</title>
-    <meta name="description" content="Andreas Höfelmeyer, de gids achter Camino Tenerife. Van Hannover naar de Camino Francés, van Spanje naar het Eiland van Vuur.">
+    <title>O Andreasie | Camino Tenerife</title>
+    <meta name="description" content="Andreas Höfelmeyer, przewodnik stojący za Camino Tenerife. Z Hanoweru na Camino Francés, z Hiszpanii na Wyspę Ognia.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
@@ -58,56 +58,57 @@
 <body class="flex flex-col min-h-screen w-full overflow-x-hidden">
 
     <header class="absolute top-0 left-0 w-full z-50 px-6 py-0 lg:px-12 flex justify-between items-center border-b border-white/20">
-        <a href="/nl/" class="flex items-center">
-            <img src="/pics/logo.svg" alt="Camino Tenerife. Begeleide Wandelingen" class="h-32 w-auto">
+        <a href="/pl/" class="flex items-center">
+            <img src="/pics/logo.svg" alt="Camino Tenerife. Wędrówki z przewodnikiem" class="h-32 w-auto">
         </a>
         <nav class="hidden md:flex items-center gap-8">
-            <a href="/nl/camino-tenerife.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Camino Tenerife</a>
-            <a href="/nl/about.html" class="text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:2px solid #D4A035; padding-bottom:3px;">Over mij</a>
-            <a href="/nl/contact.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Contact</a>
+            <a href="/pl/camino-tenerife.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Camino Tenerife</a>
+            <a href="/pl/about.html" class="text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:2px solid #D4A035; padding-bottom:3px;">O mnie</a>
+            <a href="/pl/contact.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Kontakt</a>
         </nav>
+        <!-- Language switcher -->
         <div class="hidden md:flex items-center gap-1" style="border-left:1px solid rgba(255,255,255,0.20); padding-left:20px; margin-left:8px;">
-            <a href="/about.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">EN</a>
+            <a href="/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">EN</a>
             <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
-            <a href="/de/about.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">DE</a>
+            <a href="/de/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">DE</a>
             <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
-            <span class="text-white text-xs font-bold tracking-widest">NL</span>
+            <a href="/nl/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">NL</a>
             <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
-            <a href="/pl/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">PL</a>
+            <span class="text-white text-xs font-bold tracking-widest">PL</span>
         </div>
         <div class="hidden md:block">
-            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp rounded-none text-sm">WhatsApp mij</a>
+            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp rounded-none text-sm">Napisz na WhatsApp</a>
         </div>
         <button class="md:hidden text-white" aria-label="Menu" aria-controls="ctMobileMenu" onclick="document.getElementById('ctMobileMenu').classList.toggle('hidden')"><i class="ph ph-list text-3xl"></i></button>
 
         <!-- Mobile dropdown menu -->
         <div id="ctMobileMenu" class="hidden md:hidden absolute top-full left-0 w-full" style="background:#2C4A3E; border-top:1px solid rgba(255,255,255,0.12); box-shadow:0 14px 30px rgba(26,18,8,0.3);">
             <nav class="flex flex-col px-6 py-3">
-                <a href="/nl/camino-tenerife.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Camino Tenerife</a>
-                <a href="/nl/about.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Over mij</a>
-                <a href="/nl/contact.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Contact</a>
+                <a href="/pl/camino-tenerife.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Camino Tenerife</a>
+                <a href="/pl/about.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">O mnie</a>
+                <a href="/pl/contact.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Kontakt</a>
                 <div class="flex items-center gap-3 py-4 text-xs font-bold tracking-widest">
-                    <a href="/about.html" style="color:rgba(255,255,255,0.55);">EN</a>
+                    <a href="/" style="color:rgba(255,255,255,0.55);">EN</a>
                     <span style="color:rgba(255,255,255,0.25);">|</span>
-                    <a href="/de/about.html" style="color:rgba(255,255,255,0.55);">DE</a>
+                    <a href="/de/" style="color:rgba(255,255,255,0.55);">DE</a>
                     <span style="color:rgba(255,255,255,0.25);">|</span>
-                    <span class="text-white">NL</span>
+                    <a href="/nl/" style="color:rgba(255,255,255,0.55);">NL</a>
                     <span style="color:rgba(255,255,255,0.25);">|</span>
-                    <a href="/pl/" style="color:rgba(255,255,255,0.55);">PL</a>
+                    <span class="text-white">PL</span>
                 </div>
-                <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp rounded-none text-sm text-center mb-3">WhatsApp mij</a>
+                <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp rounded-none text-sm text-center mb-3">Napisz na WhatsApp</a>
             </nav>
         </div>
     </header>
 
     <section class="relative w-full flex items-end" style="height:82vh; min-height:520px;">
         <div class="absolute inset-0">
-            <img src="/pics/About%20me%20-%20Hero%2003.jpeg" alt="Andreas kijkt uit over de bergen van Tenerife" class="w-full h-full object-cover" style="object-position:right center;" loading="eager">
+            <img src="/pics/About%20me%20-%20Hero%2003.jpeg" alt="Andreas spogląda na góry Teneryfy" class="w-full h-full object-cover" style="object-position:right center;" loading="eager">
             <div class="absolute inset-0 image-overlay-gradient"></div>
         </div>
         <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pb-16 lg:pb-24">
             <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-normal leading-snug text-balance max-w-3xl mb-5" style="font-style:italic; font-weight:400;">
-                "De kracht van de kleine stap. Veel kleine stappen brengen je buitengewoon ver. Als je maar blijft gaan."
+                "Siła małego kroku. Wiele małych kroków zaprowadzi cię niezwykle daleko. Wystarczy, że będziesz iść dalej."
             </h1>
             <p class="font-serif text-base md:text-lg font-normal" style="color:rgba(255,255,255,0.60); letter-spacing:0.04em;">
                 Bill Bennett &nbsp;·&nbsp; <em>The Way, My Way</em> &nbsp;·&nbsp; 2024
@@ -119,16 +120,16 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-20 items-center">
                 <div class="lg:col-span-5 overflow-hidden">
-                    <img src="/pics/Andreas%20walking.jpg" alt="Andreas op een wandelpad op Tenerife" class="w-full object-cover img-hover" style="aspect-ratio:4/5; object-position:center 50%;" loading="lazy">
+                    <img src="/pics/Andreas%20walking.jpg" alt="Andreas idzie szlakiem na Teneryfie" class="w-full object-cover img-hover" style="aspect-ratio:4/5; object-position:center 50%;" loading="lazy">
                 </div>
                 <div class="lg:col-span-6">
-                    <span class="trail-marker mb-5 block">Hoe het begon</span>
-                    <h2 class="font-serif text-3xl lg:text-4xl mb-6 leading-tight" style="color:#1A1208;">Van Hannover naar het Eiland van Vuur</h2>
+                    <span class="trail-marker mb-5 block">Jak tu trafiłem</span>
+                    <h2 class="font-serif text-3xl lg:text-4xl mb-6 leading-tight" style="color:#1A1208;">Z Hanoweru na Wyspę Ognia</h2>
                     <p class="font-light text-lg leading-relaxed mb-5" style="color:#6B5B45;">
-                        Ik ben geboren in 1977 in Hannover, Duitsland. Duits en Nederlands zijn mijn moedertalen. Engels leerde ik als derde taal en het werd er een die ik dagelijks gebruik. Het grootste deel van mijn leven was wandelen gewoon iets wat ik in het weekend deed.
+                        Urodziłem się w 1977 roku w Hanowerze, w Niemczech. Niemiecki i niderlandzki to moje języki ojczyste, a angielski to trzeci język, który stał się codziennością. Przez większość życia wędrowanie było po prostu czymś, co robiłem w weekendy.
                     </p>
                     <p class="font-light text-lg leading-relaxed" style="color:#6B5B45;">
-                        In 2023 liep ik de Camino Francés voor het eerst. Alleen. Achthonderd kilometer van Saint-Jean-Pied-de-Port naar Santiago de Compostela. Toen ik aankwam, begreep ik waarom mensen dit meer dan één keer doen. De natuur, de mensen, de uitdaging, jij met jezelf. Dus besloot ik dit met mijn zoon te delen. In 2025 liep ik het samen met hem. De Twee-Generaties Wandeling. In de tussentijd, in november 2024, verhuisde ik naar Tenerife. Het eiland pakte me op een manier die ik niet had verwacht. De paden hier zijn buitengewoon. Prachtige natuur met adembenemende uitzichten. Dit is wat ik met jou wil delen.
+                        W 2023 roku przeszedłem Camino Francés po raz pierwszy. Samotnie. Osiemset kilometrów od Saint-Jean-Pied-de-Port do Santiago de Compostela. Gdy dotarłem do celu, zrozumiałem, dlaczego ludzie robią to więcej niż raz. To może być doświadczenie, które zmienia życie. Natura, ludzie, wyzwanie, ty sam ze sobą. Postanowiłem więc podzielić się tym z synem. W 2025 roku przeszedłem to znów, razem z nim. Wędrówka Dwóch Pokoleń. W międzyczasie, w listopadzie 2024 roku, przeprowadziłem się na Teneryfę. Wyspa wciągnęła mnie w sposób, którego się nie spodziewałem. Tutejsze szlaki są niezwykłe. Piękna przyroda i zapierające dech widoki. To właśnie chcę z tobą dzielić.
                     </p>
                 </div>
             </div>
@@ -138,7 +139,7 @@
     <section class="py-20 lg:py-28 border-t border-b reveal" style="background:linear-gradient(160deg,#f5e9cc 0%,#eedcaa 60%,#e6d096 100%); border-color:rgba(139,100,30,0.22);">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="text-center mb-14">
-                <span class="trail-marker" style="display:inline-flex; justify-content:center; margin-bottom:0.5rem;">Het pad tot nu toe</span>
+                <span class="trail-marker" style="display:inline-flex; justify-content:center; margin-bottom:0.5rem;">Dotychczasowa droga</span>
             </div>
             <div id="trail-map-wrap"></div>
         </div>
@@ -148,26 +149,26 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-20 items-center">
                 <div class="lg:col-span-6">
-                    <span class="trail-marker mb-5 block">De twee-generaties wandeling</span>
-                    <h2 class="font-serif text-3xl lg:text-4xl mb-6 leading-tight" style="color:#1A1208;">2023 alleen. 2025 met mijn zoon Jason.</h2>
+                    <span class="trail-marker mb-5 block">Wędrówka dwóch pokoleń</span>
+                    <h2 class="font-serif text-3xl lg:text-4xl mb-6 leading-tight" style="color:#1A1208;">2023 samotnie. 2025 z synem Jasonem.</h2>
                     <p class="font-light text-lg leading-relaxed mb-5" style="color:#6B5B45;">
-                        De eerste Camino ging over de vraag of ik het kon. Dat kon ik. Stap voor stap, dwars door Spanje, met alleen mijn gedachten en het pad voor me.
+                        Pierwsze Camino było próbą, czy w ogóle dam radę. Dałem. Krok za krokiem, przez całą Hiszpanię, sam ze swoimi myślami i drogą przed sobą.
                     </p>
                     <p class="font-light text-lg leading-relaxed" style="color:#6B5B45;">
-                        De tweede keer liep ik het met mijn zoon Jason. Ik noem het de twee-generaties wandeling. Vader en zoon, hetzelfde pad, dezelfde blaren en dezelfde verwondering. Iets doorgeven dat alles voor mij betekent — dat is een gevoel dat ik niet kan beschrijven. Je moet het lopen om het te begrijpen.
+                        Za drugim razem przeszedłem je z synem Jasonem. Myślę o tym jak o wędrówce dwóch pokoleń. Ojciec i syn, ta sama droga, te same pęcherze i ten sam zachwyt. Przekazać coś, co znaczy dla mnie wszystko, to uczucie, którego nie potrafię opisać. Musisz to przejść, żeby zrozumieć.
                     </p>
                 </div>
                 <div class="lg:col-span-5">
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <div class="overflow-hidden">
-                                <img src="/pics/2023%20-%20Solo%2001.jpeg" alt="Andreas op de Camino Francés, 2023" class="w-full object-cover img-hover" style="aspect-ratio:3/4; object-position:center 45%;" loading="lazy">
+                                <img src="/pics/2023%20-%20Solo%2001.jpeg" alt="Andreas idzie Camino Francés samotnie, 2023" class="w-full object-cover img-hover" style="aspect-ratio:3/4; object-position:center 45%;" loading="lazy">
                             </div>
                             <p class="font-serif text-center mt-3 text-lg" style="color:#8C7E6E; letter-spacing:0.08em;">2023</p>
                         </div>
                         <div>
                             <div class="overflow-hidden">
-                                <img src="/pics/2025%20-%20Father%20and%20Son%2001.jpeg" alt="Andreas en Jason op de Camino, 2025" class="w-full object-cover img-hover" style="aspect-ratio:3/4; object-position:center 30%;" loading="lazy">
+                                <img src="/pics/2025%20-%20Father%20and%20Son%2001.jpeg" alt="Andreas i Jason idą Camino razem, 2025" class="w-full object-cover img-hover" style="aspect-ratio:3/4; object-position:center 30%;" loading="lazy">
                             </div>
                             <p class="font-serif text-center mt-3 text-lg" style="color:#8C7E6E; letter-spacing:0.08em;">2025</p>
                         </div>
@@ -180,33 +181,33 @@
     <section class="py-20 lg:py-28 reveal" style="background:#2C4A3E;">
         <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
             <p class="font-serif text-2xl md:text-3xl lg:text-4xl text-white leading-relaxed" style="font-style:italic;">
-                "Mensen die graag wandelen, houden van de natuur en van verbinding. Ik wil de mooie plekken die Tenerife te bieden heeft delen met mensen die hetzelfde voelen."
+                "Ludzie, którzy kochają wędrować, kochają naturę i kochają więź z innymi. Chcę dzielić piękne miejsca, które oferuje Teneryfa, z ludźmi, którzy czują to samo."
             </p>
         </div>
     </section>
 
     <section class="py-16 reveal" style="background:#FAF7F2;">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-            <span class="trail-marker mb-6" style="display:inline-flex; justify-content:center;">Praat met mij onderweg</span>
+            <span class="trail-marker mb-6" style="display:inline-flex; justify-content:center;">Porozmawiajmy na szlaku</span>
             <div class="flex gap-4 justify-center flex-wrap mt-3">
                 <span class="lang-chip">Deutsch</span>
                 <span class="lang-chip">Nederlands</span>
                 <span class="lang-chip">English</span>
             </div>
             <p class="mt-6 font-light text-base" style="color:#8C7E6E; max-width:480px; margin-left:auto; margin-right:auto; margin-top:1.5rem;">
-                Of je nu uit Duitsland, Nederland of een Engelstalig land komt, ik begeleid en praat met je in jouw taal.
+                Niezależnie od tego, czy przyjeżdżasz z Niemiec, Holandii, czy z kraju anglojęzycznego, prowadzę cię i rozmawiam z tobą w twoim własnym języku.
             </p>
         </div>
     </section>
 
     <section class="py-20 lg:py-28 reveal" style="background:#2C4A3E;">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-            <span class="trail-marker mb-5" style="color:#D4A035; display:inline-flex; justify-content:center;">Loop met mij</span>
-            <h2 class="font-serif text-4xl lg:text-5xl text-white mb-4 leading-tight">Een pad is mooier als je het deelt.</h2>
+            <span class="trail-marker mb-5" style="color:#D4A035; display:inline-flex; justify-content:center;">Chodź ze mną</span>
+            <h2 class="font-serif text-4xl lg:text-5xl text-white mb-4 leading-tight">Droga jest piękniejsza, gdy się ją dzieli.</h2>
             <p class="font-light text-lg mb-10 max-w-xl mx-auto" style="color:rgba(255,255,255,0.72);">
-                Kom met mij wandelen op Tenerife. Stuur een berichtje en ik vind een route die bij jou past.
+                Chodź ze mną na wędrówkę po Teneryfie. Napisz wiadomość, a znajdę szlak, który będzie dla ciebie odpowiedni.
             </p>
-            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp">App me op WhatsApp</a>
+            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp">Napisz do mnie na WhatsApp</a>
         </div>
     </section>
 
@@ -214,9 +215,9 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-10 gap-x-12 mb-10">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-x-8 gap-y-6">
-                    <img src="/pics/logo.svg" alt="Camino Tenerife. Begeleide Wandelingen" class="h-24 w-auto shrink-0">
+                    <img src="/pics/logo.svg" alt="Camino Tenerife. Wędrówki z przewodnikiem" class="h-24 w-auto shrink-0">
                     <div>
-                        <p class="font-light text-sm leading-relaxed mb-4 max-w-md" style="color:rgba(255,255,255,0.60);">Begeleide wandelervaringen die je verbinden met de ziel, geschiedenis en landschappen van de Canarische Eilanden.</p>
+                        <p class="font-light text-sm leading-relaxed mb-4 max-w-md" style="color:rgba(255,255,255,0.60);">Wędrówki z przewodnikiem, które łączą cię z duszą, historią i krajobrazami Wysp Kanaryjskich.</p>
                         <div class="flex items-center gap-4">
                             <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-instagram-logo text-xl"></i></a>
                             <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-facebook-logo text-xl"></i></a>
@@ -224,16 +225,16 @@
                     </div>
                 </div>
                 <div class="w-full md:max-w-sm shrink-0">
-                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-4" style="color:rgba(255,255,255,0.40);">De Trail-nieuwsbrief</h4>
-                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">Schrijf je in voor seizoensgebonden trail-updates en exclusieve vroegboektoegang tot beperkte wandelingen.</p>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-4" style="color:rgba(255,255,255,0.40);">Newsletter Szlaku</h4>
+                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">Zapisz się, aby otrzymywać sezonowe aktualizacje ze szlaku i ekskluzywny wcześniejszy dostęp do wędrówek o ograniczonej liczbie miejsc.</p>
                     <iframe src="https://api.leadconnectorhq.com/widget/form/slOfhPmlenjrz10MoJSX" style="width:100%;height:360px;border:none;border-radius:8px;" id="inline-slOfhPmlenjrz10MoJSX" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated" data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Camino Tenerife - Newsletter" data-layout-iframe-id="inline-slOfhPmlenjrz10MoJSX" data-form-id="slOfhPmlenjrz10MoJSX" title="Camino Tenerife - Newsletter"></iframe>
                 </div>
             </div>
             <div class="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-color:rgba(255,255,255,0.12);">
-                <p class="text-xs" style="color:rgba(255,255,255,0.40);">&copy; 2026 Camino Tenerife. Alle rechten voorbehouden.</p>
+                <p class="text-xs" style="color:rgba(255,255,255,0.40);">&copy; 2026 Camino Tenerife. Wszelkie prawa zastrzeżone.</p>
                 <div class="flex gap-6">
-                    <a href="/nl/privacy.html" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Privacybeleid</a>
-                    <a href="/nl/terms.html" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Algemene Voorwaarden</a>
+                    <a href="/pl/privacy.html" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Polityka prywatności</a>
+                    <a href="/pl/terms.html" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Regulamin</a>
                 </div>
             </div>
         </div>
@@ -246,12 +247,12 @@
         if (!wrap) return;
         const W = 1100, H = 480;
         const milestones = [
-            { x: 100,  y: 105, year: '1977',         desc: 'Geboren in Hannover',          flag: 'de' },
-            { x: 258,  y: 278, year: '2001',          desc: 'Geëmigreerd naar Nederland',   flag: 'nl' },
-            { x: 448,  y: 118, year: '2023',          desc: 'Camino Francés, alleen',       flag: null, img: '/pics/2023%20-%20Solo%2001.jpeg', pinScale: 2.8, pinOrigin: 'center 48%' },
-            { x: 635,  y: 290, year: 'Nov 2024',      desc: 'Tenerife werd thuis',          flag: 'es' },
-            { x: 828,  y: 125, year: '2025',          desc: 'Camino met Jason',             flag: null, img: '/pics/2025%20-%20Father%20and%20Son%2001.jpeg' },
-            { x: 1010, y: 275, year: 'Elke zondag',   desc: 'Een nieuw eilandpad',          flag: null },
+            { x: 100,  y: 105, year: '1977',          desc: 'Urodzony w Hanowerze',        flag: 'de' },
+            { x: 258,  y: 278, year: '2001',          desc: 'Emigracja do Holandii',       flag: 'nl' },
+            { x: 448,  y: 118, year: '2023',          desc: 'Camino Francés, samotnie',    flag: null, img: '/pics/2023%20-%20Solo%2001.jpeg', pinScale: 2.8, pinOrigin: 'center 48%' },
+            { x: 635,  y: 290, year: 'Lis 2024',      desc: 'Teneryfa stała się domem',    flag: 'es' },
+            { x: 828,  y: 125, year: '2025',          desc: 'Camino z Jasonem',            flag: null, img: '/pics/2025%20-%20Father%20and%20Son%2001.jpeg' },
+            { x: 1010, y: 275, year: 'Co niedzielę',  desc: 'Nowy szlak na wyspie',        flag: null },
         ];
         let d = `M${milestones[0].x},${milestones[0].y}`;
         for (let i = 0; i < milestones.length - 1; i++) {
@@ -267,7 +268,7 @@
         const corners=xc(18,18)+xc(W-18,18)+xc(18,H-18)+xc(W-18,H-18);
         const spots=`<circle cx="210" cy="398" r="16" fill="rgba(120,80,18,0.04)"/><circle cx="880" cy="30" r="10" fill="rgba(120,80,18,0.05)"/><circle cx="60" cy="330" r="13" fill="rgba(120,80,18,0.04)"/><circle cx="990" cy="430" r="19" fill="rgba(120,80,18,0.04)"/><circle cx="520" cy="20" r="8" fill="rgba(120,80,18,0.05)"/>`;
         const compass=`<g transform="translate(${W-58},52)"><circle r="28" fill="rgba(245,232,195,0.75)" stroke="rgba(120,80,18,0.32)" stroke-width="1.2"/><circle r="22" fill="none" stroke="rgba(120,80,18,0.15)" stroke-width="0.7"/><path d="M0,-24 L5,0 L-5,0 Z" fill="#7a3410"/><path d="M0,24 L5,0 L-5,0 Z" fill="rgba(120,80,18,0.45)"/><path d="M-24,0 L0,5 L0,-5 Z" fill="rgba(120,80,18,0.35)"/><path d="M24,0 L0,5 L0,-5 Z" fill="rgba(120,80,18,0.35)"/><circle r="4" fill="rgba(245,232,195,0.95)" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><text x="0" y="-33" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="11" font-style="italic" fill="rgba(120,80,18,0.65)" letter-spacing="1">N</text></g>`;
-        const scalebar=`<g transform="translate(48,${H-42})"><line x1="0" y1="0" x2="88" y2="0" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><line x1="0" y1="-4" x2="0" y2="4" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><line x1="44" y1="-3" x2="44" y2="3" stroke="rgba(120,80,18,0.35)" stroke-width="0.8"/><line x1="88" y1="-4" x2="88" y2="4" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><text x="0" y="16" font-family="Cormorant Garamond,serif" font-size="11" font-style="italic" fill="rgba(120,80,18,0.50)" letter-spacing="0.5">de reis</text></g>`;
+        const scalebar=`<g transform="translate(48,${H-42})"><line x1="0" y1="0" x2="88" y2="0" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><line x1="0" y1="-4" x2="0" y2="4" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><line x1="44" y1="-3" x2="44" y2="3" stroke="rgba(120,80,18,0.35)" stroke-width="0.8"/><line x1="88" y1="-4" x2="88" y2="4" stroke="rgba(120,80,18,0.45)" stroke-width="1"/><text x="0" y="16" font-family="Cormorant Garamond,serif" font-size="11" font-style="italic" fill="rgba(120,80,18,0.50)" letter-spacing="0.5">podróż</text></g>`;
         const title=`<text x="${W/2}" y="${H-26}" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="13" font-style="italic" fill="rgba(120,80,18,0.40)" letter-spacing="2">~ Terra Incognita ~</text>`;
         const svgMarkup=`<svg viewBox="0 0 ${W} ${H}" data-trailmap preserveAspectRatio="none" style="width:100%;height:auto;display:block;overflow:visible;"><defs><filter id="tm-rough" x="-4%" y="-4%" width="108%" height="108%"><feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="4" seed="7"/><feDisplacementMap in="SourceGraphic" scale="5" xChannelSelector="R" yChannelSelector="G"/></filter></defs>${grid}${spots}${border}${corners}<path d="${d}" fill="none" stroke="rgba(90,50,10,0.12)" stroke-width="6" stroke-linecap="round" transform="translate(2,3)" filter="url(#tm-rough)"/><path id="trail-draw-path" d="${d}" fill="none" stroke="#8B5A2B" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="9 6" filter="url(#tm-rough)" opacity="0.7"/><path class="route" d="${d}" fill="none" stroke="none"/>${compass}${scalebar}${title}</svg>`;
         const flagBg={de:'linear-gradient(to bottom,#000 0% 33.3%,#DD0000 33.3% 66.6%,#FFCE00 66.6% 100%)',nl:'linear-gradient(to bottom,#AE1C28 0% 33.3%,#FFFFFF 33.3% 66.6%,#21468B 66.6% 100%)',es:'linear-gradient(to bottom,#C60B1E 0% 25%,#FFC400 25% 75%,#C60B1E 75% 100%)'};

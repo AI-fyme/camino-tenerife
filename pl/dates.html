@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="pl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dates & Availability | Camino Tenerife</title>
-    <meta name="description" content="Upcoming start dates for the 5-day Camino Tenerife, from volcano to ocean. Check availability and reserve your place.">
+    <title>Terminy i dostępność | Camino Tenerife</title>
+    <meta name="description" content="Najbliższe terminy startu pięciodniowego Camino Tenerife, od wulkanu do oceanu. Sprawdź dostępność i zarezerwuj swoje miejsce.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
@@ -41,8 +41,6 @@
         .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.8s ease,transform 0.8s ease; }
         .reveal.visible { opacity:1; transform:translateY(0); }
         .text-balance { text-wrap:balance; }
-
-        /* date rows */
         .date-list { display:flex; flex-direction:column; gap:14px; max-width:780px; }
         .date-row { display:flex; flex-wrap:wrap; align-items:center; gap:18px; background:#fff; border:1px solid rgba(196,98,45,0.16); border-radius:10px; padding:22px 26px; box-shadow:0 6px 24px rgba(26,18,8,0.05); }
         .date-row .d-main { flex:1 1 220px; }
@@ -58,131 +56,126 @@
 </head>
 <body class="flex flex-col min-h-screen w-full overflow-x-hidden">
 
-    <!-- ═══════════ HEADER / NAV ═══════════ -->
     <header class="absolute top-0 left-0 w-full z-50 px-6 py-0 lg:px-12 flex justify-between items-center border-b border-white/20">
-        <a href="index.html" class="flex items-center">
-            <img src="/pics/logo.svg" alt="Camino Tenerife. Guided Walks" class="h-32 w-auto">
+        <a href="/pl/" class="flex items-center">
+            <img src="/pics/logo.svg" alt="Camino Tenerife. Wędrówki z przewodnikiem" class="h-32 w-auto">
         </a>
         <nav class="hidden md:flex items-center gap-8">
-            <a href="camino-tenerife.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Camino Tenerife</a>
-            <a href="about.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">About Me</a>
-            <a href="contact.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Contact Me</a>
+            <a href="/pl/camino-tenerife.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Camino Tenerife</a>
+            <a href="/pl/about.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">O mnie</a>
+            <a href="/pl/contact.html" class="text-white/90 hover:text-white text-sm font-semibold tracking-widest transition-colors uppercase">Kontakt</a>
         </nav>
+        <!-- Language switcher -->
         <div class="hidden md:flex items-center gap-1" style="border-left:1px solid rgba(255,255,255,0.20); padding-left:20px; margin-left:8px;">
-            <span class="text-white text-xs font-bold tracking-widest">EN</span>
+            <a href="/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">EN</a>
             <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
-            <a href="/de/dates.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">DE</a>
+            <a href="/de/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">DE</a>
             <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
-            <a href="/nl/dates.html" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">NL</a>
+            <a href="/nl/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">NL</a>
             <span class="text-xs mx-1" style="color:rgba(255,255,255,0.25);">|</span>
-            <a href="/pl/" class="text-xs font-bold tracking-widest transition-colors" style="color:rgba(255,255,255,0.50);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">PL</a>
+            <span class="text-white text-xs font-bold tracking-widest">PL</span>
         </div>
         <div class="hidden md:block">
-            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp rounded-none text-sm">WhatsApp Me</a>
+            <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp rounded-none text-sm">Napisz na WhatsApp</a>
         </div>
         <button class="md:hidden text-white" aria-label="Menu" aria-controls="ctMobileMenu" onclick="document.getElementById('ctMobileMenu').classList.toggle('hidden')"><i class="ph ph-list text-3xl"></i></button>
 
-        <!-- Mobile dropdown menu -->
         <div id="ctMobileMenu" class="hidden md:hidden absolute top-full left-0 w-full" style="background:#2C4A3E; border-top:1px solid rgba(255,255,255,0.12); box-shadow:0 14px 30px rgba(26,18,8,0.3);">
             <nav class="flex flex-col px-6 py-3">
-                <a href="camino-tenerife.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Camino Tenerife</a>
-                <a href="about.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">About Me</a>
-                <a href="contact.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Contact Me</a>
+                <a href="/pl/camino-tenerife.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Camino Tenerife</a>
+                <a href="/pl/about.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">O mnie</a>
+                <a href="/pl/contact.html" class="py-3 text-white/90 hover:text-white text-sm font-semibold tracking-widest uppercase" style="border-bottom:1px solid rgba(255,255,255,0.10);">Kontakt</a>
                 <div class="flex items-center gap-3 py-4 text-xs font-bold tracking-widest">
-                    <span class="text-white">EN</span>
+                    <a href="/" style="color:rgba(255,255,255,0.55);">EN</a>
                     <span style="color:rgba(255,255,255,0.25);">|</span>
-                    <a href="/de/dates.html" style="color:rgba(255,255,255,0.55);">DE</a>
+                    <a href="/de/" style="color:rgba(255,255,255,0.55);">DE</a>
                     <span style="color:rgba(255,255,255,0.25);">|</span>
-                    <a href="/nl/dates.html" style="color:rgba(255,255,255,0.55);">NL</a>
+                    <a href="/nl/" style="color:rgba(255,255,255,0.55);">NL</a>
                     <span style="color:rgba(255,255,255,0.25);">|</span>
-                    <a href="/pl/" style="color:rgba(255,255,255,0.55);">PL</a>
+                    <span class="text-white">PL</span>
                 </div>
-                <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp rounded-none text-sm mb-3">WhatsApp Me</a>
+                <a href="https://wa.me/34616850933" target="_blank" rel="noopener" class="btn-whatsapp rounded-none text-sm mb-3">Napisz na WhatsApp</a>
             </nav>
         </div>
     </header>
 
-    <!-- ═══════════ HERO ═══════════ -->
     <section class="relative w-full flex items-end" style="height:58vh; min-height:400px;">
         <div class="absolute inset-0">
-            <img src="/pics/Camino%20Tenerife/Hero.jpg" alt="A trail on Tenerife" class="w-full h-full object-cover" style="object-position:center 40%;" loading="eager">
+            <img src="/pics/Camino%20Tenerife/Hero.jpg" alt="Szlak na Teneryfie" class="w-full h-full object-cover" style="object-position:center 40%;" loading="eager">
             <div class="absolute inset-0 image-overlay-gradient"></div>
         </div>
         <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pb-14 lg:pb-20">
-            <span class="trail-marker mb-4 block" style="color:#D4A035;">Walk with me</span>
+            <span class="trail-marker mb-4 block" style="color:#D4A035;">Idź ze mną</span>
             <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-normal leading-snug text-balance max-w-2xl" style="font-weight:400;">
-                Dates &amp; availability
+                Terminy i dostępność
             </h1>
         </div>
     </section>
 
-    <!-- ═══════════ DATES ═══════════ -->
     <section class="py-20 lg:py-28 reveal" style="background:#FAF7F2;">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="mb-12 max-w-2xl">
-                <span class="trail-marker mb-5 block">Upcoming Departures</span>
-                <h2 class="font-serif text-3xl lg:text-4xl mb-3 leading-tight" style="color:#1A1208;">Choose your start date</h2>
-                <p class="font-light text-lg leading-relaxed" style="color:#6B5B45;">Every departure is the same five day walk from the volcano to the ocean, starting on a Monday and finishing on Friday. Small groups, maximum six walkers. Reserve your place below.</p>
+                <span class="trail-marker mb-5 block">Najbliższe terminy</span>
+                <h2 class="font-serif text-3xl lg:text-4xl mb-3 leading-tight" style="color:#1A1208;">Wybierz datę startu</h2>
+                <p class="font-light text-lg leading-relaxed" style="color:#6B5B45;">Każdy termin to ta sama pięciodniowa wędrówka od wulkanu do oceanu, ze startem w poniedziałek i metą w piątek. Małe grupy, maksymalnie sześciu wędrowców. Zarezerwuj swoje miejsce poniżej.</p>
             </div>
 
             <div class="date-list">
-                <!-- Reserve buttons open the Stripe deposit checkout; the visitor picks their start date in the dropdown. -->
+                <!-- Elke "Reserveren"-knop verwijst naar een Stripe-betaallink. Vervang href="#" door je Stripe-link per datum. -->
                 <div class="date-row">
-                    <div class="d-main"><span class="d-day">Mon 7 Sep 2026</span><span class="d-window">5 days &middot; finishes Fri 11 Sep 2026</span></div>
-                    <span class="d-status">Spots available</span>
-                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Reserve</a>
+                    <div class="d-main"><span class="d-day">Pon 7 wrz 2026</span><span class="d-window">5 dni &middot; kończy się pt 11 wrz 2026</span></div>
+                    <span class="d-status">Wolne miejsca</span>
+                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Zarezerwuj</a>
                 </div>
                 <div class="date-row">
-                    <div class="d-main"><span class="d-day">Mon 21 Sep 2026</span><span class="d-window">5 days &middot; finishes Fri 25 Sep 2026</span></div>
-                    <span class="d-status">Spots available</span>
-                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Reserve</a>
+                    <div class="d-main"><span class="d-day">Pon 21 wrz 2026</span><span class="d-window">5 dni &middot; kończy się pt 25 wrz 2026</span></div>
+                    <span class="d-status">Wolne miejsca</span>
+                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Zarezerwuj</a>
                 </div>
                 <div class="date-row">
-                    <div class="d-main"><span class="d-day">Mon 5 Oct 2026</span><span class="d-window">5 days &middot; finishes Fri 9 Oct 2026</span></div>
-                    <span class="d-status">Spots available</span>
-                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Reserve</a>
+                    <div class="d-main"><span class="d-day">Pon 5 paź 2026</span><span class="d-window">5 dni &middot; kończy się pt 9 paź 2026</span></div>
+                    <span class="d-status">Wolne miejsca</span>
+                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Zarezerwuj</a>
                 </div>
                 <div class="date-row">
-                    <div class="d-main"><span class="d-day">Mon 19 Oct 2026</span><span class="d-window">5 days &middot; finishes Fri 23 Oct 2026</span></div>
-                    <span class="d-status">Spots available</span>
-                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Reserve</a>
+                    <div class="d-main"><span class="d-day">Pon 19 paź 2026</span><span class="d-window">5 dni &middot; kończy się pt 23 paź 2026</span></div>
+                    <span class="d-status">Wolne miejsca</span>
+                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Zarezerwuj</a>
                 </div>
                 <div class="date-row">
-                    <div class="d-main"><span class="d-day">Mon 2 Nov 2026</span><span class="d-window">5 days &middot; finishes Fri 6 Nov 2026</span></div>
-                    <span class="d-status">Spots available</span>
-                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Reserve</a>
+                    <div class="d-main"><span class="d-day">Pon 2 lis 2026</span><span class="d-window">5 dni &middot; kończy się pt 6 lis 2026</span></div>
+                    <span class="d-status">Wolne miejsca</span>
+                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Zarezerwuj</a>
                 </div>
                 <div class="date-row">
-                    <div class="d-main"><span class="d-day">Mon 16 Nov 2026</span><span class="d-window">5 days &middot; finishes Fri 20 Nov 2026</span></div>
-                    <span class="d-status">Spots available</span>
-                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Reserve</a>
+                    <div class="d-main"><span class="d-day">Pon 16 lis 2026</span><span class="d-window">5 dni &middot; kończy się pt 20 lis 2026</span></div>
+                    <span class="d-status">Wolne miejsca</span>
+                    <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Zarezerwuj</a>
                 </div>
             </div>
 
-            <p class="font-light text-sm mt-6" style="color:#8C7E6E;">The full trek is &euro;997 per person. You pay &euro;400 now to secure your place, fully refundable if your date does not reach the minimum group. The balance is arranged once your departure is confirmed. See the guaranteed departure policy on the <a href="camino-tenerife.html" style="color:#C4622D; text-decoration:underline;">Camino page</a>.</p>
+            <p class="font-light text-sm mt-6" style="color:#8C7E6E;">Cała wyprawa to &euro;997 od osoby. Teraz płacisz &euro;400, żeby zarezerwować swoje miejsce, w pełni zwracane, jeśli twój termin nie zbierze minimalnej grupy. Resztę ustalamy, gdy twój wyjazd zostanie potwierdzony. Zasady gwarantowanego wyjazdu znajdziesz na <a href="/pl/camino-tenerife.html" style="color:#C4622D; text-decoration:underline;">stronie Camino</a>.</p>
         </div>
     </section>
 
-    <!-- ═══════════ PAYMENT (STRIPE) ═══════════ -->
     <section class="pb-20 lg:pb-28 reveal">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="p-8 lg:p-10" style="background:#F5EFE4; border:1.5px solid rgba(196,98,45,0.18); border-radius:12px; max-width:780px;">
-                <span class="trail-marker mb-4 block">Secure your place</span>
-                <h3 class="font-serif text-2xl lg:text-3xl mb-4 leading-snug" style="color:#1A1208;">Pay your &euro;400 deposit</h3>
-                <p class="font-light text-base leading-relaxed mb-6" style="color:#6B5B45;">Your place is held with a &euro;400 deposit, paid securely through Stripe. Pick your start date during checkout. It is fully refundable if your date does not reach the minimum group, and the balance is arranged once your departure is confirmed.</p>
-                <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Secure my place &middot; &euro;400</a>
+                <span class="trail-marker mb-4 block">Zapewnij sobie miejsce</span>
+                <h3 class="font-serif text-2xl lg:text-3xl mb-4 leading-snug" style="color:#1A1208;">Zapłać zaliczkę &euro;400</h3>
+                <p class="font-light text-base leading-relaxed mb-6" style="color:#6B5B45;">Twoje miejsce rezerwujemy zaliczką &euro;400, opłaconą bezpiecznie przez Stripe. Datę startu wybierasz podczas płatności. Jest w pełni zwracana, jeśli twój termin nie zbierze minimalnej grupy, a resztę ustalamy, gdy twój wyjazd zostanie potwierdzony.</p>
+                <a href="https://buy.stripe.com/4gMaEW2Nwb1Zf1deixfw400" target="_blank" rel="noopener" class="btn-primary">Zarezerwuj miejsce &middot; &euro;400</a>
             </div>
         </div>
     </section>
 
-    <!-- ═══════════ FOOTER ═══════════ -->
     <footer class="pt-12 pb-10 w-full mt-auto" style="background:#2C4A3E; color:#fff;">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-10 gap-x-12 mb-10">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-x-8 gap-y-6">
-                    <img src="/pics/logo.svg" alt="Camino Tenerife. Guided Walks" class="h-24 w-auto shrink-0">
+                    <img src="/pics/logo.svg" alt="Camino Tenerife. Wędrówki z przewodnikiem" class="h-24 w-auto shrink-0">
                     <div>
-                        <p class="font-light text-sm leading-relaxed mb-4 max-w-md" style="color:rgba(255,255,255,0.60);">Guided walking experiences connecting you to the soul, history, and landscapes of the Canary Islands.</p>
+                        <p class="font-light text-sm leading-relaxed mb-4 max-w-md" style="color:rgba(255,255,255,0.60);">Wędrówki z przewodnikiem, które łączą cię z duszą, historią i krajobrazami Wysp Kanaryjskich.</p>
                         <div class="flex items-center gap-4">
                             <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-instagram-logo text-xl"></i></a>
                             <a href="#" class="w-10 h-10 rounded-full border flex items-center justify-center transition-colors" style="border-color:rgba(255,255,255,0.20); color:rgba(255,255,255,0.55);" onmouseover="this.style.color='#D4A035'; this.style.borderColor='#D4A035';" onmouseout="this.style.color='rgba(255,255,255,0.55)'; this.style.borderColor='rgba(255,255,255,0.20)';"><i class="ph ph-facebook-logo text-xl"></i></a>
@@ -190,16 +183,16 @@
                     </div>
                 </div>
                 <div class="w-full md:max-w-sm shrink-0">
-                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-4" style="color:rgba(255,255,255,0.40);">The Trail Dispatches</h4>
-                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">Subscribe for seasonal trail updates and exclusive early access to limited treks.</p>
+                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-4" style="color:rgba(255,255,255,0.40);">Newsletter Szlaku</h4>
+                    <p class="font-light text-sm mb-4" style="color:rgba(255,255,255,0.60);">Zapisz się, żeby otrzymywać sezonowe wieści ze szlaku i wcześniejszy dostęp do ograniczonej liczby wędrówek.</p>
                     <iframe src="https://api.leadconnectorhq.com/widget/form/slOfhPmlenjrz10MoJSX" style="width:100%;height:360px;border:none;border-radius:8px;" id="inline-slOfhPmlenjrz10MoJSX" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated" data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Camino Tenerife - Newsletter" data-layout-iframe-id="inline-slOfhPmlenjrz10MoJSX" data-form-id="slOfhPmlenjrz10MoJSX" title="Camino Tenerife - Newsletter"></iframe>
                 </div>
             </div>
             <div class="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-color:rgba(255,255,255,0.12);">
-                <p class="text-xs" style="color:rgba(255,255,255,0.40);">&copy; 2026 Camino Tenerife. All rights reserved.</p>
+                <p class="text-xs" style="color:rgba(255,255,255,0.40);">&copy; 2026 Camino Tenerife. Wszelkie prawa zastrzeżone.</p>
                 <div class="flex gap-6">
-                    <a href="/privacy.html" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Privacy Policy</a>
-                    <a href="/terms.html" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Terms of Service</a>
+                    <a href="/pl/privacy.html" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Polityka prywatności</a>
+                    <a href="/pl/terms.html" class="text-xs transition-colors" style="color:rgba(255,255,255,0.40);" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Regulamin</a>
                 </div>
             </div>
         </div>
@@ -207,7 +200,6 @@
     </footer>
 
     <script>
-      // Close the mobile menu when tapping outside it
       (function () {
         var menu = document.getElementById('ctMobileMenu');
         var btn = document.querySelector('button[aria-controls="ctMobileMenu"]');
@@ -218,7 +210,6 @@
           menu.classList.add('hidden');
         });
       })();
-      // Scroll reveal
       (function () {
         var obs = new IntersectionObserver(function (entries) {
           entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); } });
